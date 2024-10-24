@@ -18,7 +18,7 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-            background-color: black; /* Evita el espacio blanco */
+            background-color: black;
         }
 
         .video-container {
@@ -31,23 +31,14 @@
             z-index: -1;
         }
 
-      .video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-            .video-container video {
+        .video-container video {
             position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;
             filter: brightness(0.6);
         }
+
         .content {
             flex: 1;
             display: flex;
@@ -57,7 +48,7 @@
             color: white;
             text-align: center;
             padding: 20px;
-            min-height: calc(100vh - 33vh); /* Resta la altura del footer */
+            min-height: calc(100vh - 33vh);
         }
 
         .logo {
@@ -107,10 +98,10 @@
         }
 
         footer {
-            background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+            background-color: rgba(0, 0, 0, 0.7);
             width: 100%;
             padding: 2rem 0;
-            margin-top: auto; /* Empuja el footer al fondo */
+            margin-top: auto;
         }
 
         .footer-content {
@@ -152,6 +143,15 @@
             transform: translateY(-3px);
         }
 
+        .whatsapp-link {
+            color: limegreen;
+            text-decoration: none;
+        }
+
+        .whatsapp-link:hover {
+            color: darkgreen;
+        }
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 3rem;
@@ -182,14 +182,6 @@
             .content {
                 padding-bottom: 0;
             }
-            .whatsapp-link {
-        color: limegreen; /* Cambia el color del enlace */
-        text-decoration: none; /* Remueve el subrayado */
-    }
-
-    .whatsapp-link:hover {
-        color: darkgreen; /* Cambia el color cuando pasas el ratón por encima */
-    }
         }
     </style>
 </head>
@@ -217,11 +209,12 @@
                 <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
                 <div class="icon-label">Nutrición</div>
             </div>
-            <div class="icon-box">
-                <a href="mindful.html" style="text-decoration: none;">
-                <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
-                <div class="icon-label">Mindfulness</div>
-            </div>
+            <a href="mindful.html" style="text-decoration: none;">
+                <div class="icon-box">
+                    <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                    <div class="icon-label">Mindfulness</div>
+                </div>
+            </a>
             <div class="icon-box">
                 <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
                 <div class="icon-label">Resultados</div>
@@ -239,8 +232,7 @@
             <div class="footer-section">
                 <h3>Contacto</h3>
                 <p>📞💬+1(661)509-9492</p>
-                <p>WhatsApp direct<a href="https://wa.me/16615099492" target="_blank" class="whatsapp-link" ><strong> Aquí </strong></a>
-                </p>
+                <p>WhatsApp direct<a href="https://wa.me/16615099492" target="_blank" class="whatsapp-link"><strong> Aquí </strong></a></p>
                 <p>📧 rxfitmind@gmail.com</p>
                 <p>📍 San Juan,Puerto Rico</p>
             </div>
@@ -253,11 +245,10 @@
                     <a href="#"><i class="fab fa-tiktok"></i></a>
                     <a href="#"><i class="fab fa-telegram"></i></a>
                 </div>
-                 <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
+                <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
             </div>
         </div>
     </footer>
-       <!-- El script va al final del body -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
