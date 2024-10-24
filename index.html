@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind Rx - Transformación Integral</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-container video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .content {
+            position: relative;
+            min-height: 67vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo span {
+            color: #00ff00;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .icon-box {
+            width: 120px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-box:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-box img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 0.5rem; /* Espaciado ajustado */
+        }
+
+        .icon-label {
+            color: white; /* Color del texto */
+            font-size: 1rem; /* Tamaño de fuente ajustado */
+            font-family: 'Arial', sans-serif; /* Fuente moderna */
+        }
+
+        footer {
+            background: transparent;
+            color: white;
+            height: 19vh;
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 20px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .footer-section h3 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-section p {
+            color: #fff;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #00ff00;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .icon-box {
+                width: 100px;
+            }
+
+            .icon-box img {
+                width: 60px;
+                height: 60px;
+            }
+
+            footer {
+                height: auto;
+                min-height: 33vh;
+            }
+
+            .footer-content {
+                padding: 2rem 20px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
+            <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <main class="content">
+        <h1 class="logo">FitMind <span>Rx</span></h1>
+        <p class="subtitle">La Receta para tu Transformación Integral</p>
+        
+        <div class="icons-container">
+            <div class="icon-box">
+                <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
+                <div class="icon-label">Mente</div>
+            </div>
+            <div class="icon-box">
+                <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
+                <div class="icon-label">Entrenamiento</div>
+            </div>
+            <div class="icon-box">
+                <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
+                <div class="icon-label">Nutrición</div>
+            </div>
+            <div class="icon-box">
+                <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                <div class="icon-label">Mindfulness</div>
+            </div>
+            <div class="icon-box">
+                <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
+                <div class="icon-label">Resultados</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>FitMind Rx es tu aliado en el camino hacia una transformación integral, combinando mente y cuerpo para alcanzar tu mejor versión.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>📞💬+1(661)509-9492</p>
+                <p>📧 rxfitmind@gmail.com</p>
+                <p>📍 San Juan,Puerto Rico</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
