@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind Rx - Evaluación Integral</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: black;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:none;
+            z-index: 0;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(1.0);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo span {
+            color: #00ff00;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ff00;
+            font-style: italic;
+        }
+
+        .disclosure-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .disclosure-section h2 {
+            color: #00ff00;
+            margin-bottom: 1.5rem;
+        }
+
+        .disclosure-content {
+            margin-bottom: 2rem;
+        }
+
+        .disclosure-content ul {
+            list-style-type: none;
+            margin-left: 1rem;
+        }
+
+        .disclosure-content ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .disclosure-content ul li:before {
+            content: "•";
+            color: #00ff00;
+            position: absolute;
+            left: 0;
+        }
+
+        .consent-box {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #00ff00;
+        }
+
+        .quiz-section {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .quiz-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .quiz-container {
+            width: 100%;
+            min-height: 600px;
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .disclosure-section,
+            .quiz-section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">FitMind <span>Rx</span></h1>
+            <p class="subtitle">Autoevaluación Integral para el Bienestar</p>
+        </header>
+
+        <section class="disclosure-section">
+            <h2>Introducción y Acuerdo de Participación</h2>
+            <div class="disclosure-content">
+                <p>Bienvenida/o a tu Autoevaluación Integral para el Bienestar. Esta herramienta te permitirá reflexionar sobre tus prácticas actuales de bienestar, identificar áreas de mejora y descubrir tu potencial para una transformación integral.</p>
+                
+                <h3 style="color: #00ff00; margin: 1.5rem 0 1rem;">Importante: Entendiendo el Propósito y los Términos</h3>
+                <ul>
+                    <li>No hay respuestas correctas o incorrectas. Cada pregunta está diseñada para recopilar información sobre tus hábitos y percepciones actuales.</li>
+                    <li>Cada respuesta tiene una puntuación asignada para proporcionarte una evaluación personalizada.</li>
+                    <li>Este instrumento es meramente informativo y no constituye un diagnóstico médico o psicológico.</li>
+                    <li>La confidencialidad de tus respuestas es fundamental para nosotros.</li>
+                </ul>
+
+                <h3 style="color: #00ff00; margin: 1.5rem 0 1rem;">Aviso de Responsabilidad</h3>
+                <ul>
+                    <li>Esta autoevaluación no reemplaza el consejo profesional en áreas de salud y bienestar.</li>
+                    <li>No asumimos responsabilidad por interpretaciones o acciones tomadas basadas en los resultados.</li>
+                    <li>Toda la información proporcionada es de uso personal y no comercial.</li>
+                </ul>
+            </div>
+
+            <div class="consent-box">
+                <input type="checkbox" id="consent" class="custom-checkbox">
+                <label for="consent">Sí, entiendo y acepto los términos y condiciones de participación</label>
+            </div>
+        </section>
+
+        <section id="quizSection" class="quiz-section">
+            <h2>Evaluación Integral</h2>
+            <div class="quiz-container">
+                <!-- Aquí va el embedded form de forms.app -->
+                <!-- Reemplaza el src con tu URL de forms.app -->
+                <iframe id="quizFrame" width="100%" height="600" frameborder="0" style="border: none;"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const consentCheckbox = document.getElementById('consent');
+        const quizSection = document.getElementById('quizSection');
+        const quizFrame = document.getElementById('quizFrame');
+
+        consentCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                quizSection.classList.add('active');
+                // Aquí deberás reemplazar 'URL_DE_TU_FORMS_APP' con la URL real de tu formulario
+                quizFrame.src = 'https://form.jotform.com/242984459783375';
+                
+                // Scroll suave hasta la sección del quiz
+                setTimeout(() => {
+                    quizSection.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+            } else {
+                quizSection.classList.remove('active');
+                quizFrame.src = '';
+            }
+        });
+    </script>
+</body>
+</html>
