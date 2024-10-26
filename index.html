@@ -15,51 +15,6 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
 
-        /* Estilos del carrusel */
-        .carousel-container {
-            perspective: 1000px;
-            transform-style: preserve-3d;
-            height: 400px;
-            position: relative;
-        }
-
-        .carousel {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            transform-style: preserve-3d;
-            transition: transform 1s;
-        }
-
-        .card {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            left: 50%;
-            top: 50%;
-            transform-origin: center;
-            transition: transform 1s, opacity 0.5s;
-            cursor: pointer;
-            color: white;
-            text-align: center;
-        }
-
-        .card img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            margin: 0 auto;
-        }
-
-        .card.active {
-            z-index: 10;
-            opacity: 1;
-        }
-
-        .card:not(.active) {
-            opacity: 0.5;
-        }
-
         /* Estilos del menú de hamburguesa */
         .navbar {
             position: fixed;
@@ -114,25 +69,16 @@
             position: relative;
         }
 
-        .navbar:hover .hamburger-menu .bar:nth-child(1) {
+        .rotate-45 {
             transform: rotate(45deg) translate(8px, 6px);
         }
 
-        .navbar:hover .hamburger-menu .bar:nth-child(2) {
+        .opacity-0 {
             opacity: 0;
         }
 
-        .navbar:hover .hamburger-menu .bar:nth-child(3) {
+        .-rotate-45 {
             transform: rotate(-45deg) translate(7px, -5px);
-        }
-
-        .navbar:hover .nav-links {
-            right: 0;
-        }
-
-        .navbar:hover .nav-links li {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         /* Estilos del footer */
@@ -154,6 +100,14 @@
         .footer-links i:hover {
             color: white;
         }
+
+        /* Estilos para Elfsight */
+        .elfsight-app-040483cf-949f-4fb6-9861-b86541293243 {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body class="text-white">
@@ -167,12 +121,12 @@
 
     <!-- Menú de hamburguesa -->
     <nav class="navbar">
-        <div class="hamburger-menu">
+        <div class="hamburger-menu" id="hamburger-menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="about.html">Sobre Nosotros</a></li>
             <li><a href="pricing.html">Precios</a></li>
             <li><a href="faq.html">FAQ</a></li>
@@ -219,6 +173,9 @@
         </div>
     </main>
 
+    <!-- Contenedor para el widget de Elfsight -->
+    <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
+
     <!-- Footer -->
     <footer>
         <div>
@@ -247,29 +204,33 @@
                 cards.forEach((card, index) => {
                     const angle = ((index * angleIncrement) + currentAngle) % 360;
                     const radian = angle * Math.PI / 180;
-                    const z = Math.cos(radian) * 300;
-                    const x = Math.sin(radian) * 300;
-                    card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px)`;
-                    card.classList.toggle('active', index === currentIndex);
+                    const z = 200; // Ajusta este valor según sea necesario
+
+                    card.style.transform = `rotateY(${angle}deg) translateZ(${z}px)`;
                 });
             }
 
-            cards.forEach((card, index) => {
-                card.addEventListener('click', () => {
-                    currentAngle = -index * angleIncrement;
-                    currentIndex = index;
-                    updateCarousel();
-                });
+            document.getElementById('hamburger-menu').addEventListener('click', function() {
+                const navLinks = document.getElementById('nav-links');
+                if (navLinks.style.right === '0%') {
+                    navLinks.style.right = '-100%';
+                    this.querySelector('.bar:nth-child(1)').classList.remove('rotate-45');
+                    this.querySelector('.bar:nth-child(2)').classList.remove('opacity-0');
+                    this.querySelector('.bar:nth-child(3)').classList.remove('-rotate-45');
+                } else {
+                    navLinks.style.right = '0%';
+                    this.querySelector('.bar:nth-child(1)').classList.add('rotate-45');
+                    this.querySelector('.bar:nth-child(2)').classList.add('opacity-0');
+                    this.querySelector('.bar:nth-child(3)').classList.add('-rotate-45');
+                }
             });
 
-            updateCarousel();
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % cards.length;
-                currentAngle -= angleIncrement;
-                updateCarousel();
-            }, 3000);
+            updateCarousel(); // Inicializa la posición del carrusel
         });
     </script>
+
+    <!-- Cargar el script de Elfsight -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
+
