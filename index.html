@@ -7,7 +7,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-            
         * {
             margin: 0;
             padding: 0;
@@ -15,106 +14,105 @@
             font-family: Arial, sans-serif;
         }
         .navbar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 1rem;
-    z-index: 1000;
-}
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 1rem;
+            z-index: 1000;
+        }
 
-.hamburger-menu {
-    cursor: pointer;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 1001;
-}
+        .hamburger-menu {
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
 
-.bar {
-    width: 25px;
-    height: 3px;
-    background-color: #00ff00;
-    margin: 5px 0;
-    transition: all 0.3s ease;
-}
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #00ff00;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
 
-.nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 6rem 2rem 2rem 2rem;
-    list-style: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-}
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 6rem 2rem 2rem 2rem;
+            list-style: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
 
-.nav-links li {
-    margin: 1.5rem 0;
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.3s ease;
-}
+        .nav-links li {
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.3s ease;
+        }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    position: relative;
-}
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #00ff00;
-    transition: all 0.3s ease;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00ff00;
+            transition: all 0.3s ease;
+        }
 
-.nav-links a:hover::after {
-    width: 100%;
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-/* Nuevos estilos para activación por hover */
-.navbar:hover .hamburger-menu .bar:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 6px);
-}
+        .navbar:hover .hamburger-menu .bar:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 6px);
+        }
 
-.navbar:hover .hamburger-menu .bar:nth-child(2) {
-    opacity: 0;
-}
+        .navbar:hover .hamburger-menu .bar:nth-child(2) {
+            opacity: 0;
+        }
 
-.navbar:hover .hamburger-menu .bar:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -5px);
-}
+        .navbar:hover .hamburger-menu .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -5px);
+        }
 
-.navbar:hover .nav-links {
-    right: 0;
-}
+        .navbar:hover .nav-links {
+            right: 0;
+        }
 
-.navbar:hover .nav-links li {
-    opacity: 1;
-    transform: translateX(0);
-}
+        .navbar:hover .nav-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-/* Delay para la animación de los items del menú */
-.nav-links li:nth-child(1) { transition-delay: 0.1s; }
-.nav-links li:nth-child(2) { transition-delay: 0.2s; }
-.nav-links li:nth-child(3) { transition-delay: 0.3s; }
-.nav-links li:nth-child(4) { transition-delay: 0.4s; }
+        .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        .nav-links li:nth-child(4) { transition-delay: 0.4s; }
 
-@media (min-width: 768px) {
-    .nav-links {
-        width: 300px;
-    }
-}
+        @media (min-width: 768px) {
+            .nav-links {
+                width: 300px;
+            }
+        }
+
         .video-background {
             position: fixed;
             right: 0;
@@ -128,116 +126,128 @@
         }
         
         .glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
 
-.gradient-text {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.carousel-container {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    height: 300px; /* Ajusta la altura para pantallas pequeñas */
-    position: relative;
-    overflow: hidden; /* Evita que el contenido desborde */
-}
+        .carousel-container {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
 
-.carousel {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-}
+        .carousel {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
 
-.card {
+        .card {
     position: absolute;
-    width: 15%; /* Cambiado de px a % para mayor flexibilidad */
-    max-width: 170px; /* Ancho máximo para pantallas grandes */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
+    width: 15%;
+    max-width: 170px;
+    height: auto;
     left: 50%;
     top: 50%;
     transform-origin: center;
-    transition: transform 1s, opacity 0.5s;
+    transition: all 1s;
     cursor: pointer;
-    display: flex; /* Asegura que el contenido se centre */
-    flex-direction: column; /* Alinea el contenido verticalmente */
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: space-between; /* Asegura que el texto tenga espacio */
-    padding-bottom: 10px; /* Agrega espacio en la parte inferior */
-    border-radius: 1rem; /* Bordes redondeados */
-    
-    background: rgba(255, 255, 255, 0.2); /* Añade un fondo para que el texto sea más legible */
-}    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    /* Asegurar que el contenido mantenga los bordes redondeados */
+    mask-image: radial-gradient(white, black);
+    -webkit-mask-image: radial-gradient(white, black);
+}
+        .card img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto;
+        }
 
-.card img {
-    width: 80%; /* Cambia el tamaño de la imagen para mayor responsividad */
-    height: auto; /* Ajusta la altura automáticamente */
-    object-fit: contain;
-    margin: 0 auto;
+        .card.active {
+            z-index: 10;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+            border-radius: 16px !important;
 }
 
-.card.active {
-    z-index: 10;
-    opacity: 1;
-    transform: scale(1.05); /* Agranda un poco la tarjeta activa para que se destaque */
-}
+        .card:not(.active) {
+            opacity: 0.7;
+        }
 
-.card:not(.active) {
-    opacity: 0.7;
-}
+        .icon-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 0.3rem;
+            text-align: center;
+            color: white;
+            padding: 0 10px;
+        }
 
-.icon-label {
-    font-size: 1.2rem; /* Ajusta el tamaño de fuente para mejor responsividad */
-    font-weight: bold;
-    margin-top: 0.3rem; /* Menor margen para pantallas pequeñas */
-    text-align: center;
-    color: white;
-    padding: 0 10px; /* Espacio lateral */
-}
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
 
-.pulse-button {
-    animation: pulse 2s infinite;
-}
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+        @media (max-width: 768px) {
+            .carousel-container {
+                height: 200px;
+            }
+            .card {
+               width: 70%;
+               padding: 1rem;
+               border-radius: 16px !important;
+        }
+            .card.active {
+               transform: translate(-50%, -50%) scale(1.05);
+               border-radius: 16px !important;
+        }
+            .icon-label {
+                font-size: 1rem;
+            }
+        }
 
-/* Media Queries para mejorar la responsividad */
-@media (max-width: 768px) {
-    .carousel-container {
-        height: 200px; /* Reduce la altura en pantallas más pequeñas */
-    }
-    .card {
-        width: 70%; /* Aumenta el ancho para pantallas pequeñas */
-    }
-    .icon-label {
-        font-size: 1rem; /* Reduce el tamaño de la fuente */
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-container {
-        height: 200px; /* Ajusta la altura aún más para pantallas muy pequeñas */
-    }
-    .card {
-        width: 90%; /* Hace que la tarjeta ocupe más espacio */
-    }
-    .icon-label {
-        font-size: 0.8rem; /* Ajusta aún más el tamaño de la fuente */
-    }
-}
-
+        @media (max-width: 480px) {
+            .carousel-container {
+                height: 200px;
+            }
+            .card {
+                width: 90%;
+                padding: 0.8rem;
+                border-radius: 16px !important;
+        }
+            .icon-label {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
@@ -256,47 +266,63 @@
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 animate__animated animate__fadeIn animate__delay-1s">
                     La Receta para tu Transformación Integral
-
                 </p>
             </div>
 
             <!-- Carrusel 3D -->
             <div class="carousel-container mb-16">
                 <div class="carousel">
-                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='mente.html';">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mente.html';">
                         <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
                         <div class="icon-label">Mente</div>
                     </div>
-                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='entren.html';">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='entren.html';">
                         <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
                         <div class="icon-label">Entrenamiento</div>
                     </div>
-                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='nutri.html';">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='nutri.html';">
                         <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
                         <div class="icon-label">Nutrición</div>
                     </div>
-                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='mindful.html';">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mindful.html';">
                         <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
                         <div class="icon-label">Mindfulness</div>
                     </div>
-                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='contacto.html';">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='contacto.html';">
                         <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
                         <div class="icon-label">Contáctanos</div>
                     </div>
                 </div>
             </div>
 
-          
+            <!-- Widget de Elfsight -->
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
 
-        <!-- Footer -->
-        <footer class="absolute bottom-0 w-full py-6">
-            <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
-                <p class="animate__animated animate__fadeIn animate__delay-5s">
-                    © 2024 FitMindRx. Creado con tecnología de vanguardia.
-                </p>
-            </div>
-        </footer>
+            <!-- Footer -->
+            <footer class="absolute bottom-0 w-full py-6">
+                <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
+                    <p class="animate__animated animate__fadeIn animate__delay-5s">
+                        © 2024 FitMindRx. Creado con tecnología de vanguardia.
+                    </p>
+                </div>
+            </footer>
+        </div>
     </div>
+
+    <nav class="navbar">
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Precios</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="news.html">Evalúate</a></li>
+        </ul>
+    </nav>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -306,7 +332,6 @@
             let currentIndex = 0;
             const angleIncrement = (360 / cards.length);
 
-            // Inicializar posiciones
             function updateCarousel() {
                 cards.forEach((card, index) => {
                     const angle = ((index * angleIncrement) + currentAngle) % 360;
@@ -315,7 +340,6 @@
                     const x = Math.sin(radian) * 400;
                     card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px)`;
                     
-                    // Actualizar clase active
                     if (index === currentIndex) {
                         card.classList.add('active');
                     } else {
@@ -324,7 +348,6 @@
                 });
             }
 
-            // Girar al hacer clic en una tarjeta
             cards.forEach((card, index) => {
                 card.addEventListener('click', () => {
                     const targetAngle = -index * angleIncrement;
@@ -334,10 +357,8 @@
                 });
             });
 
-            // Inicializar carrusel
             updateCarousel();
 
-            // Rotación automática
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % cards.length;
                 currentAngle -= angleIncrement;
@@ -346,17 +367,4 @@
         });
     </script>
 </body>
-<nav class="navbar">
-    <div class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-    <ul class="nav-links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="pricing.html">Precios</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="news.html">Evalúate</a></li>
-    </ul>
-</nav>
 </html>
