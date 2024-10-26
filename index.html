@@ -3,234 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMind Rx Transformación Integral</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <title>FitMind Rx - Transformación Integral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Efecto de vidrio */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-
-        /* Estilos del menú de hamburguesa */
         .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.hamburger-menu {
+    cursor: pointer;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1001;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #00ff00;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 6rem 2rem 2rem 2rem;
+    list-style: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.nav-links li {
+    margin: 1.5rem 0;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.3s ease;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00ff00;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Nuevos estilos para activación por hover */
+.navbar:hover .hamburger-menu .bar:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 6px);
+}
+
+.navbar:hover .hamburger-menu .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar:hover .hamburger-menu .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -5px);
+}
+
+.navbar:hover .nav-links {
+    right: 0;
+}
+
+.navbar:hover .nav-links li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Delay para la animación de los items del menú */
+.nav-links li:nth-child(1) { transition-delay: 0.1s; }
+.nav-links li:nth-child(2) { transition-delay: 0.2s; }
+.nav-links li:nth-child(3) { transition-delay: 0.3s; }
+.nav-links li:nth-child(4) { transition-delay: 0.4s; }
+
+@media (min-width: 768px) {
+    .nav-links {
+        width: 300px;
+    }
+}
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-color: black;
+        }
+
+        .video-container {
             position: fixed;
             top: 0;
-            right: 0;
-            padding: 1rem;
-            z-index: 1000;
-        }
-
-        .hamburger-menu {
-            cursor: pointer;
-            padding: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1001;
-        }
-
-        .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #00ff00;
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links {
-            position: fixed;
-            top: 0;
-            right: -100%;
+            left: 0;
+            width: 100%;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 6rem 2rem 2rem 2rem;
-            list-style: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            overflow: hidden;
+            z-index: -1;
         }
 
-        .nav-links li {
-            margin: 1.5rem 0;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.3s ease;
+        .video-container video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
         }
 
-        .nav-links a {
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            position: relative;
+            text-align: center;
+            padding: 20px;
+            min-height: calc(100vh - 33vh);
         }
 
-        .rotate-45 {
-            transform: rotate(45deg) translate(8px, 6px);
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
-        .opacity-0 {
-            opacity: 0;
+        .logo span {
+            color: #00ff00;
         }
 
-        .-rotate-45 {
-            transform: rotate(-45deg) translate(7px, -5px);
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            font-style: italic;
         }
 
-        /* Estilos del footer */
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .icon-box {
+            width: 120px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer; /* Añadido para indicar que es clickeable */
+        }
+
+        .icon-box:hover {
+            transform: scale(1.1);
+        }
+
+        .icon-box img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-label {
+            color: white;
+            font-size: 1rem;
+        }
+
         footer {
             background-color: rgba(0, 0, 0, 0.7);
             width: 100%;
             padding: 2rem 0;
-            color: lime;
-            font-weight: bold;
-            text-align: center;
+            margin-top: auto;
         }
 
-        .footer-links i {
-            margin: 0 10px;
-            color: lime;
-            transition: color 0.3s;
-        }
-
-        .footer-links i:hover {
-            color: white;
-        }
-
-        /* Estilos para Elfsight */
-        .elfsight-app-040483cf-949f-4fb6-9861-b86541293243 {
-            display: block;
-            width: 100%;
-            max-width: 600px;
+        .footer-content {
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 20px;
         }
+
+        .footer-section h3 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+            font-size: 1.0rem;
+        }
+
+        .footer-section p {
+            color: #fff;
+            margin-bottom: 0.8rem;
+            font-size: 0.75rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #00ff00;
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-link {
+            color: limegreen;
+            text-decoration: none;
+        }
+
+        .whatsapp-link:hover {
+            color: darkgreen;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .icon-box {
+                width: 100px;
+            }
+
+            .icon-box img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .content {
+                padding-bottom: 0;
+            }
+        }
+        
     </style>
 </head>
-<body class="text-white">
-
-    <!-- Video de fondo -->
-    <div class="video-container fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <video autoplay muted loop playsinline class="w-full h-full object-cover">
+<body>
+    <div class="video-container">
+        <video autoplay muted loop playsinline>
             <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- Menú de hamburguesa -->
-    <nav class="navbar">
-        <div class="hamburger-menu" id="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="about.html">Sobre Nosotros</a></li>
-            <li><a href="pricing.html">Precios</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="evaluacion.html">Evalúate</a></li>
-        </ul>
-    </nav>
-
-    <!-- Contenedor principal del carrusel -->
-    <main class="content relative min-h-screen flex items-center justify-center">
-        <h1 class="text-center text-5xl font-extrabold mb-10 gradient-text absolute top-10">FitMind Rx - Transformación Integral</h1>
-        <div class="carousel-container">
-            <div class="carousel">
-                <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center">
-                    <a href="mente.html">
-                        <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
-                        <div>Mente</div>
-                    </a>
-                </div>
-                <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center">
-                    <a href="entren.html">
-                        <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
-                        <div>Entrenamiento</div>
-                    </a>
-                </div>
-                <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center">
-                    <a href="nutri.html">
-                        <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
-                        <div>Nutrición</div>
-                    </a>
-                </div>
-                <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center">
-                    <a href="mindful.html">
-                        <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
-                        <div>Mindfulness</div>
-                    </a>
-                </div>
-                <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center">
-                    <a href="result.html">
-                        <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
-                        <div>Resultados</div>
-                    </a>
-                </div>
+    <main class="content">
+        <h1 class="logo">FitMind <span>Rx</span></h1>
+        <p class="subtitle">La Receta para tu Transformación Integral</p>
+        
+        <div class="icons-container">
+            <a href="mente.html" style="text-decoration: none;">
+                <div class="icon-box">
+                    <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
+                    <div class="icon-label">Mente</div>
             </div>
+            </a>
+            <a href="entren.html" style="text-decoration: none;">
+                <div class="icon-box">
+                    <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
+                    <div class="icon-label">Entrenamiento</div>
+                </div>
+            </a>    
+            <a href="nutri.html" style="text-decoration: none;"> 
+                <div class="icon-box">
+                    <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
+                    <div class="icon-label">Nutrición</div>
+                </div>
+            </a>    
+            <a href="mindful.html" style="text-decoration: none;">
+                <div class="icon-box">
+                    <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                    <div class="icon-label">Mindfulness</div>
+                </div>
+            </a>
+            <a href="result.html" style="text-decoration: none;">
+            <div class="icon-box">
+                <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
+                <div class="icon-label">Resultados</div>
+            </div>
+            </a>
         </div>
     </main>
 
-    <!-- Contenedor para el widget de Elfsight -->
-    <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
-
-    <!-- Footer -->
     <footer>
-        <div>
-            <h3>Sobre Nosotros</h3>
-            <p>FitMind Rx es tu aliado en el camino hacia una transformación integral, combinando mente y cuerpo para alcanzar tu mejor versión.</p>
-            <p>📞💬 +1(661)509-9492 | <a href="https://wa.me/16615099492" target="_blank" class="whatsapp-link">WhatsApp Aquí</a> | 📧 rxfitmind@gmail.com</p>
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>FitMind Rx es tu aliado en el camino hacia una transformación integral, combinando mente y cuerpo para alcanzar tu mejor versión.</p>
+                <p>Para alcanzar lo extraordinario, es esencial liberarnos de lo ordinario y aprender a escuchar nuestra mente y nuestro cuerpo.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>📞💬+1(661)509-9492</p>
+                <p>WhatsApp direct<a href="https://wa.me/16615099492" target="_blank" class="whatsapp-link"><strong> Aquí </strong></a></p>
+                <p>📧 rxfitmind@gmail.com</p>
+                <p>📍 San Juan,Puerto Rico</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+                <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
             </div>
         </div>
     </footer>
-
-    <!-- Script para el carrusel 3D -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.querySelector('.carousel');
-            const cards = document.querySelectorAll('.card');
-            let currentAngle = 0;
-            let currentIndex = 0;
-            const angleIncrement = 360 / cards.length;
-
-            function updateCarousel() {
-                cards.forEach((card, index) => {
-                    const angle = ((index * angleIncrement) + currentAngle) % 360;
-                    const radian = angle * Math.PI / 180;
-                    const z = 200; // Ajusta este valor según sea necesario
-
-                    card.style.transform = `rotateY(${angle}deg) translateZ(${z}px)`;
-                });
-            }
-
-            document.getElementById('hamburger-menu').addEventListener('click', function() {
-                const navLinks = document.getElementById('nav-links');
-                if (navLinks.style.right === '0%') {
-                    navLinks.style.right = '-100%';
-                    this.querySelector('.bar:nth-child(1)').classList.remove('rotate-45');
-                    this.querySelector('.bar:nth-child(2)').classList.remove('opacity-0');
-                    this.querySelector('.bar:nth-child(3)').classList.remove('-rotate-45');
-                } else {
-                    navLinks.style.right = '0%';
-                    this.querySelector('.bar:nth-child(1)').classList.add('rotate-45');
-                    this.querySelector('.bar:nth-child(2)').classList.add('opacity-0');
-                    this.querySelector('.bar:nth-child(3)').classList.add('-rotate-45');
-                }
-            });
-
-            updateCarousel(); // Inicializa la posición del carrusel
-        });
-    </script>
-
-    <!-- Cargar el script de Elfsight -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
-</body>
-</html>
 
+    
+
+</body>
+<nav class="navbar">
+    <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <ul class="nav-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="pricing.html">Precios</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="news.html">Evalúate</a></li>
+    </ul>
+</nav>
+</html>
