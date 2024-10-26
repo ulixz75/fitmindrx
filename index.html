@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMind Rx - Transformación Integral</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>FAQ Interactivo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
+            
         * {
             margin: 0;
             padding: 0;
@@ -113,256 +115,236 @@
         width: 300px;
     }
 }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-            background-color: black;
-        }
-
-        .video-container {
+        .video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
             z-index: -1;
-        }
-
-        .video-container video {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            filter: brightness(0.6);
-        }
-
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            min-height: calc(100vh - 33vh);
-        }
-
-        .logo {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .logo span {
-            color: #00ff00;
-        }
-
-        .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            font-style: italic;
-        }
-
-        .icons-container {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .icon-box {
-            width: 120px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            cursor: pointer; /* Añadido para indicar que es clickeable */
-        }
-
-        .icon-box:hover {
-            transform: scale(1.1);
-        }
-
-        .icon-box img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 0.5rem;
-        }
-
-        .icon-label {
-            color: white;
-            font-size: 1rem;
-        }
-
-        footer {
-            background-color: rgba(0, 0, 0, 0.7);
-            width: 100%;
-            padding: 2rem 0;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 0 20px;
-        }
-
-        .footer-section h3 {
-            color: #00ff00;
-            margin-bottom: 1rem;
-            font-size: 1.0rem;
-        }
-
-        .footer-section p {
-            color: #fff;
-            margin-bottom: 0.8rem;
-            font-size: 0.75rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #00ff00;
-            transform: translateY(-3px);
-        }
-
-        .whatsapp-link {
-            color: limegreen;
-            text-decoration: none;
-        }
-
-        .whatsapp-link:hover {
-            color: darkgreen;
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 3rem;
-            }
-            
-            .subtitle {
-                font-size: 1.4rem;
-            }
-
-            .icon-box {
-                width: 100px;
-            }
-
-            .icon-box img {
-                width: 60px;
-                height: 60px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .content {
-                padding-bottom: 0;
-            }
         }
         
+        .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.carousel-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    height: 300px; /* Ajusta la altura para pantallas pequeñas */
+    position: relative;
+    overflow: hidden; /* Evita que el contenido desborde */
+}
+
+.carousel {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.card {
+    position: absolute;
+    width: 15%; /* Cambiado de px a % para mayor flexibilidad */
+    max-width: 170px; /* Ancho máximo para pantallas grandes */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+    transition: transform 1s, opacity 0.5s;
+    cursor: pointer;
+    display: flex; /* Asegura que el contenido se centre */
+    flex-direction: column; /* Alinea el contenido verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: space-between; /* Asegura que el texto tenga espacio */
+    padding-bottom: 10px; /* Agrega espacio en la parte inferior */
+    border-radius: 1rem; /* Bordes redondeados */
+    
+    background: rgba(255, 255, 255, 0.2); /* Añade un fondo para que el texto sea más legible */
+}    
+
+.card img {
+    width: 80%; /* Cambia el tamaño de la imagen para mayor responsividad */
+    height: auto; /* Ajusta la altura automáticamente */
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.card.active {
+    z-index: 10;
+    opacity: 1;
+    transform: scale(1.05); /* Agranda un poco la tarjeta activa para que se destaque */
+}
+
+.card:not(.active) {
+    opacity: 0.7;
+}
+
+.icon-label {
+    font-size: 1.2rem; /* Ajusta el tamaño de fuente para mejor responsividad */
+    font-weight: bold;
+    margin-top: 0.3rem; /* Menor margen para pantallas pequeñas */
+    text-align: center;
+    color: white;
+    padding: 0 10px; /* Espacio lateral */
+}
+
+.pulse-button {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Media Queries para mejorar la responsividad */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: 200px; /* Reduce la altura en pantallas más pequeñas */
+    }
+    .card {
+        width: 70%; /* Aumenta el ancho para pantallas pequeñas */
+    }
+    .icon-label {
+        font-size: 1rem; /* Reduce el tamaño de la fuente */
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 200px; /* Ajusta la altura aún más para pantallas muy pequeñas */
+    }
+    .card {
+        width: 90%; /* Hace que la tarjeta ocupe más espacio */
+    }
+    .icon-label {
+        font-size: 0.8rem; /* Ajusta aún más el tamaño de la fuente */
+    }
+}
+
     </style>
 </head>
-<body>
-    <div class="video-container">
-        <video autoplay muted loop playsinline>
-            <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
-        </video>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="video-background opacity-50">
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+
+    <!-- Contenido principal -->
+    <div class="relative min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-8 gradient-text animate__animated animate__fadeIn">
+                    FitMind Rx
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 animate__animated animate__fadeIn animate__delay-1s">
+                    La Receta para tu Transformación Integral
+
+                </p>
+            </div>
+
+            <!-- Carrusel 3D -->
+            <div class="carousel-container mb-16">
+                <div class="carousel">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='mente.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
+                        <div class="icon-label">Mente</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='entren.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
+                        <div class="icon-label">Entrenamiento</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='nutri.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
+                        <div class="icon-label">Nutrición</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='mindful.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                        <div class="icon-label">Mindfulness</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center"onclick="window.location.href='contacto.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
+                        <div class="icon-label">Contáctanos</div>
+                    </div>
+                </div>
+            </div>
+
+          
+
+        <!-- Footer -->
+        <footer class="absolute bottom-0 w-full py-6">
+            <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
+                <p class="animate__animated animate__fadeIn animate__delay-5s">
+                    © 2024 FitMindRx. Creado con tecnología de vanguardia.
+                </p>
+            </div>
+        </footer>
     </div>
 
-    <main class="content">
-        <h1 class="logo">FitMind <span>Rx</span></h1>
-        <p class="subtitle">La Receta para tu Transformación Integral</p>
-        
-        <div class="icons-container">
-            <a href="mente.html" style="text-decoration: none;">
-                <div class="icon-box">
-                    <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
-                    <div class="icon-label">Mente</div>
-            </div>
-            </a>
-            <a href="entren.html" style="text-decoration: none;">
-                <div class="icon-box">
-                    <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
-                    <div class="icon-label">Entrenamiento</div>
-                </div>
-            </a>    
-            <a href="nutri.html" style="text-decoration: none;"> 
-                <div class="icon-box">
-                    <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
-                    <div class="icon-label">Nutrición</div>
-                </div>
-            </a>    
-            <a href="mindful.html" style="text-decoration: none;">
-                <div class="icon-box">
-                    <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
-                    <div class="icon-label">Mindfulness</div>
-                </div>
-            </a>
-            <a href="result.html" style="text-decoration: none;">
-            <div class="icon-box">
-                <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
-                <div class="icon-label">Resultados</div>
-            </div>
-            </a>
-        </div>
-    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const cards = document.querySelectorAll('.card');
+            let currentAngle = 0;
+            let currentIndex = 0;
+            const angleIncrement = (360 / cards.length);
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Sobre Nosotros</h3>
-                <p>FitMind Rx es tu aliado en el camino hacia una transformación integral, combinando mente y cuerpo para alcanzar tu mejor versión.</p>
-                <p>Para alcanzar lo extraordinario, es esencial liberarnos de lo ordinario y aprender a escuchar nuestra mente y nuestro cuerpo.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contacto</h3>
-                <p>📞💬+1(661)509-9492</p>
-                <p>WhatsApp direct<a href="https://wa.me/16615099492" target="_blank" class="whatsapp-link"><strong> Aquí </strong></a></p>
-                <p>📧 rxfitmind@gmail.com</p>
-                <p>📍 San Juan,Puerto Rico</p>
-            </div>
-            <div class="footer-section">
-                <h3>Síguenos</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                </div>
-                <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
-            </div>
-        </div>
-    </footer>
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            // Inicializar posiciones
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    const angle = ((index * angleIncrement) + currentAngle) % 360;
+                    const radian = angle * Math.PI / 180;
+                    const z = Math.cos(radian) * 400;
+                    const x = Math.sin(radian) * 400;
+                    card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px)`;
+                    
+                    // Actualizar clase active
+                    if (index === currentIndex) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            }
 
-    
+            // Girar al hacer clic en una tarjeta
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    const targetAngle = -index * angleIncrement;
+                    currentAngle = targetAngle;
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
 
+            // Inicializar carrusel
+            updateCarousel();
+
+            // Rotación automática
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                currentAngle -= angleIncrement;
+                updateCarousel();
+            }, 3000);
+        });
+    </script>
 </body>
 <nav class="navbar">
     <div class="hamburger-menu">
