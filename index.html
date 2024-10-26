@@ -3,256 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>FAQ Interactivo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
-
-        body {
-            background: linear-gradient(120deg, #2193b0, #6dd5ed);
-            min-height: 100vh;
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
             padding: 1rem;
-            color: #ffffff;
+            z-index: 1000;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
+        .hamburger-menu {
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1001;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #00ff00;
+            margin: 5px 0;
+            transition: all 0.3s ease;
         }
 
-        .contact-info, .social-media {
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 6rem 2rem 2rem 2rem;
+            list-style: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links li {
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00ff00;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar:hover .hamburger-menu .bar:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 6px);
+        }
+
+        .navbar:hover .hamburger-menu .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar:hover .hamburger-menu .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -5px);
+        }
+
+        .navbar:hover .nav-links {
+            right: 0;
+        }
+
+        .navbar:hover .nav-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                width: 300px;
+            }
+        }
+
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        .glass {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            transition: transform 0.3s ease;
         }
 
-        .contact-info:hover, .social-media:hover {
-            transform: translateY(-5px);
-            background: rgba(15, 15, 15, 0.2);
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        h1, h2 {
-            color: white;
-            text-align: center;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-        }
-
-        .social-links, .social-media-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            padding: 1.2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(10px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-link i {
-            margin-right: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 500px;
+        .carousel-container {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            height: 300px;
+            position: relative;
             overflow: hidden;
-            grid-column: 1 / -1;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
         }
 
-        iframe {
-            width: 100%;
+        .carousel {
+            position: relative;
             height: 100%;
-            border: none;
-            border-radius: 20px;
+            width: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s;
         }
 
-        .contact-wrapper {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+        .card {
+    position: absolute;
+    width: 150px; /* Tamaño fijo para mantener el círculo perfecto */
+    height: 150px; /* Mismo valor que el width para formar un círculo */
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+    transition: all 1s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar contenido verticalmente */
+    padding: 1rem;
+    border-radius: 50% !important; /* Hace la tarjeta circular */
+    background: rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    /* Asegurar que el contenido mantenga la forma circular */
+    mask-image: radial-gradient(white, black);
+    -webkit-mask-image: radial-gradient(white, black);
+}
+.card img {
+    width: 60%; /* Reducir tamaño de la imagen para que quepa bien en el círculo */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.card.active {
+    z-index: 10;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Añade un brillo suave */
+}
+
+        .card:not(.active) {
+            opacity: 0.7;
         }
 
-        .contact-info, .social-media {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
+      
+.icon-label {
+    font-size: 0.9rem; /* Reducir tamaño del texto para que quepa mejor */
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin-top: 0.2rem;
+}
+
+        .pulse-button {
+            animation: pulse 2s infinite;
         }
 
-        /* Estilos específicos para redes sociales */
-        .social-media-links .social-link.facebook:hover {
-            background: rgba(66, 103, 178, 0.4);
-        }
-
-        .social-media-links .social-link.instagram:hover {
-            background: linear-gradient(45deg, rgba(405, 37, 64, 0.4), rgba(222, 44, 108, 0.4));
-        }
-
-        .social-media-links .social-link.youtube:hover {
-            background: rgba(255, 0, 0, 0.4);
-        }
-
-        .social-media-links .social-link.tiktok:hover {
-            background: rgba(37, 244, 238, 0.4);
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+            .carousel-container {
+                height: 200px;
             }
-
-            .contact-wrapper {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-info, .social-media {
-                width: 100%;
-                max-width: 100%;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .map-container {
-                height: 400px;
-            }
-
-            .social-link {
-                padding: 1rem;
+            .card {
+        width: 120px; /* Tamaño más pequeño para móvil */
+        height: 120px;
+        padding: 0.8rem;
+    }
+            .card.active {
+               transform: translate(-50%, -50%) scale(1.05);
+               border-radius: 16px !important;
+        }
+            .icon-label {
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0.5rem;
+            .carousel-container {
+                height: 200px;
             }
-
-            h1 {
-                font-size: 1.8rem;
+            .card {
+        width: 100px; /* Aún más pequeño para móviles pequeños */
+        height: 100px;
+        padding: 0.6rem;
+    }
+            .icon-label {
+                font-size: 0.7rem;
             }
-
-            h2 {
-                font-size: 1.3rem;
-            }
-
-            .contact-info, .social-media {
-                padding: 1.5rem;
-            }
-
-            .map-container {
-                height: 300px;
-            }
+            .card img {
+        width: 50%;
+    }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Contáctanos</h1>
-        
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <h2>Información de Contacto</h2>
-                <div class="social-links">
-                    <a href="mailto:rxfitmind@gmail.com" class="social-link">
-                        <i class="fas fa-envelope"></i>
-                          rxfitmind@gmail.com
-                    </a>
-                    <a href="https://wa.me/16615099492" class="social-link" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                         WhatsApp Directo
-                    </a>
-                    <a href="tel:+16615099492" class="social-link">
-                        <i class="fas fa-phone"></i>
-                        +1 (661) 509-9492
-                    </a>
-                    <a href="https://t.me/yourusername" class="social-link" target="_blank">
-                        <i class="fab fa-telegram"></i>
-                        Telegram
-                    </a>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="video-background opacity-50">
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+
+    <!-- Contenido principal -->
+    <div class="relative min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <!-- Header -->
+            <div class="text-center mb-20">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-8 gradient-text animate__animated animate__fadeIn">
+                    FitMind Rx
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 animate__animated animate__fadeIn animate__delay-1s">
+                    La Receta para tu Transformación Integral
+                </p>
+            </div>
+
+            <!-- Carrusel 3D -->
+            <div class="carousel-container mb-16">
+                <div class="carousel">
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mente.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
+                        <div class="icon-label">Mente</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='entren.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
+                        <div class="icon-label">Entrenamiento</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='nutri.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
+                        <div class="icon-label">Nutrición</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mindful.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                        <div class="icon-label">Mindfulness</div>
+                    </div>
+                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='contacto.html';">
+                        <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
+                        <div class="icon-label">Contáctanos</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="social-media">
-                <h2>Síguenos en Redes</h2>
-                <div class="social-media-links">
-                    <a href="#" class="social-link facebook" target="_blank">
-                        <i class="fab fa-facebook"></i>
-                        Facebook
-                    </a>
-                    <a href="#" class="social-link instagram" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        Instagram
-                    </a>
-                    <a href="#" class="social-link youtube" target="_blank">
-                        <i class="fab fa-youtube"></i>
-                        YouTube
-                    </a>
-                    <a href="#" class="social-link tiktok" target="_blank">
-                        <i class="fab fa-tiktok"></i>
-                        TikTok
-                    </a>
-                </div>
-            </div>
-        </div>
+            <!-- Widget de Elfsight -->
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-040483cf-949f-4fb6-9861-b86541293243" data-elfsight-app-lazy></div>
 
-        <div class="map-container">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d946.0647433033183!2d-66.28000122013843!3d18.46412070325199!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c02c8f3f2b1f8d5%3A0x8f8f8f8f8f8f8f8f!2sBrighton%20Country%20Club!5e0!3m2!1ses!2spr!4v1620000000000!5m2!1ses!2spr" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
+            <!-- Footer -->
+            <footer class="absolute bottom-0 w-full py-6">
+                <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
+                    <p class="animate__animated animate__fadeIn animate__delay-5s">
+                        © 2024 FitMindRx.
+                    </p>
+                </div>
+            </footer>
         </div>
     </div>
+
+    <nav class="navbar">
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Precios</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="news.html">Evalúate</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const cards = document.querySelectorAll('.card');
+            let currentAngle = 0;
+            let currentIndex = 0;
+            const angleIncrement = (360 / cards.length);
+
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    const angle = ((index * angleIncrement) + currentAngle) % 360;
+                    const radian = angle * Math.PI / 180;
+                    const z = Math.cos(radian) * 400;
+                    const x = Math.sin(radian) * 400;
+                    card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px)`;
+                    
+                    if (index === currentIndex) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            }
+
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    const targetAngle = -index * angleIncrement;
+                    currentAngle = targetAngle;
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            updateCarousel();
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                currentAngle -= angleIncrement;
+                updateCarousel();
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
