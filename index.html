@@ -157,9 +157,8 @@
 
         .card {
     position: absolute;
-    width: 15%;
-    max-width: 170px;
-    height: auto;
+    width: 150px; /* Tamaño fijo para mantener el círculo perfecto */
+    height: 150px; /* Mismo valor que el width para formar un círculo */
     left: 50%;
     top: 50%;
     transform-origin: center;
@@ -168,44 +167,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem;
-    border-radius: 16px !important;
+    justify-content: center; /* Centrar contenido verticalmente */
+    padding: 1rem;
+    border-radius: 50% !important; /* Hace la tarjeta circular */
     background: rgba(255, 255, 255, 0.2);
     overflow: hidden;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    /* Asegurar que el contenido mantenga los bordes redondeados */
+    /* Asegurar que el contenido mantenga la forma circular */
     mask-image: radial-gradient(white, black);
     -webkit-mask-image: radial-gradient(white, black);
 }
-        .card img {
-            width: 80%;
-            height: auto;
-            object-fit: contain;
-            margin: 0 auto;
-        }
+.card img {
+    width: 60%; /* Reducir tamaño de la imagen para que quepa bien en el círculo */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
 
-        .card.active {
-            z-index: 10;
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.05);
-            border-radius: 16px !important;
+.card.active {
+    z-index: 10;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Añade un brillo suave */
 }
 
         .card:not(.active) {
             opacity: 0.7;
         }
 
-        .icon-label {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-top: 0.3rem;
-            text-align: center;
-            color: white;
-            padding: 0 10px;
-        }
+      
+.icon-label {
+    font-size: 0.9rem; /* Reducir tamaño del texto para que quepa mejor */
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin-top: 0.2rem;
+}
 
         .pulse-button {
             animation: pulse 2s infinite;
@@ -222,16 +221,16 @@
                 height: 200px;
             }
             .card {
-               width: 70%;
-               padding: 1rem;
-               border-radius: 16px !important;
-        }
+        width: 120px; /* Tamaño más pequeño para móvil */
+        height: 120px;
+        padding: 0.8rem;
+    }
             .card.active {
                transform: translate(-50%, -50%) scale(1.05);
                border-radius: 16px !important;
         }
             .icon-label {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -240,13 +239,16 @@
                 height: 200px;
             }
             .card {
-                width: 90%;
-                padding: 0.8rem;
-                border-radius: 16px !important;
-        }
+        width: 100px; /* Aún más pequeño para móviles pequeños */
+        height: 100px;
+        padding: 0.6rem;
+    }
             .icon-label {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
+            .card img {
+        width: 50%;
+    }
         }
     </style>
 </head>
@@ -303,7 +305,7 @@
             <footer class="absolute bottom-0 w-full py-6">
                 <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
                     <p class="animate__animated animate__fadeIn animate__delay-5s">
-                        © 2024 FitMindRx. Creado con tecnología de vanguardia.
+                        © 2024 FitMindRx.
                     </p>
                 </div>
             </footer>
