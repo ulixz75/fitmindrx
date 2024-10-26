@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        #modal {
+            z-index: 1000; /* Asegurarse de que el modal esté por encima de otros elementos */    
+        }
+
+            #modal.bg-white {
+                 background-color:white;
+        }
+
+        #close-modal {
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+        color: red;
+        }
+
+        #close-modal:hover {
+            transform: scale(1.2);
+            transition: transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="video-background opacity-50">
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+
+    <!-- Contenido principal -->
+    <div class="relative min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <!-- Header -->
+            <div class="text-center mb-16 animate-float">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-8 gradient-text animate__animated animate__fadeIn">
+                    ¿QUIÉNES SOMOS?
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 animate__animated animate__fadeIn animate__delay-1s">
+                Somos una propuesta revolucionaria que entiende que la verdadera transformación comienza cuando cuerpo y mente trabajan en armonía.
+
+                </p>
+            </div>
+
+            <!-- Características -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="glass rounded-xl p-6 card animate__animated animate__fadeInUp animate__delay-1s"onclick="openModal('sobre-nosotros')">
+                    <div class="text-4xl mb-4">🌱 </div>
+                    <h3 class="text-xl font-bold mb-2">Sobre Nostros</h3>
+                    <p class="text-gray-300">Somos FitMind Rx, una propuesta de bienestar integral que une mente y cuerpo para lograr un cambio sostenible y consciente.</p>
+                </div>
+                <div class="glass rounded-xl p-6 card animate__animated animate__fadeInUp animate__delay-2s"onclick="openModal('mision')">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-2">Misión</h3>
+                    <p class="text-gray-300">Transformar el bienestar con equilibrio mente-cuerpo sostenible.</p>
+                </div>
+                <div class="glass rounded-xl p-6 card animate__animated animate__fadeInUp animate__delay-3s" onclick="openModal('vision')">
+                    <div class="text-4xl mb-4">🌅</div>
+                    <h3 class="text-xl font-bold mb-2">Visión</h3>
+                    <p class="text-gray-300">Impulsar una vida integral y duradera con programas de bienestar consciente.</p>
+                </div>
+            </div>
+
+            <!-- Botón de acción -->
+            <div class="text-center">
+                <a href="entren.html" 
+                   target="_blank"
+                   class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl pulse-button glass animate__animated animate__fadeInUp animate__delay-4s">
+                    <span class="mr-2">Ver programas y planes</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="absolute bottom-0 w-full py-6">
+            <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
+                <p class="animate__animated animate__fadeIn animate__delay-5s">
+                    © 2024 FitMindRx. Creado con tecnología de vanguardia.
+                </p>
+            </div>
+        </footer>
+    </div>
+ <!-- Modal -->
+ <div id="modal" class="fixed hidden top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg w-11/12 md:w-1/2 p-4 md:p-6 relative"><!-- Cambiado el fondo del modal a blanco -->
+        <button id="close-modal" class="absolute top-4 right-4 text-lime-300 hover:text-lime-500 transition duration-300">&times;</button>
+        <h2 id="modal-header" class="text-black text-2xl font-bold mb-4">FitMind Rx</h2> <!-- Cambiado a texto negro -->
+        <p id="modal-message" class="text-black text-xl font-bold"></p> <!-- Cambiado a texto negro y en negrita -->
+    </div>
+</div>
+<script>
+    function openModal(type) {
+        const modal = document.getElementById('modal');
+        const modalMessage = document.getElementById('modal-message');
+        const messages = {
+            'sobre-nosotros': 'En un mundo donde la búsqueda del bienestar se ha convertido en una carrera contra el tiempo, nace FitMind Rx, una propuesta revolucionaria que entiende que la verdadera transformación comienza cuando el cuerpo y la mente trabajan en armonía. Somos la receta(Rx) para tu transformación integral.', // Corregido para que coincida
+            'mision': 'Nuestra misión es ser el impulso que guía a cada persona hacia una vida integral, donde el bienestar consciente se convierta en un estilo de vida duradero. ', // Corregido para que coincida
+            'vision': 'Nuestra visión es la transformación del bienestar,donde el cuerpo y mente hallan su equilibrio.' // Corregido para que coincida
+        };
+
+        modalMessage.innerText = messages[type];
+        modal.classList.remove('hidden');
+    }
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+        const modal = document.getElementById('modal');
+        modal.classList.add('hidden');
+    });
+
+    // Escuchar tecla ESC para cerrar el modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+        }
+    });
+</script>
+</body>
+</html>
