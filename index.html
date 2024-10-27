@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMind Rx</title>
+    <title>Fitmind Rx</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
@@ -250,6 +251,27 @@
         width: 50%;
     }
         }
+
+        /* Añadir estos nuevos estilos para el widget de Setmore */
+        .setmore-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .setmore-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .setmore-wrapper {
+                bottom: 10px;
+                left: 10px;
+                transform: scale(0.9);
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
@@ -297,19 +319,23 @@
                 </div>
             </div>
 
-            <!-- Widget de Setmore 
-            <script id="setmore_script" type="text/javascript" src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"></script>
-            <a style="float:none; " id="Setmore_button_iframe"  href="https://booking.setmore.com/scheduleappointment/ae02c2e3-e878-4d52-a3d0-9619db28fbd1"><img border="none" src="https://assets.setmore.com/setmore/images/2.0/Settings/book-now-black.svg" alt="Book an appointment with FitMindRx using Setmore"/></a>
-             -->
-            <!-- Widget de elfsight
+            <!-- Widget de Setmore  -->
+            <div class="setmore-wrapper">
+                <script id="setmore_script" type="text/javascript" src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"></script>
+                <a style="float:none;" id="Setmore_button_iframe" href="https://booking.setmore.com/scheduleappointment/ae02c2e3-e878-4d52-a3d0-9619db28fbd1">
+                    <img border="none" src="https://assets.setmore.com/setmore/images/2.0/Settings/book-now-black.svg" alt="Book an appointment with FitMindRx using Setmore"/>
+                </a>
+            </div>
+            
+            <!-- Widget de elfsight -->
             <script src="https://static.elfsight.com/platform/platform.js" async></script>
             <div class="elfsight-app-0f82c650-9390-45af-a030-bd70a619906a" data-elfsight-app-lazy></div>
-             -->
+            
             <!-- Footer -->
             <footer class="absolute bottom-0 w-full py-6">
                 <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
                     <p class="animate__animated animate__fadeIn animate__delay-5s">
-                        
+                        © 2024 FitMindRx.
                     </p>
                 </div>
             </footer>
