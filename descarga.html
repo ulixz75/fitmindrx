@@ -98,6 +98,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
+            margin: 1rem 0; /* Aumentado para más espacio entre botones */
         }
 
         .download-btn:hover {
@@ -123,7 +124,7 @@
             animation: float 6s ease-in-out infinite;
             position: absolute; /* Añadido position relative */
             top: -230px; /* Ajuste para elevar la imagen por encima de la tarjeta */
-            left: 42%; 
+            left: 45%; 
             transform: translateX(-50%); /* Centra la imagen horizontalmente */
             z-index: 2; /* Añadido z-index */
         }
@@ -166,7 +167,7 @@
     <div class="container">
         <div class="card">
             <div class="placeholder-img">
-                <img src="https://static.wixstatic.com/media/313cf8_18aa733b59264c4fbfb890b36d36ae2e~mv2.png" alt="Mindfulness" />
+                <img src="https://static.wixstatic.com/media/313cf8_00e6157df55b48fd95a2a4a120b45012~mv2.png" />
             </div>
             <h1 class="title">Ebook Gratuito de Mindfulness</h1>
             <p>Descubre el poder de la atención plena y transforma tu vida</p>
@@ -176,24 +177,35 @@
                 <label for="agreement">Estoy de acuerdo en descargar el ebook de mindfulness gratuito</label>
             </div>
             
-            <a id="downloadBtn" 
+            <a id="downloadBtnPDF" 
                href="https://www.mediafire.com/file/24wrryd3igyub1f/Learning_Linux_Shell_Scripting.pdf/file" 
                class="download-btn" 
-               target="_blank">
-                Descargar
+               target="_blank"
+               title="Formato estándar para cualquier lector de PDF. Ideal para leer en cualquier dispositivo.">
+                Descargar versión PDF
+            </a>
+            <a id="downloadBtnEPUB" 
+               href="https://www.mediafire.com/file/24wrryd3igyub1f/Learning_Linux_Shell_Scripting.pdf/file" 
+               class="download-btn" 
+               target="_blank"
+               title="Formato diseñado para una experiencia de lectura similar a un libro, con pases de página.">
+                Descargar versión EPUB
             </a>
         </div>
     </div>
 
     <script>
         const checkbox = document.getElementById('agreement');
-        const downloadBtn = document.getElementById('downloadBtn');
+        const downloadBtnPDF = document.getElementById('downloadBtnPDF');
+        const downloadBtnEPUB = document.getElementById('downloadBtnEPUB');
 
         checkbox.addEventListener('change', function() {
             if (this.checked) {
-                downloadBtn.style.display = 'inline-block';
+                downloadBtnPDF.style.display = 'inline-block';
+                downloadBtnEPUB.style.display = 'inline-block';
             } else {
-                downloadBtn.style.display = 'none';
+                downloadBtnPDF.style.display = 'none';
+                downloadBtnEPUB.style.display = 'none';
             }
         });
     </script>
