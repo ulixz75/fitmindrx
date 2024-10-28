@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descarga tu Ebook de Mindfulness</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+            margin-top: 100px; /* Añadido margen superior */
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .checkbox-container {
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .download-btn {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .placeholder-img {
+            width: 80px;
+            height: auto;
+            margin: 0 auto;
+            background: #ffffff20;
+            border-radius: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: float 6s ease-in-out infinite;
+            position: absolute; /* Añadido position relative */
+            top: -230px; /* Ajuste para elevar la imagen por encima de la tarjeta */
+            left: 50%; 
+            transform: translateX(-50%); /* Centra la imagen horizontalmente */
+            z-index: 2; /* Añadido z-index */
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-aspect-ratio: 16/9) {
+            #video-background {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                margin-top: 50px; /* Ajustado para móviles */
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+
+            .title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="video-background" playsinline>
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="placeholder-img">
+                <img src="https://static.wixstatic.com/media/313cf8_18aa733b59264c4fbfb890b36d36ae2e~mv2.png" alt="Mindfulness" />
+            </div>
+            <h1 class="title">Ebook Gratuito de Mindfulness</h1>
+            <p>Descubre el poder de la atención plena y transforma tu vida</p>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="agreement" class="custom-checkbox">
+                <label for="agreement">Estoy de acuerdo en descargar el ebook de mindfulness gratuito</label>
+            </div>
+            
+            <a id="downloadBtn" 
+               href="https://www.mediafire.com/file/24wrryd3igyub1f/Learning_Linux_Shell_Scripting.pdf/file" 
+               class="download-btn" 
+               target="_blank">
+                Descargar
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('agreement');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                downloadBtn.style.display = 'inline-block';
+            } else {
+                downloadBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
