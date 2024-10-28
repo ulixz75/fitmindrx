@@ -99,11 +99,32 @@
             transition: all 0.3s ease;
             animation: pulse 2s infinite;
             margin: 1rem 0; /* Aumentado para más espacio entre botones */
+            position: relative; /* Necesario para los tooltips */
         }
 
         .download-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Tooltip styles */
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: none; /* Oculto por defecto */
+            bottom: 100%; /* Aparece encima del botón */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        /* Mostrar el tooltip en el hover */
+        .download-btn:hover .tooltip {
+            display: block;
         }
 
         @keyframes pulse {
@@ -123,7 +144,7 @@
             justify-content: center;
             animation: float 6s ease-in-out infinite;
             position: absolute; /* Añadido position relative */
-            top: -230px; /* Ajuste para elevar la imagen por encima de la tarjeta */
+            top: -245px; /* Ajuste para elevar la imagen por encima de la tarjeta */
             left: 45%; 
             transform: translateX(-50%); /* Centra la imagen horizontalmente */
             z-index: 2; /* Añadido z-index */
@@ -180,16 +201,16 @@
             <a id="downloadBtnPDF" 
                href="https://www.mediafire.com/file/24wrryd3igyub1f/Learning_Linux_Shell_Scripting.pdf/file" 
                class="download-btn" 
-               target="_blank"
-               title="Formato estándar para cualquier lector de PDF. Ideal para leer en cualquier dispositivo.">
+               target="_blank">
                 Descargar versión PDF
+                <span class="tooltip">Formato estándar para cualquier lector de PDF. Ideal para leer en cualquier dispositivo.</span>
             </a>
             <a id="downloadBtnEPUB" 
                href="https://www.mediafire.com/file/24wrryd3igyub1f/Learning_Linux_Shell_Scripting.pdf/file" 
                class="download-btn" 
-               target="_blank"
-               title="Formato diseñado para una experiencia de lectura similar a un libro, con pases de página.">
+               target="_blank">
                 Descargar versión EPUB
+                <span class="tooltip">Formato diseñado para una experiencia de lectura similar a un libro, con pases de página.</span>
             </a>
         </div>
     </div>
