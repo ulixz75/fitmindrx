@@ -401,5 +401,101 @@
             }, 3000);
         });
     </script>
+        <!-- Añadir esto justo antes del cierre del </body> -->
+<style>
+    .cookie-banner {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+       
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        z-index: 9999;
+        max-width: 500px; /* Ancho máximo del banner */
+        width: calc(100% - 40px); /* Ancho responsive con margen */
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+        /* Cambio principal aquí - nueva clase hidden */
+    .cookie-banner.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(-50%) translateY(100%);
+        display: none; /* Asegura que el elemento desaparece completamente */
+    }
+    
+    .cookie-banner p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
+    .cookie-banner .buttons {
+        display:flex;
+        gap: 0.5rem;
+    }
+    
+    .cookie-banner button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    
+    .cookie-banner .accept {
+        background: #4CAF50;
+        color: white;
+    }
+    
+    .cookie-banner .reject {
+        background: #f44336;
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .cookie-banner {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    </style>
+    
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación.</p>
+        <div class="buttons">
+            <button class="accept" onclick="acceptCookies()">Aceptar</button>
+            <button class="reject" onclick="rejectCookies()">Rechazar</button>
+        </div>
+    </div>
+    
+    <script>
+    // Comprobar si ya se han aceptado las cookies
+    window.addEventListener('load', function() {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieBanner').classList.remove('hidden');
+        }
+    });
+    
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').classList.add('hidden');
+        // Aquí puedes añadir tu código para activar las cookies
+    }
+    
+    function rejectCookies() {
+        localStorage.setItem('cookiesAccepted', 'false');
+        document.getElementById('cookieBanner').classList.add('hidden');
+        // Aquí puedes añadir tu código para desactivar las cookies
+    }
+    </script>
 </body>
 </html>
