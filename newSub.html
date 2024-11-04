@@ -16,16 +16,12 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             min-height: 100vh;
             background: linear-gradient(135deg, #f2a0a0 0%, #0a0a0a 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             position: relative;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         #particles-js {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
@@ -36,60 +32,39 @@
         .container {
             position: relative;
             width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
+            height: 100vh;
             z-index: 2;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-5px);
         }
 
         .interface-wrapper {
             width: 100%;
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
+            height: 100vh;
+            position: relative;
         }
 
-        zapier-interfaces-page-embed {
+        #JotFormIFrame-243082777787069 {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100% !important;
             height: 100% !important;
-            max-width: none !important;
+            min-height: 100vh !important;
+            border: none;
+            margin: 0;
+            padding: 0;
         }
 
         @media (max-width: 768px) {
             .container {
-                width: 100%;
-                margin: 0;
-                border-radius: 0;
                 padding: 0;
+                background: none;
+                backdrop-filter: none;
             }
 
             .interface-wrapper {
                 height: 100vh;
-                border-radius: 0;
-            }
-
-            body {
-                padding: 0;
-                margin: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                background: none;
-                box-shadow: none;
-                backdrop-filter: none;
-                border: none;
             }
         }
     </style>
@@ -98,22 +73,29 @@
     <div id="particles-js"></div>
     <div class="container">
         <div class="interface-wrapper">
-           
-    <iframe
-    id="JotFormIFrame-243082777787069"
-    title="Forma de registro"
-    onload="window.parent.scrollTo(0,0)"
-    allowtransparency="true"
-    allow="geolocation; microphone; camera; fullscreen"
-    src="https://form.jotform.com/243082777787069"
-    frameborder="0"
-    style="min-width:100%;max-width:100%;height:539px;border:none;"
-    scrolling="no"
-  >
-  </iframe>
-  <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-  <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-243082777787069']", "https://form.jotform.com/")</script>
-  
+            <iframe
+                id="JotFormIFrame-243082777787069"
+                title="Forma de registro"
+                onload="window.parent.scrollTo(0,0)"
+                allowtransparency="true"
+                allow="geolocation; microphone; camera; fullscreen"
+                src="https://form.jotform.com/243082777787069"
+                frameborder="0"
+                scrolling="yes"
+            >
+            </iframe>
+            <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+            <script>
+                window.jotformEmbedHandler("iframe[id='JotFormIFrame-243082777787069']", "https://form.jotform.com/");
+                
+                // Ajustar tamaño del iframe cuando cambia el tamaño de la ventana
+                window.addEventListener('resize', function() {
+                    const iframe = document.getElementById('JotFormIFrame-243082777787069');
+                    if (iframe) {
+                        iframe.style.height = window.innerHeight + 'px';
+                    }
+                });
+            </script>
         </div>
     </div>
 
