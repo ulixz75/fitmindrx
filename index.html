@@ -523,5 +523,47 @@ function rejectCookies() {
     // Aquí puedes añadir tu código para desactivar las cookies
 }
 </script>
+    ...
+<!-- Otros contenidos de tu página -->
+
+<script>
+  // Código de autenticación de Auth0
+  const auth0 = await createAuth0Client({
+    domain: 'dev-x8s6zumrgu420c7p.us.auth0.com', // Agrega comillas aquí
+    client_id: 'sSMNyu9pYqfuYMSisf9rNI0dlf7mGv4P', // Agrega comillas aquí
+    cacheLocation: 'localstorage' // Cambia "userName" a "localstorage" o "memory"
+  });
+
+  async function login() {
+    await auth0.loginWithRedirect({
+      redirect_uri: window.location.origin
+    });
+  }
+
+  async function checkAuth() {
+    const isAuthenticated = await auth0.isAuthenticated();
+
+    if (isAuthenticated) {
+      document.getElementById("content").style.display = "block";
+      document.getElementById("login-button").style.display = "none";
+    } else {
+      document.getElementById("content").style.display = "none";
+      document.getElementById("login-button").style.display = "block";
+    }
+  }
+
+  async function logout() {
+    await auth0.logout({
+      returnTo: window.location.origin
+    });
+  }
+
+  window.onload = async () => {
+    await checkAuth();
+  };
+</script>
+
+</body>
+
 </body>
 </html>
