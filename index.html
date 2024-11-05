@@ -531,26 +531,25 @@ function rejectCookies() {
 
     <script src="https://cdn.auth0.com/js/auth0-spa-js/1.20/auth0-spa-js.production.js"></script>
     <script>
-        // Código de autenticación de Auth0
-        const auth0 = await createAuth0Client({
+        const auth0 = createAuth0Client({
             domain: 'dev-x8s6zumrgu420c7p.us.auth0.com',
             client_id: 'sSMNyu9pYqfuYMSisf9rNI0dlf7mGv4P',
-            cacheLocation: 'localstorage'
+            redirect_uri: window.location.origin
         });
 
         async function login() {
-            await auth0.loginWithRedirect({
-                redirect_uri: window.location.origin
-            });
+            await auth0.loginWithRedirect();
         }
 
         async function checkAuth() {
             const isAuthenticated = await auth0.isAuthenticated();
 
             if (isAuthenticated) {
+                // Mostrar contenido para usuarios autenticados
                 document.getElementById("content").style.display = "block";
                 document.getElementById("login-button").style.display = "none";
             } else {
+                // Mostrar botón de inicio de sesión
                 document.getElementById("content").style.display = "none";
                 document.getElementById("login-button").style.display = "block";
             }
@@ -566,6 +565,7 @@ function rejectCookies() {
             await checkAuth();
         };
     </script>
+
 
 </body>
 
