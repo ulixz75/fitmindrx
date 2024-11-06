@@ -309,7 +309,7 @@
                         <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
                         <div class="icon-label">Entrenamiento👆</div>
                     </div>
-                    <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='nutri.html';">
+                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="handleMembersAccess(event)">
                         <img src="https://static.wixstatic.com/media/313cf8_85c9e06a28d642f09ddb4aab406e7617~mv2.png" alt="Nutrición">
                         <div class="icon-label">Nutrición👆</div>
                     </div>
@@ -350,7 +350,7 @@
             <li><a href="pricing.html">Precios</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="evaluacion.html">Evalúate</a></li>
-            <li><a href="#" id="members-link">Members Only</a></li>
+            <li><a href="#" onclick="handleMembersAccess(event)">Members Only</a></li>
     </nav>
 
     <script>
@@ -531,6 +531,8 @@ function rejectCookies() {
 <!-- Añadir justo antes del cierre de </body> -->
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.1.1/auth0-spa-js.production.js"></script>
 <script>
+let auth0Client = null;
+
 // Configuración
 const AUTH_CONFIG = {
     domain: 'dev-x8s6zumrgu420c7p.us.auth0.com',
@@ -544,10 +546,8 @@ const AIRTABLE_CONFIG = {
     TABLE_NAME: 'Members'
 };
 
-let auth0Client = null;
-
-// Inicializar Auth0
-async function initAuth0() {
+// Inicializar Auth0 cuando cargue la página
+async function initializeAuth0() {
     try {
         auth0Client = await createAuth0Client({
             domain: AUTH_CONFIG.domain,
@@ -555,58 +555,62 @@ async function initAuth0() {
             redirect_uri: AUTH_CONFIG.redirect_uri
         });
 
-        // Manejar callback después del login
+        // Verificar si estamos en un callback después del login
         if (window.location.search.includes("code=")) {
-            await auth0Client.handleRedirectCallback();
-            window.history.replaceState({}, document.title, window.location.pathname);
-            await checkAuth();
+            await handleAuthCallback();
         }
 
-        // Configurar el evento click para "Members Only"
-        const membersLink = document.getElementById('members-link');
-        if (membersLink) {
-            membersLink.addEventListener('click', handleMembersClick);
-        }
-
-    } catch (err) {
-        console.error("Error inicializando Auth0:", err);
+    } catch (error) {
+        console.error("Error initializing Auth0", error);
     }
 }
 
-// Manejar click en Members Only
-async function handleMembersClick(e) {
+// Manejar el acceso a miembros
+async function handleMembersAccess(e) {
     e.preventDefault();
+    e.stopPropagation();
+    
     try {
+        if (!auth0Client) {
+            await initializeAuth0();
+        }
+
+        console.log("Iniciando login con Auth0...");
         await auth0Client.loginWithRedirect({
             redirect_uri: AUTH_CONFIG.redirect_uri,
-            // Asegurar que obtenemos el email
             scope: 'openid profile email'
         });
-    } catch (err) {
-        console.error("Error durante el login:", err);
+    } catch (error) {
+        console.error("Error en login", error);
     }
 }
 
-// Verificar autenticación
-async function checkAuth() {
+// Manejar el callback de autenticación
+async function handleAuthCallback() {
     try {
-        const isAuthenticated = await auth0Client.isAuthenticated();
-        if (isAuthenticated) {
-            const user = await auth0Client.getUser();
-            if (user && user.email) {
-                await validateWithAirtable(user.email, user.sub);
-            }
+        // Procesar el resultado de la autenticación
+        await auth0Client.handleRedirectCallback();
+        
+        // Obtener el usuario
+        const user = await auth0Client.getUser();
+        
+        if (user && user.email) {
+            // Validar con Airtable
+            await validateWithAirtable(user.email);
         }
-    } catch (err) {
-        console.error("Error verificando autenticación:", err);
+        
+        // Limpiar la URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    } catch (error) {
+        console.error("Error handling callback:", error);
     }
 }
 
 // Validar con Airtable
-async function validateWithAirtable(email, authId) {
+async function validateWithAirtable(email) {
     try {
         const response = await fetch(
-            `https://api.airtable.com/v0/${AIRTABLE_CONFIG.BASE_ID}/${AIRTABLE_CONFIG.TABLE_NAME}?filterByFormula=AND({Email}="${email}")`,
+            `https://api.airtable.com/v0/${AIRTABLE_CONFIG.BASE_ID}/${AIRTABLE_CONFIG.TABLE_NAME}?filterByFormula={Email}="${email}"`,
             {
                 headers: {
                     'Authorization': `Bearer ${AIRTABLE_CONFIG.API_KEY}`
@@ -615,41 +619,25 @@ async function validateWithAirtable(email, authId) {
         );
 
         const data = await response.json();
+        
         if (data.records.length > 0) {
-            // Validar que el código coincida
-            const userRecord = data.records[0].fields;
-            if (userRecord.Codigo) {
-                // Usuario válido, redirigir a nutri.html
-                window.location.href = 'nutri.html';
-            } else {
-                await handleInvalidAccess("Código de acceso no válido");
-            }
+            // Redirigir a nutri.html
+            window.location.href = 'nutri.html';
         } else {
-            await handleInvalidAccess("Usuario no encontrado");
+            alert("No tienes acceso a la sección de miembros. Por favor contacta con soporte.");
+            await auth0Client.logout({
+                returnTo: window.location.origin
+            });
         }
-    } catch (err) {
-        console.error("Error validando con Airtable:", err);
-        await handleInvalidAccess("Error de validación");
+    } catch (error) {
+        console.error("Error validating with Airtable:", error);
+        alert("Error validando acceso. Por favor intenta nuevamente.");
     }
 }
 
-// Manejar acceso inválido
-async function handleInvalidAccess(message) {
-    alert(message + ". Por favor contacta con soporte.");
-    try {
-        await auth0Client.logout({
-            returnTo: window.location.origin
-        });
-    } catch (err) {
-        console.error("Error durante el logout:", err);
-        window.location.href = '/';
-    }
-}
-
-// Inicializar cuando cargue la página
-window.addEventListener('load', initAuth0);
+// Inicializar Auth0 cuando cargue la página
+window.addEventListener('load', initializeAuth0);
 </script>
-
 </body>
 
 </body>
