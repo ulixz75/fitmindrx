@@ -33,7 +33,34 @@
             position: relative;
             z-index: 1001;
         }
+        .close-arrow {
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            color: #00ff00;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
 
+         .close-arrow svg {
+            width: 24px;
+            height: 24px;
+            stroke: #00ff00;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+          .navbar:hover .close-arrow {
+           opacity: 1;
+          right: -40px;
+        }
+
+          .navbar:hover .close-arrow svg {
+          transform: translateX(-5px);
+        }
+ 
         .bar {
             width: 25px;
             height: 3px;
@@ -340,6 +367,12 @@
     </div>
 
     <nav class="navbar">
+        <div class="close-arrow">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+             <line x1="19" y1="12" x2="5" y2="12"></line>
+             <polyline points="12 19 5 12 12 5"></polyline>
+             </svg>
+        </div>
         <div class="hamburger-menu">
             <div class="bar"></div>
             <div class="bar"></div>
