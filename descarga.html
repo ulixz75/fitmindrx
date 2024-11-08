@@ -330,19 +330,21 @@
                             fields: {
                                 'Nombre': userData.fullName,
                                 'Email': userData.email,
-                                'Date': new Date().toISOString()
+                                'Date': new Date().toLocaleDateString('en-US') // Formato mm/dd/yyyy
                             }
                         }]
                     })
                 });
 
                 if (!response.ok) {
-                    throw new Error('Error al guardar los datos');
+                    const errorData = await response.json();
+                    console.error('Error de Airtable:', errorData);
+                    throw new Error(errorData.error?.message || 'Error al guardar los datos');
                 }
 
                 return await response.json();
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error completo:', error);
                 throw error;
             }
         }
@@ -373,14 +375,14 @@
 
             if (isValid) {
                 try {
-                    await saveToAirtable({ fullName, email });
+                    const result = await saveToAirtable({ fullName, email });
+                    console.log('Respuesta de Airtable:', result);
                     document.getElementById('formModal').style.display = 'none';
                     document.getElementById('mainContent').style.display = 'block';
-                    
-                    // Guardar en localStorage para mantener la sesión
                     localStorage.setItem('userFormCompleted', 'true');
                 } catch (error) {
-                    alert('Hubo un error al procesar tu información. Por favor intenta nuevamente.');
+                    console.error('Error completo:', error);
+                    alert('Error específico: ' + error.message);
                 }
             }
         });
