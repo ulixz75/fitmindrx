@@ -468,7 +468,46 @@
             <small>*Los resultados pueden variar de persona a persona</small>
         </section>
 
-        <a href="contacto.html" class="contact-btn" title="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
+       <a href="contacto.html" class="contact-btn tooltip" data-tooltip="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
+
+<style>
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+/* Para desktop (hover) */
+@media (hover: hover) {
+  .tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Para móviles (touch) */
+@media (hover: none) {
+  .tooltip:active::after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+</style>
     </div>
 </body>
 </html>
