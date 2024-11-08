@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mente Presente, Cuerpo Futuro</title>
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --secondary: #e76f51;
+            --background: #f8f9fa;
+            --text: #264653;
+            --accent: #f4a261;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url('/api/placeholder/1200/400') center/cover;
+            opacity: 0.1;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.1; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideIn 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: #e76f51;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .approach-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary);
+        }
+
+        .approach-card:nth-child(2n) {
+            border-left-color: var(--secondary);
+        }
+
+        .approach-card:nth-child(3n) {
+            border-left-color: var(--accent);
+        }
+
+        .approach-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .approach-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .approach-subtitle {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .contact-btn {
+            display: block;
+            width: max-content;
+            margin: 3rem auto;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(231, 111, 81, 0.4);
+            background: #e85d3d;
+            content: 'Recuerda: ¡la orientación es gratis!';
+        }
+
+        .contact-btn:hover::before {
+            opacity: 1;
+        }
+
+        .list-item {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .list-item::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+       
+        /* Mejoras en responsive design */
+        @media screen and (max-width: 1200px) {
+            .container {
+                max-width: 95%;
+                padding: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .approach-card {
+                padding: 1.25rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature {
+                padding: 1.25rem;
+            }
+            
+            .approach-title {
+                font-size: 1.2rem;
+            }
+            
+            .approach-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 0.5rem;
+            }
+            
+            .card {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .approach-card {
+                padding: 1rem;
+                margin: 0.75rem 0;
+            }
+            
+            .contact-btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.1rem;
+                width: 90%;
+                text-align: center;
+            }
+        }
+
+        /* Orientación landscape para móviles */
+        @media screen and (max-height: 480px) and (orientation: landscape) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Soporte para pantallas de alta resolución */
+        @media screen and (min-width: 2000px) {
+            .container {
+                max-width: 1600px;
+            }
+            
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+            
+            .hero p {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .approach-title {
+                font-size: 1.8rem;
+            }
+            
+            .approach-subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .feature h3 {
+                font-size: 1.8rem;
+            }
+            
+            .feature p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Mejoras en la accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* Soporte para modo oscuro del sistema */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #1a1a1a;
+                --text: #f8f9fa;
+            }
+            
+            .card, .feature, .approach-card {
+                background: #2d2d2d;
+                color: var(--text);
+            }
+        }
+
+        /* Ajustes para dispositivos con pantalla táctil */
+        @media (hover: none) {
+            .card:hover,
+            .feature:hover,
+            .approach-card:hover {
+                transform: none;
+            }
+            
+            .contact-btn::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>MENTE PRESENTE, CUERPO FUTURO</h1>
+        <p>Transformación Integral Sostenible</p>
+        <p>Tu viaje de 90 días hacia el bienestar consciente</p>
+    </div>
+
+    <div class="container">
+        <section class="card" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="section-title">Nuestros Enfoques de Transformación</h2>
+            
+            <div class="approach-card" data-aos="fade-right" data-aos-delay="100">
+                <h3 class="approach-title">Enfoque Transformacional</h3>
+                <p class="approach-subtitle">"Revolución Consciente: Programa de Transformación Cuerpo-Mente"</p>
+                <p class="approach-subtitle">"TransformaMente: El Método Integral de Bienestar"</p>
+            </div>
+
+            <div class="approach-card" data-aos="fade-right" data-aos-delay="200">
+                <h3 class="approach-title">Enfoque Mindfulness</h3>
+                <p class="approach-subtitle">"Mindful Fitness: La Transformación Consciente"</p>
+                <p class="approach-subtitle">"Presente y Fit: Tu Camino al Bienestar Integral"</p>
+            </div>
+
+            <div class="approach-card" data-aos="fade-right" data-aos-delay="300">
+                <h3 class="approach-title">Enfoque Resultado</h3>
+                <p class="approach-subtitle">"90 Días para Ti: Transformación Consciente Garantizada"</p>
+                <p class="approach-subtitle">"Método TIS: Transformación Integral Sostenible"</p>
+            </div>
+            <div class="approach-card" data-aos="fade-right" data-aos-delay="400">
+                <h3 class="approach-title">Enfoque Holístico</h3>
+                <p class="approach-subtitle">"Equilibrio Total: Nutrición, Movimiento y Consciencia"</p>
+                <p class="approach-subtitle">"Triple Impacto: Mente Clara, Cuerpo Fuerte, Vida Plena"</p>
+            </div>
+        </section>
+
+        <section class="card" data-aos="fade-up">
+            <h2 class="section-title">Nuestro Programa Integral</h2>
+            <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+                <div class="feature">
+                    <h3>Nutrición Consciente</h3>
+                    <p>Plan alimenticio personalizado dentro de tu presupuesto de $200 mensuales</p>
+                </div>
+                <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>Ejercicio Progresivo</h3>
+                    <p>De principiante a intermedio, adaptado a tu nivel</p>
+                </div>
+                <div class="feature" data-aos="zoom-in" data-aos-delay="300">
+                    <h3>Mindfulness</h3>
+                    <p>Técnicas de atención plena para una transformación duradera</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" data-aos="fade-up">
+            <h2 class="section-title">¿Qué Incluye?</h2>
+            <div class="list-item" data-aos="fade-left" data-aos-delay="100">Plan nutricional detallado con presupuesto de $200</div>
+            <div class="list-item" data-aos="fade-left" data-aos-delay="200">Programa de ejercicios progresivo de 12 semanas</div>
+            <div class="list-item" data-aos="fade-left" data-aos-delay="300">Rutinas de mindfulness integradas</div>
+            <div class="list-item" data-aos="fade-left" data-aos-delay="400">Seguimiento y ajustes personalizados</div>
+            <div class="list-item" data-aos="fade-left" data-aos-delay="500">Apoyo continuo en tu transformación</div>
+        </section>
+
+        <section class="card" data-aos="fade-up">
+            <h2 class="section-title">*Resultados Esperados</h2>
+            <div class="grid">
+                <div class="feature" data-aos="flip-left" data-aos-delay="100">
+                    <h3>*Pérdida de Peso</h3>
+                    <p>*5-15 libras en 3 meses de manera saludable y sostenible</p>
+                </div>
+                <div class="feature" data-aos="flip-left" data-aos-delay="200">
+                    <h3>*Mejor Condición Física</h3>
+                    <p>*Aumento de fuerza, resistencia y flexibilidad</p>
+                </div>
+                <div class="feature" data-aos="flip-left" data-aos-delay="300">
+                    <h3>*Bienestar Mental</h3>
+                    <p>*Mayor claridad mental y reducción del estrés</p>
+                    
+                    
+    
+                    
+                </div>
+            </div>
+            <small>*Los resultados pueden variar de persona a persona</small>
+        </section>
+
+        <a href="contacto.html" class="contact-btn" title="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
+    </div>
+</body>
+</html>
