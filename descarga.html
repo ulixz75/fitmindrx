@@ -253,7 +253,7 @@
             </h2>
             <form id="userForm">
                 <div class="form-group">
-                    <label for="fullName">Nombre completo</label>
+                    <label for="Name">Nombre completo</label>
                     <input type="text" id="fullName" name="fullName" required>
                     <div class="error-message" id="nameError">Por favor ingresa tu nombre completo</div>
                 </div>
@@ -328,7 +328,7 @@
                     body: JSON.stringify({
                         records: [{
                             fields: {
-                                'Nombre': userData.fullName,
+                                'Name': userData.fullName,
                                 'Email': userData.email,
                                 'Date': new Date().toLocaleDateString('en-US') // Formato mm/dd/yyyy
                             }
