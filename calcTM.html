@@ -168,14 +168,6 @@
             from { transform: translateX(-20px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-        .height-imperial {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.height-imperial .input-group {
-    flex: 1;
-}
 
          /* Ajustes para dispositivos móviles */
     @media (max-width: 768px) {
@@ -218,30 +210,30 @@
                         </select>
                     </div>
                 </div>
-                
+                <div class="form-group">
+                    <label for="height">Altura</label>
+                    <div class="input-group">
+                        <input type="number" id="height" min="0">
+                        <select id="heightUnit" onchange="updateHeightLimits()">
+                            <option value="cm">cm</option>
+                            <option value="in">in</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
-    <label for="height">Altura</label>
-    <div id="metricHeight">
-        <div class="input-group">
-            <input type="number" id="height" min="0">
-            <select id="heightUnit" onchange="toggleHeightInputs()">
-                <option value="cm">cm</option>
-                <option value="ft">pies y pulg</option>
-            </select>
-        </div>
-    </div>
-    <div id="imperialHeight" class="height-imperial" style="display: none;">
-        <div class="input-group">
-            <input type="number" id="heightFeet" min="0" max="8" placeholder="Pies">
-            <span>pies</span>
-        </div>
-        <div class="input-group">
-            <input type="number" id="heightInches" min="0" max="11" placeholder="Pulg">
-            <span>pulg</span>
-        </div>
-    </div>
-</div>
+                    <label for="age">Edad</label>
+                    <input type="number" id="age" min="15" max="100">
+                </div>
+                <div class="gender-group">
+                    <div class="gender-option">
+                        <input type="radio" id="male" name="gender" value="male" checked>
+                        <label for="male">Masculino</label>
+                    </div>
+                    <div class="gender-option">
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Femenino</label>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="activity">Nivel de Actividad</label>
                     <select id="activity">
@@ -260,9 +252,9 @@
             </div>
             <div class="results-section">
                 <h2>Resultados</h2>
-                <small><strong>Estos resultados muestran cuantas calorías necesitas diarias,</strong></small>
-                <small><strong>sólo para mantener el peso actual, este es el índice para determinar</strong></small>
-                <small><strong>cuánto reducir o aumentar según tus metas.</strong></small>
+                <small><strong>Estos resultados muestran cuantas calorías necesitas diarias,</strong></small> 
+                <small><strong>sólo para mantener el peso actual, este es el índice para</strong></small> 
+                <small><strong>determinar cuánto reducir o aumentar según tus metas.</strong></small>
                 <div class="results" id="results">
                     <div class="result-item">
                         <span>*Harris-Benedict:</span>
@@ -275,8 +267,8 @@
                     <div class="result-item">
                         <span>*Katch-McArdle:</span>
                         <span id="katch">-- kcal/día</span>
+                        <small>*Fórmula matemática para calcular la tasa metabólica.</small>
                     </div>
-                    <small>*Fórmula matemática para el cálculo de la tasa metabólica.</small>
                 </div>
                 <div class="chart-container">
                     <canvas id="resultsChart"></canvas>
@@ -286,25 +278,16 @@
     </div>
 
     <script>
-      function feetAndInchesToCm(feet, inches) {
-    const totalInches = (feet * 12) + (inches || 0);
-    return totalInches * 2.54;
-}
+        let chart = null;
 
-function toggleHeightInputs() {
-    const heightUnit = document.getElementById('heightUnit').value;
-    const metricHeight = document.getElementById('metricHeight');
-    const imperialHeight = document.getElementById('imperialHeight');
-    
-    if (heightUnit === 'cm') {
-        metricHeight.style.display = 'block';
-        imperialHeight.style.display = 'none';
-    } else {
-        metricHeight.style.display = 'none';
-        imperialHeight.style.display = 'flex';
-    }
-    calculateBMR();
-}
+        // Funciones de conversión
+        function lbToKg(lb) {
+            return lb * 0.453592;
+        }
+
+        function inToCm(inches) {
+            return inches * 2.54;
+        }
 
         function updateWeightLimits() {
             const weightInput = document.getElementById('weight');
@@ -345,15 +328,10 @@ function toggleHeightInputs() {
         }
 
         function getConvertedHeight() {
-    const heightUnit = document.getElementById('heightUnit').value;
-    if (heightUnit === 'cm') {
-        return parseFloat(document.getElementById('height').value);
-    } else {
-        const feet = parseFloat(document.getElementById('heightFeet').value) || 0;
-        const inches = parseFloat(document.getElementById('heightInches').value) || 0;
-        return feetAndInchesToCm(feet, inches);
-    }
-}
+            const height = parseFloat(document.getElementById('height').value);
+            const unit = document.getElementById('heightUnit').value;
+            return unit === 'cm' ? height : inToCm(height);
+        }
 
         function calculateBMR() {
             const weight = getConvertedWeight(); // Peso en kg
@@ -479,13 +457,14 @@ function toggleHeightInputs() {
         }
 
         // Event listeners
-     const inputs = ['weight', 'height', 'heightFeet', 'heightInches', 'age', 'activity'];
-inputs.forEach(id => {
-    const element = document.getElementById(id);
-    if (element) {
-        element.addEventListener('input', calculateBMR);
-    }
-});
+        const inputs = ['weight', 'height', 'age', 'activity'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateBMR);
+        });
+
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', calculateBMR);
+        });
     </script>
 </body>
 </html>
