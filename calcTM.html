@@ -168,6 +168,14 @@
             from { transform: translateX(-20px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+        .height-imperial {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.height-imperial .input-group {
+    flex: 1;
+}
 
          /* Ajustes para dispositivos móviles */
     @media (max-width: 768px) {
@@ -210,30 +218,30 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="height">Altura</label>
-                    <div class="input-group">
-                        <input type="number" id="height" min="0">
-                        <select id="heightUnit" onchange="updateHeightLimits()">
-                            <option value="cm">cm</option>
-                            <option value="in">in</option>
-                        </select>
-                    </div>
+                
                 </div>
                 <div class="form-group">
-                    <label for="age">Edad</label>
-                    <input type="number" id="age" min="15" max="100">
-                </div>
-                <div class="gender-group">
-                    <div class="gender-option">
-                        <input type="radio" id="male" name="gender" value="male" checked>
-                        <label for="male">Masculino</label>
-                    </div>
-                    <div class="gender-option">
-                        <input type="radio" id="female" name="gender" value="female">
-                        <label for="female">Femenino</label>
-                    </div>
-                </div>
+    <label for="height">Altura</label>
+    <div id="metricHeight">
+        <div class="input-group">
+            <input type="number" id="height" min="0">
+            <select id="heightUnit" onchange="toggleHeightInputs()">
+                <option value="cm">cm</option>
+                <option value="ft">pies y pulg</option>
+            </select>
+        </div>
+    </div>
+    <div id="imperialHeight" class="height-imperial" style="display: none;">
+        <div class="input-group">
+            <input type="number" id="heightFeet" min="0" max="8" placeholder="Pies">
+            <span>pies</span>
+        </div>
+        <div class="input-group">
+            <input type="number" id="heightInches" min="0" max="11" placeholder="Pulg">
+            <span>pulg</span>
+        </div>
+    </div>
+</div>
                 <div class="form-group">
                     <label for="activity">Nivel de Actividad</label>
                     <select id="activity">
@@ -278,16 +286,25 @@
     </div>
 
     <script>
-        let chart = null;
+      function feetAndInchesToCm(feet, inches) {
+    const totalInches = (feet * 12) + (inches || 0);
+    return totalInches * 2.54;
+}
 
-        // Funciones de conversión
-        function lbToKg(lb) {
-            return lb * 0.453592;
-        }
-
-        function inToCm(inches) {
-            return inches * 2.54;
-        }
+function toggleHeightInputs() {
+    const heightUnit = document.getElementById('heightUnit').value;
+    const metricHeight = document.getElementById('metricHeight');
+    const imperialHeight = document.getElementById('imperialHeight');
+    
+    if (heightUnit === 'cm') {
+        metricHeight.style.display = 'block';
+        imperialHeight.style.display = 'none';
+    } else {
+        metricHeight.style.display = 'none';
+        imperialHeight.style.display = 'flex';
+    }
+    calculateBMR();
+}
 
         function updateWeightLimits() {
             const weightInput = document.getElementById('weight');
@@ -328,10 +345,15 @@
         }
 
         function getConvertedHeight() {
-            const height = parseFloat(document.getElementById('height').value);
-            const unit = document.getElementById('heightUnit').value;
-            return unit === 'cm' ? height : inToCm(height);
-        }
+    const heightUnit = document.getElementById('heightUnit').value;
+    if (heightUnit === 'cm') {
+        return parseFloat(document.getElementById('height').value);
+    } else {
+        const feet = parseFloat(document.getElementById('heightFeet').value) || 0;
+        const inches = parseFloat(document.getElementById('heightInches').value) || 0;
+        return feetAndInchesToCm(feet, inches);
+    }
+}
 
         function calculateBMR() {
             const weight = getConvertedWeight(); // Peso en kg
@@ -457,14 +479,13 @@
         }
 
         // Event listeners
-        const inputs = ['weight', 'height', 'age', 'activity'];
-        inputs.forEach(id => {
-            document.getElementById(id).addEventListener('input', calculateBMR);
-        });
-
-        document.querySelectorAll('input[name="gender"]').forEach(radio => {
-            radio.addEventListener('change', calculateBMR);
-        });
+     const inputs = ['weight', 'height', 'heightFeet', 'heightInches', 'age', 'activity'];
+inputs.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.addEventListener('input', calculateBMR);
+    }
+});
     </script>
 </body>
 </html>
