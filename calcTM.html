@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tasa Metabólica</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        :root {
+            --primary: #2196F3;
+            --secondary: #4CAF50;
+            --accent: #FF9800;
+            --background: #f5f5f5;
+            --card: #ffffff;
+            --text: #333333;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .input-section {
+        background: var(--card);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px var(--shadow);
+        transition: transform 0.3s ease;
+        max-width: 500px; /* Añadido para limitar el ancho */
+        margin: 0 auto; /* Centrado */
+    } 
+
+        .input-section:hover, .results-section:hover {
+            transform: translateY(-5px);
+        }
+
+        h1, h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            max-width: 100%; /* Asegura que no se desborde */
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            max-width: 100%;
+        }
+
+        .input-group input {
+            flex: 3;
+            max-width: 60%; /* Limita el ancho del input */
+        }
+
+        .input-group select {
+            flex: 1;
+            min-width: 30px;
+            min-width: 70px; /* Asegura un ancho mínimo para el select */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid var(--primary);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+        }
+
+        .gender-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .gender-option input[type="radio"] {
+            display: none;
+        }
+
+        .gender-option label {
+            font-size: 0.9rem;
+            padding: 0.6rem;
+            background: var(--background);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gender-option input[type="radio"]:checked + label {
+            background: var(--primary);
+            color: white;
+        }
+
+        .results {
+            max-width: 500px; /* Limita el ancho */
+        margin: 0 auto; /* Centrado */
+        }
+
+        .result-item {
+        padding: 0.5rem 1rem; /* Ajustado el padding */
+        font-size: 0.9rem; /* Reducido el tamaño de la fuente */
+    }
+        
+         
+
+        .chart-container {
+            margin-top: 2rem;
+            height: 300px;
+        }
+
+        .unit-display {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-left: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+         /* Ajustes para dispositivos móviles */
+    @media (max-width: 768px) {
+        .calculator {
+            grid-template-columns: 1fr;
+        }
+
+        .input-section {
+            padding: 1rem; /* Reducido el padding en móviles */
+        }
+
+        .input-group {
+            flex-direction: row; /* Mantiene la dirección en fila */
+        }
+
+        .input-group input {
+            max-width: 65%; /* Ajustado para móviles */
+        }
+
+        .input-group select {
+            max-width: 35%; /* Ajustado para móviles */
+        }
+
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Tasa Metabólica</h1>
+        <div class="calculator">
+            <div class="input-section">
+                <h2>Datos Personales</h2>
+                <div class="form-group">
+                    <label for="weight">Peso</label>
+                    <div class="input-group">
+                        <input type="number" id="weight" min="0" step="0.1">
+                        <select id="weightUnit" onchange="updateWeightLimits()">
+                            <option value="kg">kg</option>
+                            <option value="lb">lb</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="height">Altura</label>
+                    <div class="input-group">
+                        <input type="number" id="height" min="0">
+                        <select id="heightUnit" onchange="updateHeightLimits()">
+                            <option value="cm">cm</option>
+                            <option value="in">in</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age">Edad</label>
+                    <input type="number" id="age" min="15" max="100">
+                </div>
+                <div class="gender-group">
+                    <div class="gender-option">
+                        <input type="radio" id="male" name="gender" value="male" checked>
+                        <label for="male">Masculino</label>
+                    </div>
+                    <div class="gender-option">
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Femenino</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="activity">Nivel de Actividad</label>
+                    <select id="activity">
+                        <option value="1.2">Sedentario (poco o ningún ejercicio)</option>
+                        <option value="1.375">Ligero (ejercicio 1-3 veces/semana)</option>
+                        <option value="1.465">Moderado bajo (ejercicio 3-4 veces/semana)</option>
+                        <option value="1.55">Moderado (ejercicio 4-5 veces/semana)</option>
+                        <option value="1.635">Moderado alto (ejercicio 6-7 veces/semana)</option>
+                        <option value="1.725">Alto (ejercicio diario intenso)</option>
+                        <option value="1.9">Muy alto (ejercicio intenso 2 veces/día)</option>
+                        <option value="2.0">Atleta profesional (entrenamiento extremo)</option>
+                        <option value="1.3">Trabajo de oficina con algo de actividad</option>
+                        <option value="1.6">Trabajo físicamente activo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="results-section">
+                <h2>Resultados</h2>
+                <div class="results" id="results">
+                    <div class="result-item">
+                        <span>Harris-Benedict:</span>
+                        <span id="harris">-- kcal/día</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Mifflin-St Jeor:</span>
+                        <span id="mifflin">-- kcal/día</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Katch-McArdle:</span>
+                        <span id="katch">-- kcal/día</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="resultsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chart = null;
+
+        // Funciones de conversión
+        function lbToKg(lb) {
+            return lb * 0.453592;
+        }
+
+        function inToCm(inches) {
+            return inches * 2.54;
+        }
+
+        function updateWeightLimits() {
+            const weightInput = document.getElementById('weight');
+            const unit = document.getElementById('weightUnit').value;
+            
+            if (unit === 'kg') {
+                weightInput.min = "30";
+                weightInput.max = "300";
+                weightInput.step = "0.1";
+            } else {
+                weightInput.min = "66";
+                weightInput.max = "660";
+                weightInput.step = "0.1";
+            }
+            calculateBMR();
+        }
+
+        function updateHeightLimits() {
+            const heightInput = document.getElementById('height');
+            const unit = document.getElementById('heightUnit').value;
+            
+            if (unit === 'cm') {
+                heightInput.min = "100";
+                heightInput.max = "250";
+                heightInput.step = "1";
+            } else {
+                heightInput.min = "39";
+                heightInput.max = "98";
+                heightInput.step = "0.1";
+            }
+            calculateBMR();
+        }
+
+        function getConvertedWeight() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const unit = document.getElementById('weightUnit').value;
+            return unit === 'kg' ? weight : lbToKg(weight);
+        }
+
+        function getConvertedHeight() {
+            const height = parseFloat(document.getElementById('height').value);
+            const unit = document.getElementById('heightUnit').value;
+            return unit === 'cm' ? height : inToCm(height);
+        }
+
+        function calculateBMR() {
+            const weight = getConvertedWeight(); // Peso en kg
+            const height = getConvertedHeight(); // Altura en cm
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const activity = parseFloat(document.getElementById('activity').value);
+
+            if (!weight || !height || !age) return;
+
+            // Harris-Benedict
+            let harrisBenedict;
+            if (gender === 'male') {
+                harrisBenedict = 66.47 + (13.75 * weight) + (5.003 * height) - (6.755 * age);
+            } else {
+                harrisBenedict = 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age);
+            }
+
+            // Mifflin-St Jeor
+            let mifflin;
+            if (gender === 'male') {
+                mifflin = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+            } else {
+                mifflin = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+            }
+
+            // Katch-McArdle
+            const leanBodyMass = gender === 'male' ? 
+                (0.407 * weight) + (0.267 * height) - 19.2 :
+                (0.252 * weight) + (0.473 * height) - 48.3;
+            const katch = 370 + (21.6 * leanBodyMass);
+
+            // Aplicar factor de actividad
+            const harrisTDEE = harrisBenedict * activity;
+            const mifflinTDEE = mifflin * activity;
+            const katchTDEE = katch * activity;
+
+            // Actualizar resultados con animación
+            updateResult('harris', harrisTDEE);
+            updateResult('mifflin', mifflinTDEE);
+            updateResult('katch', katchTDEE);
+
+            updateChart([harrisTDEE, mifflinTDEE, katchTDEE]);
+        }
+
+        function updateResult(id, value) {
+            const element = document.getElementById(id);
+            const current = parseInt(element.textContent) || 0;
+            const target = Math.round(value);
+            
+            animateNumber(element, current, target);
+        }
+
+        function animateNumber(element, start, end) {
+            const duration = 1000;
+            const steps = 60;
+            const increment = (end - start) / steps;
+            let current = start;
+            let step = 0;
+
+            const timer = setInterval(() => {
+                step++;
+                current += increment;
+                element.textContent = `${Math.round(current)} kcal/día`;
+
+                if (step >= steps) {
+                    clearInterval(timer);
+                    element.textContent = `${Math.round(end)} kcal/día`;
+                }
+            }, duration / steps);
+        }
+
+        function updateChart(values) {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Harris-Benedict', 'Mifflin-St Jeor', 'Katch-McArdle'],
+                    datasets: [{
+                        label: 'Calorías diarias (TDEE)',
+                        data: values,
+                        backgroundColor: [
+                            'rgba(33, 150, 243, 0.6)',
+                            'rgba(76, 175, 80, 0.6)',
+                            'rgba(255, 152, 0, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(33, 150, 243, 1)',
+                            'rgba(76, 175, 80, 1)',
+                            'rgba(255, 152, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: value => `${value} kcal`
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        
+                        }
+                    }
+                }
+            });
+        }
+
+        // Event listeners
+        const inputs = ['weight', 'height', 'age', 'activity'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', calculateBMR);
+        });
+
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', calculateBMR);
+        });
+    </script>
+</body>
+</html>
