@@ -212,9 +212,15 @@
 .card img {
     width: 70%; /* Reducir tamaño de la imagen para que quepa bien en el círculo */
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
     margin-bottom: 0.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
 }
+
+.card:hover img {
+            transform: scale(1.1);
+        }
 
 .card.active {
     z-index: 10;
@@ -228,13 +234,18 @@
         }
 
       
-.icon-label {
-    font-size: 0.9rem; /* Reducir tamaño del texto para que quepa mejor */
-    font-weight: bold;
-    text-align: center;
-    color: white;
-    margin-top: 0.2rem;
-}
+        .icon-label {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+        }
 
         .pulse-button {
             animation: pulse 2s infinite;
@@ -329,23 +340,23 @@
             <div class="carousel-container mb-16">
                 <div class="carousel">
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mente.html';">
-                        <img src="https://static.wixstatic.com/media/313cf8_79e766d6f5a848958b5dc7a6957b50b0~mv2.png" alt="Mente">
+                        <img src="https://media.giphy.com/media/ZXKZWB13D6gFO/giphy.gif" alt="Mente">
                         <div class="icon-label">Mente👆</div>
                     </div>
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='planmodelo.html';">
-                        <img src="https://static.wixstatic.com/media/313cf8_2075babd3eaf4d6cad009928c7c523bd~mv2.png" alt="Entrenamiento">
+                        <img src="https://media.giphy.com/media/3oKIPavRPgJYaNI97W/giphy.gif" alt="Entrenamiento">
                         <div class="icon-label">Plan modelo👆</div>
                     </div>
                        <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='nutri.html';">
-                        <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                        <img src="https://media.giphy.com/media/3tpV6MjJnrwLHmAzgq/giphy.gif?cid=790b7611ohp8m3t2ndivq8w0c0pskcwoqryfddugr3q48186&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Mindfulness">
                         <div class="icon-label">Nutrición👆</div>
                     </div>
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mindful.html';">
-                        <img src="https://static.wixstatic.com/media/313cf8_ab26b7db293149238c9f4cfe76a1aa06~mv2.png" alt="Mindfulness">
+                        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHhneGdpbTA5aG9ocWJ3cDZ2MXh5emN3dHJxZGhtZWh2N3RkOHA0MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Yat5wnwisEV2iXbt4x/giphy.gif" alt="Mindfulness">
                         <div class="icon-label">Mindfulness👆</div>
                     </div>
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='contacto.html';">
-                        <img src="https://static.wixstatic.com/media/313cf8_23c49f0eaeb54f4997848cb4593c52a6~mv2.png" alt="Resultados">
+                        <img src="https://media.giphy.com/media/3o7TKUM3IgJBX2as9O/giphy.gif" alt="Resultados">
                         <div class="icon-label">Contáctanos👆</div>
                     </div>
                 </div>
