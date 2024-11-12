@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccione Método de Pago</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #f5efef;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .payment-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .payment-option {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .payment-option:hover {
+            border-color: #0070ba;
+            transform: translateY(-2px);
+        }
+
+        .payment-option img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .payment-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .copy-number {
+            background: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            user-select: all;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .payment-option {
+                padding: 1rem;
+            }
+
+            .payment-option img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+      <!-- Video de fondo -->
+      <video autoplay muted loop playsinline class="video-background opacity-50">
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+        <h1>Seleccione su método de pago</h1>
+        <div class="payment-options">
+            <a href="https://paypal.me/FitMindRx?country.x=ES&locale.x=es_ES" 
+               class="payment-option" 
+               target="_blank"
+               rel="noopener noreferrer">
+                <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" 
+                     alt="PayPal logo">
+                <div class="payment-info">
+                    <div class="payment-title">PayPal</div>
+                    <div class="payment-description">Pague de forma segura con su cuenta PayPal</div>
+                </div>
+            </a>
+
+            <a href="#" class="payment-option" id="athMovilOption">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCERCn7Es5ofSQul49NeG8t9MxPTrxsU9_EA&s" 
+                     alt="ATH Móvil logo">
+                <div class="payment-info">
+                    <div class="payment-title">ATH Móvil</div>
+                    <div class="payment-description">Envíe pago a través de ATH Móvil</div>
+                    <div class="copy-number" id="athNumber">727-426-4414</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Función para detectar el dispositivo y redirigir
+        function redirectToStore(e) {
+            e.preventDefault(); // Prevenir comportamiento por defecto del enlace
+            
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isIOS = /iphone|ipad|ipod/.test(userAgent);
+            
+            if (isIOS) {
+                window.location.href = 'https://apps.apple.com/es/app/ath-m%C3%B3vil/id658539297';
+            } else {
+                window.location.href = 'https://play.google.com/store/apps/details?id=com.evertec.athmovil.android';
+            }
+        }
+
+        // Agregar evento click al botón de ATH Móvil
+        document.getElementById('athMovilOption').addEventListener('click', redirectToStore);
+
+        // Manejar el click en el número
+        document.getElementById('athNumber').addEventListener('click', function(e) {
+            e.stopPropagation(); // Evitar que se active el click del padre
+            navigator.clipboard.writeText('727-426-4414').then(() => {
+                const originalText = this.textContent;
+                this.textContent = '¡Copiado!';
+                setTimeout(() => {
+                    this.textContent = originalText;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
