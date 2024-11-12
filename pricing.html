@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind Rx - Planes de Suscripción</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #tsparticles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: transparent;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .subtitle {
+            color: #4a5568;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .plans-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 350px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .serenity::before {
+            background: linear-gradient(90deg, #4299e1, #63b3ed);
+        }
+
+        .elite::before {
+            background: linear-gradient(90deg, #48bb78, #68d391);
+        }
+
+        .peak::before {
+            background: linear-gradient(90deg, #ecc94b, #f6e05e);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: #718096;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features li {
+            margin-bottom: 1rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+
+        .features li::before {
+            content: '✓';
+            color: #48bb78;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .subscribe-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #4299e1;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .elite .subscribe-btn {
+            background: #48bb78;
+        }
+
+        .peak .subscribe-btn {
+            background: #ecc94b;
+        }
+
+        .subscribe-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .online-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(66, 153, 225, 0.1);
+            color: #4299e1;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .plans-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .plan-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="tsparticles"></div>
+    <div class="container">
+        <h1>Transforma tu vida con FitMind Rx</h1>
+        <p class="subtitle">Descubre el equilibrio perfecto entre cuerpo y mente con nuestros programas online personalizados</p>
+        
+        <div class="plans-container">
+            <!-- Plan Serenity Start -->
+            <div class="plan-card serenity">
+                <span class="online-badge">100% Online</span>
+                <h2 class="plan-name">Serenity Start</h2>
+                <div class="plan-price">$10<span>/mes</span></div>
+                <ul class="features">
+                    <li>Acceso básico a meditaciones guiadas</li>
+                    <li>Plan básico de ejercicios</li>
+                    <li>Consejos nutricionales semanales</li>
+                    <li>Acceso a recursos mindfulness básicos</li>
+                    <li>Seguimiento de progreso básico</li>
+                </ul>
+                <a href="#" class="subscribe-btn">Comenzar Ahora</a>
+            </div>
+
+            <!-- Plan Balance Elite -->
+            <div class="plan-card elite">
+                <span class="online-badge">100% Online</span>
+                <h2 class="plan-name">Balance Elite</h2>
+                <div class="plan-price">$15<span>/mes</span></div>
+                <ul class="features">
+                    <li>Todo lo incluido en Serenity Start</li>
+                    <li>Programas personalizados de ejercicios</li>
+                    <li>Sesiones de mindfulness avanzadas</li>
+                    <li>Planes nutricionales personalizados</li>
+                    <li>Comunicación en vivo vía FatSecret App*</li>
+                    <li>Seguimiento personalizado semanal</li>
+                </ul>
+                <a href="#" class="subscribe-btn">Únete al Balance</a>
+            </div>
+
+            <!-- Plan Peak Wellness -->
+            <div class="plan-card peak">
+                <span class="online-badge">100% Online</span>
+                <h2 class="plan-name">Peak Wellness</h2>
+                <div class="plan-price">$20<span>/mes</span></div>
+                <ul class="features">
+                    <li><strong>Todo lo incluido en Balance Elite</strong></li>
+                    <li>Coaching personalizado</li>
+                    <li>Acceso a workshops exclusivos</li>
+                    <li>Seguimiento personalizado premium</li>
+                    <li>Consultas prioritarias</li>
+                    <li>Contenido exclusivo de mindfulness</li>
+                    <li>Planes avanzados de nutrición y ejercicio</li>
+                </ul>
+                <a href="#" class="subscribe-btn">Alcanza tu Máximo</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración y carga de partículas
+        tsParticles.load("tsparticles", {
+            particles: {
+                number: {
+                    value: 50,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#4299e1"
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4299e1",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Función para el efecto de confetti
+        function shootConfetti() {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#4299e1', '#48bb78', '#ecc94b']
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#4299e1', '#48bb78', '#ecc94b']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // Lanzar confetti al cargar la página
+        window.addEventListener('load', shootConfetti);
+    </script>
+</body>
+</html>
