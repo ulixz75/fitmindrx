@@ -543,16 +543,22 @@
         </div>
     </div>
    <script>
-// Comprobar si ya se han aceptado las cookies
-window.addEventListener('load', function() {
+// Reemplaza el script actual de cookies con este:
+document.addEventListener('DOMContentLoaded', function() {
     const cookieBanner = document.getElementById('cookieBanner');
-    if (!localStorage.getItem('cookiesAccepted')) {
-        // Asegurarse de que el banner está visible al inicio
-        cookieBanner.style.display = 'flex';
-        // Pequeño retraso para asegurar que la animación funcione
+    const cookieChoice = localStorage.getItem('cookiesAccepted');
+    
+    // Solo mostrar el banner si no hay una elección previa
+    if (cookieChoice === null) {
+        // Pequeño retraso para evitar que el banner aparezca demasiado rápido
         setTimeout(() => {
             cookieBanner.classList.remove('hidden');
-        }, 100);
+            cookieBanner.style.opacity = '1';
+            cookieBanner.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 1000);
+    } else {
+        // Si ya hay una elección, mantener el banner oculto
+        cookieBanner.classList.add('hidden');
     }
 });
 
@@ -561,26 +567,50 @@ function hideBanner() {
     cookieBanner.style.opacity = '0';
     cookieBanner.style.transform = 'translate(-50%, -50%) scale(0.9)';
     
-    // Esperar a que termine la animación antes de ocultar completamente
     setTimeout(() => {
         cookieBanner.classList.add('hidden');
+        cookieBanner.style.display = 'none';
     }, 300);
 }
 
 function acceptCookies() {
     localStorage.setItem('cookiesAccepted', 'true');
     hideBanner();
-    // Aquí puedes añadir tu código para activar las cookies
+    
+    // Activar scripts de tracking si se aceptan las cookies
+    if (typeof gtag !== 'undefined') {
+        // Activar Google Analytics si existe
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+    }
+    
+    // Activar Poptin si existe
+    if (window.poptin) {
+        window.poptin.initialize();
+    }
 }
 
 function rejectCookies() {
     localStorage.setItem('cookiesAccepted', 'false');
     hideBanner();
-    // Aquí puedes añadir tu código para desactivar las cookies
+    
+    // Desactivar scripts de tracking si se rechazan las cookies
+    if (typeof gtag !== 'undefined') {
+        // Desactivar Google Analytics si existe
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied'
+        });
+    }
+}
+
+// Función para resetear las cookies (útil para pruebas)
+function resetCookieChoice() {
+    localStorage.removeItem('cookiesAccepted');
+    location.reload();
 }
 </script>
-    ...
-<!-- Otros contenidos de tu página -->
+
 
    
 
