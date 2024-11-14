@@ -24,6 +24,41 @@
             border-radius: 5px;
             font-size: x-large;
         }
+           .home-link {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .home-link:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
+    }
+
+    .home-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Ajustes para pantallas pequeñas */
+    @media (max-width: 768px) {
+        .home-link {
+            padding: 8px 12px;
+            top: 10px;
+            right: 10px;
+        }
+    }
         h1 {
             margin: 0;
             
@@ -77,6 +112,13 @@
     </style>
 </head>
 <body>
+    <!-- Agrega esto justo después del <body> en todas tus páginas HTML -->
+<a href="index.html" class="home-link">
+    <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+    </svg>
+    Home
+</a>
     <header>
         <h1>FitMind Rx</h1>
         <nav>
