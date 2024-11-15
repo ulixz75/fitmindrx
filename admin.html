@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Panel - Test</title>
+    <title>Admin Panel - FitMindRx</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Firebase Scripts -->
+    <!-- IMPORTANTE: Firebase scripts primero -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-</head>
-<body>
-    <h1>Admin Panel Test</h1>
-    <div id="loginForm">
-        <h2>Admin Login</h2>
-        <input type="email" id="adminEmail" placeholder="Email">
-        <input type="password" id="adminPassword" placeholder="Password">
-        <button onclick="testLogin()">Login</button>
-    </div>
-
+    <!-- Initialize Firebase immediately -->
     <script>
-        // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCJ-BrvmefrufkAqMB2yAH0iN-CI8BTJmQ",
             authDomain: "members-access.firebaseapp.com",
@@ -28,23 +18,322 @@
             messagingSenderId: "136940576302",
             appId: "1:136940576302:web:da0f24f538341bac8e49bf"
         };
-
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-        async function testLogin() {
+        body {
+            padding: 20px;
+            background: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2196F3;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1976D2;
+        }
+
+        .checkbox-group {
+            margin: 10px 0;
+        }
+
+        .user-list {
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        .delete-btn {
+            background: #ff4444;
+            padding: 5px 10px;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+
+        #loginForm {
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="loginForm">
+        <h2 style="margin-bottom: 20px;">Admin Login</h2>
+        <div class="form-group">
+            <input type="email" id="adminEmail" placeholder="Admin Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="adminPassword" placeholder="Password" required>
+        </div>
+        <button onclick="adminLogin()">Login</button>
+    </div>
+
+    <!-- Admin Panel (initially hidden) -->
+    <div id="adminPanel" style="display: none;">
+        <div class="container">
+            <button onclick="logout()" style="float: right;">Logout</button>
+            <h1>User Management</h1>
+            
+            <!-- Add User Form -->
+            <div class="form-section">
+                <h2>Add New User</h2>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="userEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="userPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label>Tab Access:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tab1" checked disabled> 
+                        <label for="tab1">Tab 1 (Always enabled)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tab2"> 
+                        <label for="tab2">Tab 2</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tab3"> 
+                        <label for="tab3">Tab 3</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tab4"> 
+                        <label for="tab4">Tab 4</label>
+                    </div>
+                </div>
+                <button onclick="addUser()">Add User</button>
+            </div>
+
+            <!-- User List -->
+            <div class="user-list">
+                <h2>Existing Users</h2>
+                <table id="userTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Tab Access</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- Users will be listed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Admin Login
+        async function adminLogin() {
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
-            
+
             try {
-                const result = await auth.signInWithEmailAndPassword(email, password);
-                alert('Login successful: ' + result.user.email);
+                await auth.signInWithEmailAndPassword(email, password);
+                const adminDoc = await db.collection('admins').doc(email).get();
+                
+                if (adminDoc.exists) {
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    loadUsers();
+                } else {
+                    alert('Not authorized as admin');
+                    await auth.signOut();
+                }
             } catch (error) {
                 alert('Error: ' + error.message);
             }
         }
+
+        // Add new user
+        async function addUser() {
+            const email = document.getElementById('userEmail').value;
+            const password = document.getElementById('userPassword').value;
+            const name = document.getElementById('userName').value;
+            const tabAccess = {
+                tab1: true,
+                tab2: document.getElementById('tab2').checked,
+                tab3: document.getElementById('tab3').checked,
+                tab4: document.getElementById('tab4').checked
+            };
+
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                
+                await db.collection('users').doc(email).set({
+                    name: name,
+                    email: email,
+                    tabAccess: tabAccess
+                });
+
+                alert('User added successfully');
+                loadUsers();
+                
+                // Clear form
+                document.getElementById('userEmail').value = '';
+                document.getElementById('userPassword').value = '';
+                document.getElementById('userName').value = '';
+                document.getElementById('tab2').checked = false;
+                document.getElementById('tab3').checked = false;
+                document.getElementById('tab4').checked = false;
+
+                // Sign back in as admin
+                const adminEmail = document.getElementById('adminEmail').value;
+                const adminPassword = document.getElementById('adminPassword').value;
+                await auth.signInWithEmailAndPassword(adminEmail, adminPassword);
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Load existing users
+        async function loadUsers() {
+            const tbody = document.getElementById('userTableBody');
+            tbody.innerHTML = '';
+
+            try {
+                const snapshot = await db.collection('users').get();
+                snapshot.forEach(doc => {
+                    const userData = doc.data();
+                    const row = `
+                        <tr>
+                            <td>${userData.name}</td>
+                            <td>${userData.email}</td>
+                            <td>${getTabAccessString(userData.tabAccess)}</td>
+                            <td>
+                                <button class="delete-btn" onclick="deleteUser('${userData.email}')">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
+
+        function getTabAccessString(tabAccess) {
+            const tabs = [];
+            if (tabAccess.tab1) tabs.push('Tab 1');
+            if (tabAccess.tab2) tabs.push('Tab 2');
+            if (tabAccess.tab3) tabs.push('Tab 3');
+            if (tabAccess.tab4) tabs.push('Tab 4');
+            return tabs.join(', ');
+        }
+
+        // Delete user
+        async function deleteUser(email) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                try {
+                    await db.collection('users').doc(email).delete();
+                    alert('User deleted from database');
+                    loadUsers();
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                }
+            }
+        }
+
+        // Logout
+        async function logout() {
+            try {
+                await auth.signOut();
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('adminPanel').style.display = 'none';
+            } catch (error) {
+                alert('Error logging out: ' + error.message);
+            }
+        }
+
+        // Check auth state
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const adminDoc = await db.collection('admins').doc(user.email).get();
+                if (adminDoc.exists) {
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    loadUsers();
+                }
+            }
+        });
     </script>
 </body>
 </html>
