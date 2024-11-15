@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - FitMindRx</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJ-BrvmefrufkAqMB2yAH0iN-CI8BTJmQ",
+            authDomain: "members-access.firebaseapp.com",
+            projectId: "members-access",
+            storageBucket: "members-access.firebasestorage.app",
+            messagingSenderId: "136940576302",
+            appId: "1:136940576302:web:da0f24f538341bac8e49bf"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <style>
+        /* ... (estilos anteriores se mantienen) ... */
+
+        /* Nuevos estilos para las solicitudes */
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .admin-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: #666;
+        }
+
+        .admin-tab.active {
+            color: #2196F3;
+            border-bottom: 2px solid #2196F3;
+        }
+
+        .admin-content {
+            display: none;
+        }
+
+        .admin-content.active {
+            display: block;
+        }
+
+        .request-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .request-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .approve-btn {
+            background: #4CAF50;
+        }
+
+        .reject-btn {
+            background: #f44336;
+        }
+
+        .pending-badge {
+            background: #FFC107;
+            color: black;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .membership-select {
+            margin-top: 10px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ... (código del login se mantiene igual) ... -->
+
+    <div id="adminPanel" style="display: none;">
+        <div class="container">
+            <button onclick="logout()" style="float: right;">Logout</button>
+            <h1>Panel de Administración</h1>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchTab('users')">Gestión de Usuarios</button>
+                <button class="admin-tab" onclick="switchTab('requests')">Solicitudes de Membresía</button>
+            </div>
+
+            <!-- Sección de Usuarios (contenido anterior) -->
+            <div id="usersContent" class="admin-content active">
+                <!-- ... (todo el contenido anterior de usuarios) ... -->
+            </div>
+
+            <!-- Nueva sección de Solicitudes -->
+            <div id="requestsContent" class="admin-content">
+                <h2>Solicitudes Pendientes</h2>
+                <div id="requestsList">
+                    <!-- Las solicitudes se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // ... (funciones anteriores se mantienen) ...
+
+        // Función para cambiar entre tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.admin-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`${tabName}Content`).classList.add('active');
+
+            if(tabName === 'requests') {
+                loadMembershipRequests();
+            }
+        }
+
+        // Cargar solicitudes de membresía
+        async function loadMembershipRequests() {
+            const requestsList = document.getElementById('requestsList');
+            requestsList.innerHTML = '';
+
+            try {
+                const snapshot = await db.collection('membershipRequests')
+                    .where('status', '==', 'pending')
+                    .get();
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const requestCard = `
+                        <div class="request-card">
+                            <h3>${data.name}</h3>
+                            <p>Email: ${data.email}</p>
+                            <p>Teléfono: ${data.phone}</p>
+                            <p>Membresía solicitada: ${data.membership}</p>
+                            <p>Método de pago: ${data.paymentMethod}</p>
+                            <span class="pending-badge">Pendiente</span>
+                            <div class="request-actions">
+                                <button class="approve-btn" onclick="approveRequest('${doc.id}', '${data.email}', '${data.tempPassword}')">
+                                    Aprobar
+                                </button>
+                                <button class="reject-btn" onclick="rejectRequest('${doc.id}')">
+                                    Rechazar
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    requestsList.innerHTML += requestCard;
+                });
+
+                if(snapshot.empty) {
+                    requestsList.innerHTML = '<p>No hay solicitudes pendientes</p>';
+                }
+            } catch (error) {
+                console.error('Error loading requests:', error);
+                requestsList.innerHTML = '<p>Error al cargar las solicitudes</p>';
+            }
+        }
+
+        // Aprobar solicitud
+        async function approveRequest(requestId, userEmail, tempPassword) {
+            try {
+                // Actualizar estado de la solicitud
+                await db.collection('membershipRequests').doc(requestId).update({
+                    status: 'approved',
+                    approvedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Crear documento en la colección de usuarios con acceso básico
+                await db.collection('users').doc(userEmail).set({
+                    name: document.querySelector(`[onclick="approveRequest('${requestId}', '${userEmail}', '${tempPassword}')"]`)
+                        .closest('.request-card')
+                        .querySelector('h3').textContent,
+                    email: userEmail,
+                    tabAccess: {
+                        tab1: true,
+                        tab2: false,
+                        tab3: false,
+                        tab4: false
+                    }
+                });
+
+                alert(`Solicitud aprobada. Contraseña temporal del usuario: ${tempPassword}`);
+                loadMembershipRequests();
+            } catch (error) {
+                console.error('Error approving request:', error);
+                alert('Error al aprobar la solicitud');
+            }
+        }
+
+        // Rechazar solicitud
+        async function rejectRequest(requestId) {
+            if(confirm('¿Estás seguro de que quieres rechazar esta solicitud?')) {
+                try {
+                    await db.collection('membershipRequests').doc(requestId).update({
+                        status: 'rejected',
+                        rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    alert('Solicitud rechazada');
+                    loadMembershipRequests();
+                } catch (error) {
+                    console.error('Error rejecting request:', error);
+                    alert('Error al rechazar la solicitud');
+                }
+            }
+        }
+
+        // Modificar la función de carga inicial para incluir las solicitudes
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const adminDoc = await db.collection('admins').doc(user.email).get();
+                if (adminDoc.exists) {
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    loadUsers();
+                    // Cargar solicitudes iniciales
+                    loadMembershipRequests();
+                } else {
+                    alert('Not authorized as admin');
+                    await auth.signOut();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
