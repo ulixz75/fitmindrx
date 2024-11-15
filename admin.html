@@ -181,16 +181,13 @@
         </div>
     </div>
 
-    <!-- Import Firebase -->
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } 
-        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, getDoc, getDocs, deleteDoc } 
-        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-        // Your web app's Firebase configuration
+    <script>
+        // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCJ-BrvmefrufkAqMB2yAH0iN-CI8BTJmQ",
             authDomain: "members-access.firebaseapp.com",
@@ -200,34 +197,34 @@
             appId: "1:136940576302:web:da0f24f538341bac8e49bf"
         };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
 
-        // Make functions available globally
-        window.adminLogin = async function() {
+        // Admin Login
+        async function adminLogin() {
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
 
             try {
-                await signInWithEmailAndPassword(auth, email, password);
-                // Verificar si el usuario es admin
-                const adminDoc = await getDoc(doc(db, 'admins', email));
-                if (adminDoc.exists()) {
+                await auth.signInWithEmailAndPassword(email, password);
+                const adminDoc = await db.collection('admins').doc(email).get();
+                
+                if (adminDoc.exists) {
                     document.getElementById('loginForm').style.display = 'none';
                     document.getElementById('adminPanel').style.display = 'block';
                     loadUsers();
                 } else {
                     alert('Not authorized as admin');
-                    await signOut(auth);
+                    await auth.signOut();
                 }
             } catch (error) {
                 alert('Error: ' + error.message);
             }
-        };
+        }
 
-        window.addUser = async function() {
+        // Add new user
+        async function addUser() {
             const email = document.getElementById('userEmail').value;
             const password = document.getElementById('userPassword').value;
             const name = document.getElementById('userName').value;
@@ -239,11 +236,9 @@
             };
 
             try {
-                // Create user in Authentication
-                await createUserWithEmailAndPassword(auth, email, password);
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 
-                // Add user data to Firestore
-                await setDoc(doc(db, 'users', email), {
+                await db.collection('users').doc(email).set({
                     name: name,
                     email: email,
                     tabAccess: tabAccess
@@ -259,62 +254,86 @@
                 document.getElementById('tab2').checked = false;
                 document.getElementById('tab3').checked = false;
                 document.getElementById('tab4').checked = false;
+
+                // Sign back in as admin
+                const adminEmail = document.getElementById('adminEmail').value;
+                const adminPassword = document.getElementById('adminPassword').value;
+                await auth.signInWithEmailAndPassword(adminEmail, adminPassword);
             } catch (error) {
                 alert('Error: ' + error.message);
             }
-        };
+        }
 
-        window.loadUsers = async function() {
+        // Load existing users
+        async function loadUsers() {
             const tbody = document.getElementById('userTableBody');
             tbody.innerHTML = '';
 
-            const querySnapshot = await getDocs(collection(db, 'users'));
-            querySnapshot.forEach((doc) => {
-                const userData = doc.data();
-                const row = `
-                    <tr>
-                        <td>${userData.name}</td>
-                        <td>${userData.email}</td>
-                        <td>${getTabAccessString(userData.tabAccess)}</td>
-                        <td>
-                            <button class="delete-btn" onclick="deleteUser('${userData.email}')">Delete</button>
-                        </td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        };
+            try {
+                const snapshot = await db.collection('users').get();
+                snapshot.forEach(doc => {
+                    const userData = doc.data();
+                    const row = `
+                        <tr>
+                            <td>${userData.name}</td>
+                            <td>${userData.email}</td>
+                            <td>${getTabAccessString(userData.tabAccess)}</td>
+                            <td>
+                                <button class="delete-btn" onclick="deleteUser('${userData.email}')">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
 
-        window.getTabAccessString = function(tabAccess) {
+        function getTabAccessString(tabAccess) {
             const tabs = [];
             if (tabAccess.tab1) tabs.push('Tab 1');
             if (tabAccess.tab2) tabs.push('Tab 2');
             if (tabAccess.tab3) tabs.push('Tab 3');
             if (tabAccess.tab4) tabs.push('Tab 4');
             return tabs.join(', ');
-        };
+        }
 
-        window.deleteUser = async function(email) {
+        // Delete user
+        async function deleteUser(email) {
             if (confirm('Are you sure you want to delete this user?')) {
                 try {
-                    await deleteDoc(doc(db, 'users', email));
+                    await db.collection('users').doc(email).delete();
                     alert('User deleted from database');
                     loadUsers();
                 } catch (error) {
                     alert('Error: ' + error.message);
                 }
             }
-        };
+        }
 
-        window.logout = async function() {
+        // Logout
+        async function logout() {
             try {
-                await signOut(auth);
+                await auth.signOut();
                 document.getElementById('loginForm').style.display = 'block';
                 document.getElementById('adminPanel').style.display = 'none';
             } catch (error) {
                 alert('Error logging out: ' + error.message);
             }
-        };
+        }
+
+        // Check auth state
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const adminDoc = await db.collection('admins').doc(user.email).get();
+                if (adminDoc.exists) {
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    loadUsers();
+                }
+            }
+        });
     </script>
 </body>
 </html>
