@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Admin Panel - FitMindRx</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
             margin: 0;
@@ -179,46 +181,53 @@
         </div>
     </div>
 
-    <!-- Firebase Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore-compat.js"></script>
+    <!-- Import Firebase -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, getDoc, getDocs, deleteDoc } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    <script>
-        // Aquí va tu configuración de Firebase (el código que te proporcionó Firebase)
+        // Your web app's Firebase configuration
         const firebaseConfig = {
-            // Pega aquí tu configuración
+            apiKey: "AIzaSyCJ-BrvmefrufkAqMB2yAH0iN-CI8BTJmQ",
+            authDomain: "members-access.firebaseapp.com",
+            projectId: "members-access",
+            storageBucket: "members-access.firebasestorage.app",
+            messagingSenderId: "136940576302",
+            appId: "1:136940576302:web:da0f24f538341bac8e49bf"
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        // Admin authentication
-        async function adminLogin() {
+        // Make functions available globally
+        window.adminLogin = async function() {
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
 
             try {
-                await auth.signInWithEmailAndPassword(email, password);
-                // Verificar si el usuario es admin (deberás configurar esto en Firestore)
-                const userDoc = await db.collection('admins').doc(email).get();
-                if (userDoc.exists) {
+                await signInWithEmailAndPassword(auth, email, password);
+                // Verificar si el usuario es admin
+                const adminDoc = await getDoc(doc(db, 'admins', email));
+                if (adminDoc.exists()) {
                     document.getElementById('loginForm').style.display = 'none';
                     document.getElementById('adminPanel').style.display = 'block';
                     loadUsers();
                 } else {
                     alert('Not authorized as admin');
-                    await auth.signOut();
+                    await signOut(auth);
                 }
             } catch (error) {
                 alert('Error: ' + error.message);
             }
-        }
+        };
 
-        // Add new user
-        async function addUser() {
+        window.addUser = async function() {
             const email = document.getElementById('userEmail').value;
             const password = document.getElementById('userPassword').value;
             const name = document.getElementById('userName').value;
@@ -231,10 +240,10 @@
 
             try {
                 // Create user in Authentication
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                await createUserWithEmailAndPassword(auth, email, password);
                 
                 // Add user data to Firestore
-                await db.collection('users').doc(email).set({
+                await setDoc(doc(db, 'users', email), {
                     name: name,
                     email: email,
                     tabAccess: tabAccess
@@ -253,15 +262,14 @@
             } catch (error) {
                 alert('Error: ' + error.message);
             }
-        }
+        };
 
-        // Load existing users
-        async function loadUsers() {
+        window.loadUsers = async function() {
             const tbody = document.getElementById('userTableBody');
             tbody.innerHTML = '';
 
-            const snapshot = await db.collection('users').get();
-            snapshot.forEach(doc => {
+            const querySnapshot = await getDocs(collection(db, 'users'));
+            querySnapshot.forEach((doc) => {
                 const userData = doc.data();
                 const row = `
                     <tr>
@@ -275,42 +283,38 @@
                 `;
                 tbody.innerHTML += row;
             });
-        }
+        };
 
-        function getTabAccessString(tabAccess) {
+        window.getTabAccessString = function(tabAccess) {
             const tabs = [];
             if (tabAccess.tab1) tabs.push('Tab 1');
             if (tabAccess.tab2) tabs.push('Tab 2');
             if (tabAccess.tab3) tabs.push('Tab 3');
             if (tabAccess.tab4) tabs.push('Tab 4');
             return tabs.join(', ');
-        }
+        };
 
-        // Delete user
-        async function deleteUser(email) {
+        window.deleteUser = async function(email) {
             if (confirm('Are you sure you want to delete this user?')) {
                 try {
-                    // Delete from Firestore
-                    await db.collection('users').doc(email).delete();
-                    
-                    // Note: Deleting from Authentication requires a separate admin SDK
-                    // For now, we'll just remove them from Firestore
-                    
+                    await deleteDoc(doc(db, 'users', email));
                     alert('User deleted from database');
                     loadUsers();
                 } catch (error) {
                     alert('Error: ' + error.message);
                 }
             }
-        }
+        };
 
-        // Logout
-        function logout() {
-            auth.signOut().then(() => {
+        window.logout = async function() {
+            try {
+                await signOut(auth);
                 document.getElementById('loginForm').style.display = 'block';
                 document.getElementById('adminPanel').style.display = 'none';
-            });
-        }
+            } catch (error) {
+                alert('Error logging out: ' + error.message);
+            }
+        };
     </script>
 </body>
 </html>
