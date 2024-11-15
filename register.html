@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Panel - FitMindRx</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Membresía - FitMindRx</title>
     <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
@@ -18,228 +18,189 @@
             appId: "1:136940576302:web:da0f24f538341bac8e49bf"
         };
         firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
     </script>
     <style>
-        /* ... (estilos anteriores se mantienen) ... */
-
-        /* Nuevos estilos para las solicitudes */
-        .admin-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        .admin-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: #666;
+        body {
+            background: #f0f2f5;
+            padding: 20px;
         }
 
-        .admin-tab.active {
-            color: #2196F3;
-            border-bottom: 2px solid #2196F3;
-        }
-
-        .admin-content {
-            display: none;
-        }
-
-        .admin-content.active {
-            display: block;
-        }
-
-        .request-card {
+        .registration-form {
+            max-width: 500px;
+            margin: 40px auto;
             background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .request-actions {
+        h2 {
+            color: #2196F3;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
             margin-top: 10px;
-            display: flex;
-            gap: 10px;
         }
 
-        .approve-btn {
-            background: #4CAF50;
+        button:hover {
+            background: #1976D2;
         }
 
-        .reject-btn {
-            background: #f44336;
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+            padding: 10px;
+            background: #E8F5E9;
+            border-radius: 4px;
         }
 
-        .pending-badge {
-            background: #FFC107;
-            color: black;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-        }
-
-        .membership-select {
-            margin-top: 10px;
-            width: 200px;
+        .error-message {
+            display: none;
+            text-align: center;
+            color: #f44336;
+            margin-top: 20px;
+            padding: 10px;
+            background: #FFEBEE;
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
-    <!-- ... (código del login se mantiene igual) ... -->
-
-    <div id="adminPanel" style="display: none;">
-        <div class="container">
-            <button onclick="logout()" style="float: right;">Logout</button>
-            <h1>Panel de Administración</h1>
-            
-            <div class="admin-tabs">
-                <button class="admin-tab active" onclick="switchTab('users')">Gestión de Usuarios</button>
-                <button class="admin-tab" onclick="switchTab('requests')">Solicitudes de Membresía</button>
+    <div class="registration-form">
+        <h2>Registro de Membresía</h2>
+        <form id="registrationForm" onsubmit="submitRegistration(event)">
+            <div class="form-group">
+                <label for="name">Nombre Completo:</label>
+                <input type="text" id="name" required>
             </div>
 
-            <!-- Sección de Usuarios (contenido anterior) -->
-            <div id="usersContent" class="admin-content active">
-                <!-- ... (todo el contenido anterior de usuarios) ... -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
             </div>
 
-            <!-- Nueva sección de Solicitudes -->
-            <div id="requestsContent" class="admin-content">
-                <h2>Solicitudes Pendientes</h2>
-                <div id="requestsList">
-                    <!-- Las solicitudes se cargarán aquí dinámicamente -->
-                </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" required>
             </div>
+
+            <div class="form-group">
+                <label for="membership">Tipo de Membresía:</label>
+                <select id="membership" required>
+                    <option value="">Selecciona una membresía</option>
+                    <option value="basic">Básica</option>
+                    <option value="premium">Premium</option>
+                    <option value="elite">Elite</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Método de Pago:</label>
+                <select id="payment" required>
+                    <option value="">Selecciona método de pago</option>
+                    <option value="credit">Tarjeta de Crédito</option>
+                    <option value="debit">Tarjeta de Débito</option>
+                    <option value="transfer">Transferencia Bancaria</option>
+                    <option value="cash">Efectivo</option>
+                </select>
+            </div>
+
+            <button type="submit">Enviar Solicitud</button>
+        </form>
+
+        <div id="successMessage" class="success-message">
+            ¡Registro exitoso! Tu solicitud está siendo procesada.
+        </div>
+
+        <div id="errorMessage" class="error-message">
+            Ha ocurrido un error. Por favor intenta nuevamente.
         </div>
     </div>
 
     <script>
-        const auth = firebase.auth();
-        const db = firebase.firestore();
+        async function submitRegistration(event) {
+            event.preventDefault();
 
-        // ... (funciones anteriores se mantienen) ...
-
-        // Función para cambiar entre tabs
-        function switchTab(tabName) {
-            document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.admin-content').forEach(content => content.classList.remove('active'));
-            
-            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
-            document.getElementById(`${tabName}Content`).classList.add('active');
-
-            if(tabName === 'requests') {
-                loadMembershipRequests();
-            }
-        }
-
-        // Cargar solicitudes de membresía
-        async function loadMembershipRequests() {
-            const requestsList = document.getElementById('requestsList');
-            requestsList.innerHTML = '';
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const membership = document.getElementById('membership').value;
+            const payment = document.getElementById('payment').value;
 
             try {
-                const snapshot = await db.collection('membershipRequests')
-                    .where('status', '==', 'pending')
-                    .get();
+                // Generar una contraseña temporal
+                const tempPassword = Math.random().toString(36).slice(-8);
 
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const requestCard = `
-                        <div class="request-card">
-                            <h3>${data.name}</h3>
-                            <p>Email: ${data.email}</p>
-                            <p>Teléfono: ${data.phone}</p>
-                            <p>Membresía solicitada: ${data.membership}</p>
-                            <p>Método de pago: ${data.paymentMethod}</p>
-                            <span class="pending-badge">Pendiente</span>
-                            <div class="request-actions">
-                                <button class="approve-btn" onclick="approveRequest('${doc.id}', '${data.email}', '${data.tempPassword}')">
-                                    Aprobar
-                                </button>
-                                <button class="reject-btn" onclick="rejectRequest('${doc.id}')">
-                                    Rechazar
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    requestsList.innerHTML += requestCard;
+                // Crear usuario en Authentication
+                const userCredential = await auth.createUserWithEmailAndPassword(email, tempPassword);
+
+                // Guardar datos en Firestore
+                await db.collection('membershipRequests').doc(email).set({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    membership: membership,
+                    paymentMethod: payment,
+                    status: 'pending',
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    tempPassword: tempPassword
                 });
 
-                if(snapshot.empty) {
-                    requestsList.innerHTML = '<p>No hay solicitudes pendientes</p>';
-                }
+                // Mostrar mensaje de éxito
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('registrationForm').reset();
+
+                // Cerrar sesión del usuario recién creado
+                await auth.signOut();
+
             } catch (error) {
-                console.error('Error loading requests:', error);
-                requestsList.innerHTML = '<p>Error al cargar las solicitudes</p>';
+                console.error('Error:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').textContent = 'Error: ' + error.message;
+                document.getElementById('successMessage').style.display = 'none';
             }
         }
-
-        // Aprobar solicitud
-        async function approveRequest(requestId, userEmail, tempPassword) {
-            try {
-                // Actualizar estado de la solicitud
-                await db.collection('membershipRequests').doc(requestId).update({
-                    status: 'approved',
-                    approvedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-
-                // Crear documento en la colección de usuarios con acceso básico
-                await db.collection('users').doc(userEmail).set({
-                    name: document.querySelector(`[onclick="approveRequest('${requestId}', '${userEmail}', '${tempPassword}')"]`)
-                        .closest('.request-card')
-                        .querySelector('h3').textContent,
-                    email: userEmail,
-                    tabAccess: {
-                        tab1: true,
-                        tab2: false,
-                        tab3: false,
-                        tab4: false
-                    }
-                });
-
-                alert(`Solicitud aprobada. Contraseña temporal del usuario: ${tempPassword}`);
-                loadMembershipRequests();
-            } catch (error) {
-                console.error('Error approving request:', error);
-                alert('Error al aprobar la solicitud');
-            }
-        }
-
-        // Rechazar solicitud
-        async function rejectRequest(requestId) {
-            if(confirm('¿Estás seguro de que quieres rechazar esta solicitud?')) {
-                try {
-                    await db.collection('membershipRequests').doc(requestId).update({
-                        status: 'rejected',
-                        rejectedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-
-                    alert('Solicitud rechazada');
-                    loadMembershipRequests();
-                } catch (error) {
-                    console.error('Error rejecting request:', error);
-                    alert('Error al rechazar la solicitud');
-                }
-            }
-        }
-
-        // Modificar la función de carga inicial para incluir las solicitudes
-        auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                const adminDoc = await db.collection('admins').doc(user.email).get();
-                if (adminDoc.exists) {
-                    document.getElementById('loginForm').style.display = 'none';
-                    document.getElementById('adminPanel').style.display = 'block';
-                    loadUsers();
-                    // Cargar solicitudes iniciales
-                    loadMembershipRequests();
-                } else {
-                    alert('Not authorized as admin');
-                    await auth.signOut();
-                }
-            }
-        });
     </script>
 </body>
 </html>
