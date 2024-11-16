@@ -1,82 +1,432 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfulness & Fitness</title>
     <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp"></script>
-    <title>Sitio en Construcción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-            /* Agregar esto al inicio de tus estilos */
-        [class*="authpro"],
-        #authpro-header {
-            display: none !important;
-        }
-
-        
-        body {
+        /* Global Styles */
+        body, html {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+            background-color: #f4f7fb;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin: 20px 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        p {
+            text-align: justify;
+            margin: 0 20px;
+            line-height: 1.8;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 999;
+        }
+
+        /* Welcome Video Section */
+        #welcome {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: transparent;
+            z-index: 1000;
         }
 
-        .contenedor {
-            text-align: center;
-            padding: 2rem;
-            background-color: white;
+        .video-container {
+            position: relative;
+            width: 80%;
+            max-width: 960px;
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            background: black;
             border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .stornaway-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+    }
+        #welcome video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: black;
+        }
+
+        #skip-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 5px 10px;
+            background: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            border-radius: 5px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+            display: none;
+        }
+
+        /* Orientation Warning */
+        .orientation-warning {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1001;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Audio Control Button */
+.audio-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1002;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.audio-control:hover {
+    background: rgba(39, 242, 3, 0.3);
+    transform: scale(1.1);
+}
+
+.audio-control svg {
+    width: 20px;
+    height: 20px;
+    color: rgb(237, 11, 11);
+}
+        /* Parallax Section */
+        .parallax {
+            height: 60vh;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .parallax-1 {
+            background-image: url('https://cdn.pixabay.com/photo/2020/07/08/17/21/ria-5384584_640.jpg');
+        }
+
+        .parallax-2 {
+            background-image: url('https://images.pexels.com/photos/1552249/pexels-photo-1552249.jpeg?auto=compress&cs=tinysrgb&w=1600');
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            background: white;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 1rem;
-            max-width: 600px;
+            transition: transform 0.3s ease;
         }
 
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
+        .gallery img:hover {
+            transform: scale(1.05);
         }
 
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .icono {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: girar 2s infinite linear;
-        }
-
-        @keyframes girar {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .video-container {
+                width: 90%;
             }
         }
 
-        @media (max-width: 480px) {
-            .contenedor {
-                padding: 1rem;
+        @media (max-width: 768px) {
+            .video-container {
+                width: 95%;
             }
-            
-            h1 {
-                font-size: 1.5rem;
+            #skip-btn {
+                font-size: 0.8rem;
+            }
+            .gallery img {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) and (orientation: portrait) {
+            .orientation-warning {
+                display: block;
             }
         }
     </style>
 </head>
 <body>
-    <div class="contenedor">
-        <div class="icono">🔧</div>
-        <h1>Sitio en Construcción-Serenity</h1>
-        <p>Estamos trabajando en mejorar nuestro sitio web para brindarte una mejor experiencia.</p>
-        <p>¡Vuelve pronto para ver los cambios!</p>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Orientation Warning -->
+    <div class="orientation-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+        </svg>
+        Para una mejor experiencia, rota tu dispositivo
     </div>
+
+    <!-- Welcome Video -->
+    <div id="welcome">
+        <div class="video-container">
+            <div class="stornaway-container">
+                <iframe
+                    src="https://player.stornaway.io/embed/a027def1"
+                    frameborder="0"
+                    allowfullscreen
+                    allow="accelerometer; gyroscope; autoplay;"
+                    style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                </iframe>
+            </div>
+            <button id="skip-btn">Skip</button>
+        </div>
+    </div>
+
+    <!-- Audio Background -->
+    <audio id="background-music" loop>
+        <source src="https://static.wixstatic.com/mp3/313cf8_dbe504fe7a3f4490a1f7361f314de3be.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Audio Control Button -->
+<button class="audio-control" id="audioControl">
+    <svg xmlns="http://www.w3.org/2000/svg" class="sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+</button>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display:none;">
+        <!-- Section 1: Practical Tips -->
+        <section>
+            <h1>Mindfulness, Fitness, & Nutrition</h1>
+            <p>Start each day with mindfulness practices to reduce stress and enhance focus. Pair it with a balanced diet and daily physical activities to boost your overall well-being.</p>
+        </section>
+
+        <!-- Parallax Divider -->
+        <div class="parallax parallax-1"></div>
+
+        <!-- Section 2: Exercise Routines -->
+        <section>
+            <h2>Exercise Routines</h2>
+            <ul>
+                <li>Resistance Bands: Squats, curls, and lateral pulls.</li>
+                <li>Gym Routines: Deadlifts, cardio, and rowing.</li>
+                <li>Bodyweight: Planks, push-ups, and burpees.</li>
+            </ul>
+        </section>
+
+        <!-- Parallax Divider -->
+        <div class="parallax parallax-2"></div>
+
+        <!-- Section 3: Equipment -->
+        <section>
+            <h2>Recommended Equipment</h2>
+            <div class="gallery">
+                <img src="https://cdn.pixabay.com/photo/2014/09/23/02/03/athlete-457064_640.jpg" alt="Resistance Bands">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/09/10/man-1868632_640.jpg" alt="Dumbbells">
+                <img src="https://cdn.pixabay.com/photo/2016/09/21/22/59/sport-1685936_640.jpg" alt="Exercise Equipment">
+            </div>
+        </section>
+    </div>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Particles Configuration
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    outModes: { default: 'bounce' },
+                    attract: { enable: false, rotateX: 600, rotateY: 1200 }
+                }
+            },
+            interactivity: {
+                detectsOn: 'canvas',
+                events: {
+                    onHover: { enable: true, mode: 'repulse' },
+                    onClick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Video and Audio Control
+        const skipBtn = document.getElementById('skip-btn');
+        const welcomeDiv = document.getElementById('welcome');
+        const mainContent = document.getElementById('main-content');
+        const video = document.querySelector('#welcome-video');
+        const backgroundMusic = document.getElementById('background-music');
+        const particlesDiv = document.getElementById('particles-js');
+
+        // Set background music volume
+        backgroundMusic.volume = 0.02;
+
+        // Show skip button after 5 seconds
+        setTimeout(() => {
+            skipBtn.style.display = 'block';
+        }, 5000);
+
+        // Start video and music when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for user interaction
+            document.addEventListener('click', function initializeMedia() {
+                video.play();
+                backgroundMusic.play();
+                document.removeEventListener('click', initializeMedia);
+            }, { once: true });
+        });
+
+        // Skip button functionality
+        skipBtn.addEventListener('click', () => {
+            welcomeDiv.style.display = 'none';
+            particlesDiv.style.display = 'none';
+            mainContent.style.display = 'block';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Auto-skip after video ends
+        video.addEventListener('ended', () => {
+            welcomeDiv.style.display = 'none';
+            particlesDiv.style.display = 'none';
+            mainContent.style.display = 'block';
+            document.body.style.overflow = 'auto';
+        });
+
+// Audio Control
+const audioControl = document.getElementById('audioControl');
+const soundOnIcon = audioControl.querySelector('.sound-on');
+const soundOffIcon = audioControl.querySelector('.sound-off');
+
+audioControl.addEventListener('click', () => {
+    if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
+        soundOnIcon.style.display = 'block';
+        soundOffIcon.style.display = 'none';
+        audioControl.title = 'Mute music';
+    } else {
+        backgroundMusic.muted = true;
+        soundOnIcon.style.display = 'none';
+        soundOffIcon.style.display = 'block';
+        audioControl.title = 'Unmute music';
+    }
+});
+
+        // Handle device orientation
+        window.addEventListener('orientationchange', () => {
+            const warning = document.querySelector('.orientation-warning');
+            if (window.innerHeight > window.innerWidth) {
+                warning.style.display = 'block';
+            } else {
+                warning.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
-
