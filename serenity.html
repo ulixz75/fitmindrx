@@ -190,34 +190,8 @@
             animation: bounce 2s infinite;
         }
         
-        /* Audio Control Button */
-.audio-control {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1002;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-}
+       
 
-.audio-control:hover {
-    background: rgba(39, 242, 3, 0.3);
-    transform: scale(1.1);
-}
-
-.audio-control svg {
-    width: 20px;
-    height: 20px;
-    color: rgb(237, 11, 11);
-}
         /* Parallax Section */
         .parallax {
             height: 60vh;
@@ -316,22 +290,7 @@
         </div>
     </div>
 
-    <!-- Audio Background -->
-    <audio id="background-music" loop>
-        <source src="https://static.wixstatic.com/mp3/313cf8_dbe504fe7a3f4490a1f7361f314de3be.mp3" type="audio/mpeg">
-    </audio>
-    <!-- Audio Control Button -->
-<button class="audio-control" id="audioControl">
-    <svg xmlns="http://www.w3.org/2000/svg" class="sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" class="sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-        <line x1="23" y1="9" x2="17" y2="15"></line>
-        <line x1="17" y1="9" x2="23" y2="15"></line>
-    </svg>
-</button>
+  
 
     <!-- Main Content -->
     <div id="main-content" style="display:none;">
@@ -421,11 +380,9 @@
         const welcomeDiv = document.getElementById('welcome');
         const mainContent = document.getElementById('main-content');
         const video = document.querySelector('#welcome-video');
-        const backgroundMusic = document.getElementById('background-music');
         const particlesDiv = document.getElementById('particles-js');
 
-        // Set background music volume
-        backgroundMusic.volume = 0.02;
+      
 
         // Show skip button after 5 seconds
         setTimeout(() => {
@@ -458,34 +415,9 @@
             document.body.style.overflow = 'auto';
         });
 
-// Audio Control
-const audioControl = document.getElementById('audioControl');
-const soundOnIcon = audioControl.querySelector('.sound-on');
-const soundOffIcon = audioControl.querySelector('.sound-off');
 
-audioControl.addEventListener('click', () => {
-    if (backgroundMusic.muted) {
-        backgroundMusic.muted = false;
-        soundOnIcon.style.display = 'block';
-        soundOffIcon.style.display = 'none';
-        audioControl.title = 'Mute music';
-    } else {
-        backgroundMusic.muted = true;
-        soundOnIcon.style.display = 'none';
-        soundOffIcon.style.display = 'block';
-        audioControl.title = 'Unmute music';
-    }
-});
 
-        // Handle device orientation
-        window.addEventListener('orientationchange', () => {
-            const warning = document.querySelector('.orientation-warning');
-            if (window.innerHeight > window.innerWidth) {
-                warning.style.display = 'block';
-            } else {
-                warning.style.display = 'none';
-            }
-        });
+        
     </script>
 </body>
 </html>
