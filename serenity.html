@@ -174,23 +174,10 @@
             display: none;
         }
 
-        /* Orientation Warning */
-        .orientation-warning {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            z-index: 1001;
-            text-align: center;
-            animation: bounce 2s infinite;
-        }
+      
         
-       
+
+
 
         /* Parallax Section */
         .parallax {
@@ -257,13 +244,7 @@
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
-    <!-- Orientation Warning -->
-    <div class="orientation-warning">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-        </svg>
-        Para una mejor experiencia, rota tu dispositivo
-    </div>
+    
 
     <!-- Welcome Video -->
     <div id="welcome">
@@ -290,7 +271,6 @@
         </div>
     </div>
 
-  
 
     <!-- Main Content -->
     <div id="main-content" style="display:none;">
@@ -379,33 +359,32 @@
         const skipBtn = document.getElementById('skip-btn');
         const welcomeDiv = document.getElementById('welcome');
         const mainContent = document.getElementById('main-content');
-        const video = document.querySelector('#welcome-video');
+        const videoIframe = document.querySelector('.stornaway-container iframe'); // Selecciona el iframe del video
+        
         const particlesDiv = document.getElementById('particles-js');
 
-      
+     
 
         // Show skip button after 5 seconds
         setTimeout(() => {
             skipBtn.style.display = 'block';
         }, 15000);
 
-        // Start video and music when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            // Wait for user interaction
-            document.addEventListener('click', function initializeMedia() {
-                video.play();
-                backgroundMusic.play();
-                document.removeEventListener('click', initializeMedia);
-            }, { once: true });
-        });
+      
 
-        // Skip button functionality
-        skipBtn.addEventListener('click', () => {
-            welcomeDiv.style.display = 'none';
-            particlesDiv.style.display = 'none';
-            mainContent.style.display = 'block';
-            document.body.style.overflow = 'auto';
-        });
+       // Funcionalidad del botón Skip
+    skipBtn.addEventListener('click', () => {
+        // Eliminar el iframe del DOM
+        if (videoIframe) {
+            videoIframe.remove();
+        }
+        // Ocultar la sección del video
+        welcomeDiv.style.display = 'none';
+        particlesDiv.style.display = 'none';
+        // Mostrar el contenido principal
+        mainContent.style.display = 'block';
+        document.body.style.overflow = 'auto';
+    });
 
         // Auto-skip after video ends
         video.addEventListener('ended', () => {
@@ -417,7 +396,9 @@
 
 
 
-        
+
+
+      
     </script>
 </body>
 </html>
