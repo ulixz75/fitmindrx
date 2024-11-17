@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mindfulness & Fitness</title>
-    <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         /* Global Styles */
@@ -73,22 +73,84 @@
             z-index: 1000;
         }
 
-        .video-container {
+      /* Actualización del contenedor de video y marco de teléfono */
+      .video-container {
             position: relative;
-            width: 80%;
-            max-width: 960px;
-            margin: 0 auto;
-            aspect-ratio: 16/9;
-            background: black;
-            border-radius: 10px;
+            width: 380px; /* Ancho fijo para el teléfono */
+            height: 720px; /* Altura aproximada para ratio 9:16 + bordes */
+            margin: 20px auto;
+            background: white;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+         /* Marco del teléfono */
+         .phone-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 40px;
+            pointer-events: none;
+        }
+           /* Notch del teléfono */
+           .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 30px;
+            background: #000;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+         /* Cámara frontal */
+         .front-camera {
+            width: 12px;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: inset 0 0 2px rgba(255,255,255,0.5);
+        }
+        /* Altavoz */
+        .speaker {
+            width: 60px;
+            height: 6px;
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+        /* Botón de inicio */
+        .home-button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 5px;
+            background: #000;
+            border-radius: 3px;
+            z-index: 1001;
         }
         .stornaway-container {
             position: relative;
             width: 100%;
-            height: 100%;
-    }
+            height: calc(100% - 50px); /* Ajuste para el notch y el botón de inicio */
+            margin-top: 30px; /* Espacio para el notch */
+        }
+        .stornaway-container > div {
+            position: relative;
+            padding-bottom: 177.77% !important; /* Mantiene ratio 9:16 */
+            height: 0;
+            overflow: hidden;
+        }
         #welcome video {
             width: 100%;
             height: 100%;
@@ -112,7 +174,21 @@
             display: none;
         }
 
-      
+        /* Orientation Warning */
+        .orientation-warning {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1001;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
         
         /* Audio Control Button */
 .audio-control {
@@ -189,28 +265,16 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 1024px) {
+        @media (max-width: 480px) {
             .video-container {
-                width: 90%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .video-container {
-                width: 95%;
-            }
-            #skip-btn {
-                font-size: 0.8rem;
-            }
-            .gallery img {
                 width: 100%;
-                max-width: 100%;
+                height: 100vh;
+                margin: 0;
+                border-radius: 0;
             }
-        }
 
-        @media (max-width: 768px) and (orientation: portrait) {
-            .orientation-warning {
-                display: block;
+            .phone-frame {
+                border-radius: 0;
             }
         }
     </style>
@@ -219,19 +283,34 @@
     <!-- Particle Background -->
     <div id="particles-js"></div>
 
-    
+    <!-- Orientation Warning -->
+    <div class="orientation-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+        </svg>
+        Para una mejor experiencia, rota tu dispositivo
+    </div>
 
     <!-- Welcome Video -->
     <div id="welcome">
         <div class="video-container">
+            <!-- Marco del teléfono -->
+            <div class="phone-notch">
+                <div class="front-camera"></div>
+                <div class="speaker"></div>
+            </div>
+            <div class="home-button"></div>
+
             <div class="stornaway-container">
-                <iframe
-                    src="https://player.stornaway.io/embed/a027def1"
-                    frameborder="0"
-                    allowfullscreen
-                    allow="accelerometer; gyroscope; autoplay;"
-                    style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
-                </iframe>
+                <div>
+                    <iframe
+                      src="https://player.stornaway.io/embed/9a68611c"
+                      frameborder="0"
+                      allowfullscreen
+                      allow="accelerometer; gyroscope;autoplay;"
+                      style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
+                    <script src="https://studio.stornaway.io/embed/v1/standalone_player.js" defer></script>
+                  </div>
             </div>
             <button id="skip-btn">Skip</button>
         </div>
