@@ -1,1 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Members Area</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <style>
+       /* Variables y Reseteo */
+       :root {
+           --basic-color: #98FB98;
+           --custom-color: #DDA0DD;
+           --silver-color: #C0C0C0;
+           --diamond-color: #B9F2FF;
+           --modal-bg: rgba(255, 255, 255, 0.1);
+           --glass-effect: blur(10px);
+       }
 
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: 'Segoe UI', sans-serif;
+       }
+
+       body {
+           min-height: 100vh;
+           background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+           padding: 2rem;
+           color: white;
+       }
+
+       .header {
+           text-align: center;
+           margin-bottom: 4rem;
+           padding: 2rem;
+       }
+
+       .typing-effect {
+           font-size: 3.5rem;
+           font-weight: 700;
+           overflow: hidden;
+           white-space: nowrap;
+           border-right: 3px solid white;
+           animation: typing 10.5s steps(40, end), blink-caret 1.0s step-end infinite;
+           margin: 0 auto;
+           max-width: fit-content;
+       }
+
+       @keyframes typing {
+           from { width: 0 }
+           to { width: 100% }
+       }
+
+       @keyframes blink-caret {
+           from, to { border-color: transparent }
+           50% { border-color: white }
+       }
+
+       .memberships-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+           gap: 2rem;
+           max-width: 1400px;
+           margin: 0 auto;
+       }
+
+       .membership-card {
+           background: rgba(255, 255, 255, 0.05);
+           border-radius: 20px;
+           padding: 2rem;
+           text-align: center;
+           transition: transform 0.3s ease, box-shadow 0.3s ease;
+           position: relative;
+           overflow: hidden;
+           cursor: pointer;
+       }
+
+       .membership-card:hover {
+           transform: scale(1.05);
+           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+       }
+
+       .membership-card::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 5px;
+       }
+
+       .basic::before { background: var(--basic-color); }
+       .custom::before { background: var(--custom-color); }
+       .silver::before { background: var(--silver-color); }
+       .diamond::before { background: var(--diamond-color); }
+
+       .membership-icon {
+           font-size: 3rem;
+           margin-bottom: 1rem;
+       }
+
+       .basic .membership-icon { color: var(--basic-color); }
+       .custom .membership-icon { color: var(--custom-color); }
+       .silver .membership-icon { color: var(--silver-color); }
+       .diamond .membership-icon { color: var(--diamond-color); }
+
+       .membership-title {
+           font-size: 1.5rem;
+           margin-bottom: 1rem;
+           font-weight: 600;
+       }
+
+       .modal {
+           display: none;
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           justify-content: center;
+           align-items: center;
+           z-index: 1000;
+           backdrop-filter: blur(5px);
+       }
+
+       .modal-content {
+           backdrop-filter: var(--glass-effect);
+           border: 1px solid rgba(255, 255, 255, 0.2);
+           border-radius: 20px;
+           padding: 2rem;
+           width: 90%;
+           max-width: 400px;
+           position: relative;
+           animation: modalAppear 0.3s ease-out;
+       }
+
+       @keyframes modalAppear {
+           from {
+               opacity: 0;
+               transform: translateY(-20px);
+           }
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+       .modal-header {
+           text-align: center;
+           margin-bottom: 2rem;
+       }
+
+       .modal-title {
+           font-size: 1.8rem;
+           margin-bottom: 0.5rem;
+       }
+
+       .radio-group {
+           display: flex;
+           justify-content: center;
+           gap: 2rem;
+           margin-bottom: 2rem;
+         
+       }
+
+       .radio-group label {
+           display: flex;
+           align-items: center;
+           cursor: pointer;
+           font-size: 1.2rem; /* Aumenta el tamaño de fuente de las etiquetas */
+       }
+
+       .radio-group input[type="radio"] {
+           margin-right: 0.5rem;
+           transform: scale(1.5); /* Aumenta el tamaño de los radio buttons */
+       }
+
+       .modal-buttons {
+           display: flex;
+           gap: 1rem;
+           justify-content: flex-end;
+       }
+
+       .modal-btn {
+           padding: 0.8rem 1.5rem;
+           border: none;
+           border-radius: 8px;
+           cursor: pointer;
+           font-size: 1rem;
+           transition: all 0.3s ease;
+       }
+
+       .submit-btn {
+           background: rgba(248, 11, 11, 0.1);
+           color: white;
+           border: 1px solid rgba(255, 255, 255, 0.2);
+       }
+
+       .submit-btn:hover {
+           background: rgba(7, 7, 245, 0.2);
+       }
+
+       .basic-modal .modal-content {
+           background: var(--basic-color);
+       }
+
+       .custom-modal .modal-content {
+           background: var(--custom-color);
+       }
+
+       .silver-modal .modal-content {
+           background: var(--silver-color);
+       }
+   </style>
+</head>
+<body>
+   <header class="header">
+       <h1>Members Area</h1>
+   </header>
+
+   <div class="memberships-grid">
+       <div class="membership-card basic" onclick="openModal('basic')">
+           <div class="membership-icon"><i class="fas fa-leaf"></i></div>
+           <h2 class="membership-title">Serenity Star</h2>
+           <p>Start your journey with essential features</p>
+       </div>
+       <div class="membership-card custom" onclick="openModal('custom')">
+           <div class="membership-icon"><i class="fas fa-star"></i></div>
+           <h2 class="membership-title">Balance Elite</h2>
+           <p>Tailored to your specific needs</p>
+       </div>
+       <div class="membership-card silver" onclick="openModal('silver')">
+        <div class="membership-icon">
+            <i class="fas fa-medal"></i>
+        </div>
+        <h2 class="membership-title">Peak Wellness</h2>
+        <p>Enhanced features for professionals</p>
+    </div>
+   </div>
+
+   <div class="modal basic-modal" id="basicModal">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h2 class="modal-title"><strong>¿Su membresía Serenity Star está activa?</strong></h2>
+           </div>
+           <div class="radio-group">
+               <label>
+                   <input type="radio" name="basicActive" value="yes"> Sí
+               </label>
+               <label>
+                   <input type="radio" name="basicActive" value="no"> No
+               </label>
+           </div>
+           <div class="modal-buttons">
+               <button class="modal-btn submit-btn" onclick="validateMembership('basic')">Submit</button>
+           </div>
+       </div>
+   </div>
+
+   <div class="modal custom-modal" id="customModal">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h2 class="modal-title"><strong>¿Su membresía Balance Elite está activa?</strong></h2>
+           </div>
+           <div class="radio-group">
+               <label>
+                   <input type="radio" name="customActive" value="yes"> Sí
+               </label>
+               <label>
+                   <input type="radio" name="customActive" value="no"> No
+               </label>
+           </div>
+           <div class="modal-buttons">
+               <button class="modal-btn submit-btn" onclick="validateMembership('custom')">Submit</button>
+           </div>
+       </div>
+   </div>
+
+   <div class="modal silver-modal" id="silverModal">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h2 class="modal-title"><strong>¿Su membresía Peak Wellness está activa?</strong></h2>
+           </div>
+           <div class="radio-group">
+               <label>
+                   <input type="radio" name="silverActive" value="yes"> Sí
+               </label>
+               <label>
+                   <input type="radio" name="silverActive" value="no"> No
+               </label>
+           </div>
+           <div class="modal-buttons">
+               <button class="modal-btn submit-btn" onclick="validateMembership('silver')">Submit</button>
+           </div>
+       </div>
+   </div>
+
+   <script>
+       function openModal(membership) {
+           document.getElementById(`${membership}Modal`).style.display = 'flex';
+       }
+
+       function closeModal(membership) {
+           document.getElementById(`${membership}Modal`).style.display = 'none';
+       }
+
+       function validateMembership(membership) {
+           const isActive = document.querySelector(`input[name="${membership}Active"]:checked`).value;
+
+           if (isActive === 'yes') {
+               switch (membership) {
+                   case 'basic':
+                       window.location.href = 'https://www.authpro.com/auth/FitMindRx/';
+                       break;
+                   case 'custom':
+                       window.location.href = 'https://www.authpro.com/auth/FitMindRx/';
+                       break;
+                   case 'silver':
+                       window.location.href = 'https://www.authpro.com/auth/FitMindRx/';
+                       break;
+               }
+           } else {
+            window.location.href = 'https://www.fitmindrx.online/membership.html';
+           }
+       }
+
+       window.onclick = function(event) {
+           if (event.target.classList.contains('modal')) {
+               event.target.style.display = 'none';
+           }
+       };
+   </script>
+</body>
+</html>
