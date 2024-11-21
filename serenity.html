@@ -786,20 +786,47 @@
             retina_detect: true
         });
 
+      // Función para obtener el valor de una cookie por su nombre
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Función para establecer una cookie con un nombre, valor y fecha de expiración
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+    }
+
+    // Verifica si el video ya se mostró hoy
+    const lastVisit = getCookie('lastVideoShown');
+    const today = new Date().toDateString();
+
         // Video and Audio Control
         const skipBtn = document.getElementById('skip-btn');
         const welcomeDiv = document.getElementById('welcome');
         const mainContent = document.getElementById('main-content');
         const videoIframe = document.querySelector('.stornaway-container iframe'); // Selecciona el iframe del video
-        
         const particlesDiv = document.getElementById('particles-js');
 
-     
+        if (lastVisit === today) {
+        // Si ya se mostró hoy, oculta el video y muestra el contenido principal
+        welcomeDiv.style.display = 'none';
+        particlesDiv.style.display = 'none';
+        mainContent.style.display = 'block';
+         }
+          else {
+        // Si no se mostró hoy, establece la cookie y muestra el video
+        setCookie('lastVideoShown', today, 1);
 
         // Show skip button after 5 seconds
         setTimeout(() => {
             skipBtn.style.display = 'block';
         }, 3000);
+
+          }
 
       
 
