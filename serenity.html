@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mindfulness & Fitness</title>
+        <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp">
+</script>
     <a href="https://www.authpro.com/auth/FitMindRx/?action=logout">Logout</a>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp">
-</script>
+
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -513,6 +514,64 @@
     opacity: 1;
   }
 }
+        @media (max-width: 768px) { /* Para pantallas más pequeñas */
+  .modal-content {
+    width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+    margin: 20% auto; /* Ajusta la separación desde la parte superior */
+    padding: 20px; /* Reduce el relleno */
+    border-radius: 10px; /* Bordes redondeados más suaves */
+    font-size: 14px; /* Reduce el tamaño del texto general */
+  }
+
+  .modal-content h2 {
+    font-size: 20px; /* Título más pequeño */
+  }
+
+  .grid {
+    flex-direction: column; /* Coloca las tarjetas en una sola columna */
+    gap: 15px; /* Reduce el espacio entre elementos */
+  }
+
+  .feature {
+    padding: 15px; /* Reduce el tamaño de las tarjetas */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
+  }
+
+  .feature i {
+    font-size: 36px; /* Íconos más pequeños */
+  }
+
+  .feature h3 {
+    font-size: 16px; /* Texto más pequeño */
+  }
+
+  .download-btn {
+    font-size: 14px; /* Tamaño reducido del botón */
+    padding: 8px 12px; /* Espacio más compacto en el botón */
+  }
+}
+
+@media (max-width: 480px) { /* Para pantallas muy pequeñas */
+  .modal-content {
+    padding: 15px;
+    margin: 15% auto;
+    font-size: 12px;
+  }
+
+  .feature i {
+    font-size: 32px; /* Íconos aún más pequeños */
+  }
+
+  .feature h3 {
+    font-size: 14px;
+  }
+
+  .download-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
         /* Mejoras en responsive design */
         @media screen and (max-width: 1200px) {
             .container {
