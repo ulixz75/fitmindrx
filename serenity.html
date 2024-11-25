@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mindfulness & Fitness</title>
     <a href="https://www.authpro.com/auth/FitMindRx/?action=logout">Logout</a>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp">
 </script>
@@ -386,7 +387,132 @@
             left: 0;
         }
 
-       
+       .downloads-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f44d37;
+  color: white;
+  padding: 20px 40px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+  animation: popUp 0.6s ease-out;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feature {
+  flex: 1 1 calc(33.33% - 20px); /* Tres elementos por fila */
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature i {
+  font-size: 48px;
+  color: #00d8ff; /* Color vibrante para los íconos */
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #ffdf00; /* Amarillo para títulos */
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  background: #3498db;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #1e75aa;
+}
+
+/* Botón cerrar */
+.close {
+  color: #ff5e57;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #ff9990;
+}
+
+/* Animación */
+@keyframes popUp {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
         /* Mejoras en responsive design */
         @media screen and (max-width: 1200px) {
             .container {
@@ -691,6 +817,33 @@
             <small>*Los resultados pueden variar de persona a persona</small>
             <small>*¡Recibe orientación antes de comenzar completamente gratis!</small>
         </section>
+        <!-- Botón para abrir el modal -->
+<button id="openDownloadsModal" class="downloads-btn">Descargas</button>
+
+<!-- Modal -->
+<div id="downloadsModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Recursos Descargables</h2>
+    <div class="grid">
+      <div class="feature">
+        <i class="fas fa-file-audio"></i>
+        <h3>Audio 1</h3>
+        <a href="https://www.mediafire.com/file/lay5yz8amzu24vb/aplausse_of_welcome.mp3/file" class="download-btn" download>Descargar</a>
+      </div>
+      <div class="feature">
+        <i class="fas fa-file-video"></i>
+        <h3>Video 1</h3>
+        <a href="https://www.mediafire.com/file/bgm2e28dkb8n668/invideo-ai-1080_Crush_Your_Fitness_Goals_with_Intense_Wo_2024-10-27.mp4/file" class="download-btn" download>Descargar</a>
+      </div>
+      <div class="feature">
+        <i class="fas fa-file-pdf"></i>  
+        <h3>Ebook 1</h3>
+        <a href="https://www.mediafire.com/file/o7sad2tpjl5gazu/reflexiones-sobre-la-mente-STANDARD.pdf/file" class="download-btn" download>Descargar</a>
+      </div>
+    </div>
+  </div>
+</div>
 
        <a href="pricing.html" class="contact-btn tooltip" data-tooltip="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
 
@@ -858,6 +1011,25 @@
 
       
     </script>
+    <script>
+        var modal = document.getElementById("downloadsModal");
+        var btn = document.getElementById("openDownloadsModal");
+        var span = document.getElementsByClassName("close")[0];
+        
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
        
 </body>
 </html>
