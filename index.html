@@ -218,22 +218,21 @@
     -webkit-mask-image: radial-gradient(white, black);
 }
 .card img {
-    width: 90%; /* Reducir tamaño de la imagen para que quepa bien en el círculo */
-    height: auto;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
-    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image covers the entire circular area */
+    border-radius: 50%; /* This makes the image itself circular */
+    margin: 0; /* Remove any default margins */
     transition: transform 0.3s ease;
 }
 
-.card:hover img {
-            transform: scale(1.1);
-        }
 
 .card.active {
     z-index: 10;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.05);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Añade un brillo suave */
 }
 
@@ -275,7 +274,6 @@
         padding: 0.8rem;
     }
             .card.active {
-               transform: translate(-50%, -50%) scale(1.05);
                border-radius: 16px !important;
         }
             .icon-label {
@@ -296,7 +294,8 @@
                 font-size: 0.7rem;
             }
             .card img {
-        width: 80%;
+        width: 100%;
+        height: 100%;
     }
         }
 
@@ -348,24 +347,24 @@
             <div class="carousel-container mb-16">
                 <div class="carousel">
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mente.html';">
-                        <img src="https://media.giphy.com/media/Y077qfBlPpZzjJCHkz/giphy.gif?cid=ecf05e479k5chdyftx8the1ccc5fpq453verpwnocdf6xmh5&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Mente">
-                        <div class="icon-label">La Mente👆</div>
+                        <img src="https://media.giphy.com/media/yoJC2GBlQUYFF12X3W/giphy.gif?cid=790b7611nsqy93klvfbk6qrwkjlmnt7yxhz4f8lfj4cso7wl&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Mente">
+                      
                     </div>
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='planmodelo.html';">
-                        <img src="https://media.giphy.com/media/mq8X4R5GH2EiPB4zYs/giphy.gif?cid=ecf05e4751ase36sia4k1g4bz7oeoisx25q3imp45dgjepe1&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Entrenamiento">
-                        <div class="icon-label">Plan modelo👆</div>
+                        <img src="https://media.giphy.com/media/JwnmI70FraaUNSOx6S/giphy.gif?cid=790b7611ztdx0b3jmedsu7l0yq3bprnplg3brbe2g3igpzbb&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Entrenamiento">
+                       
                     </div>
                        <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='nutri.html';">
-                        <img src="https://media.giphy.com/media/26FmQcx1jatPONIVa/giphy.gif?cid=ecf05e47vskba3k5ckvumcbnpo6zr8cmu2oh09yof0x0j8jk&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Mindfulness">
-                        <div class="icon-label">Nutrición👆</div>
+                        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExamVtcnRvYmw3dmhwa2lsdHc3aDU5b2d5NjY5aWczam5lbzJicGdhMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/RvGJFfFGVzjgU0TT4P/200.webp" alt="Mindfulness">
+                       
                     </div>
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='mindful.html';">
-                        <img src="https://media.giphy.com/media/gQ9v1Lyrxf8wKdfR9w/giphy.gif?cid=ecf05e47bmc7ksuqn9j8albsrhzbvh56i8q54bvjvcsabtxu&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Mindfulness">
-                        <div class="icon-label">Mindfulness👆</div>
+                        <img src="https://media.giphy.com/media/cIaG2aONLioMDjUjeb/giphy.gif?cid=ecf05e47lz7rcrivsprxrm5v5aul0anb0l133zy8so3vi21c&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Mindfulness">
+                      
                     </div>
                     <div class="card glass rounded-xl p-6 flex flex-col items-center justify-center" onclick="window.location.href='contacto.html';">
-                        <img src="https://media.giphy.com/media/3o7TKUM3IgJBX2as9O/giphy.gif" alt="Resultados">
-                        <div class="icon-label">Contáctanos👆</div>
+                        <img src="https://media.giphy.com/media/ZB8xJQqO4JZDmgVNsu/giphy.gif?cid=790b7611mc50xxobsbsm52a17ld79rya81chxfiza4of200t&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Resultados">
+                      
                     </div>
                 </div>
             </div>
