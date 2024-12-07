@@ -1,1 +1,583 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitmind Rx</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <elevenlabs-convai agent-id="vDkaeLi359H3E6Oqi14m"></elevenlabs-convai><script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .hamburger-menu {
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
+        .close-arrow {
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            color: #00ff00;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+         .close-arrow svg {
+            width: 24px;
+            height: 24px;
+            stroke: #00ff00;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+          .navbar:hover .close-arrow {
+           opacity: 1;
+          right: -40px;
+        }
+
+          .navbar:hover .close-arrow svg {
+          transform: translateX(-5px);
+        }
+ 
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #00ff00;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 6rem 2rem 2rem 2rem;
+            list-style: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-links li {
+            margin: 1.5rem 0;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00ff00;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar:hover .hamburger-menu .bar:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 6px);
+        }
+
+        .navbar:hover .hamburger-menu .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar:hover .hamburger-menu .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -5px);
+        }
+
+        .navbar:hover .nav-links {
+            right: 0;
+        }
+
+        .navbar:hover .nav-links li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+        .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+        .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                width: 300px;
+            }
+        }
+
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body {
+             margin: 0;
+            height: 100vh; /* Ocupa toda la altura de la pantalla */
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            background-color: #f4f4f4; /* Fondo claro */
+    }
+
+          /* Carousel container - uses flexbox for centering */
+          .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            perspective: 1500px; /* Increased perspective for better 3D effect */
+            padding-top: 20px;
+        }
+
+        .carousel {
+            position: relative;
+            width: 80vw; /* Ajustado al 80% del ancho de la pantalla */
+            max-width: 240px; /* Ancho máximo para pantallas grandes */
+            height: calc(80vw * 16 / 9); /* Mantiene el ratio 9:16 */
+            max-height: 426px; /* Altura máxima */
+            perspective: 1000px; /* Profundidad para el efecto 3D */
+    }
+            /* Escena en 3D */
+        .carousel__inner {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: rotate 18s infinite linear; /* Rotación continua */
+    }
+
+
+     /* Estilo de cada tarjeta */
+     .carousel__card {
+      position: absolute;
+      width: 90%; /* Las tarjetas son un poco más pequeñas que el contenedor */
+      height: 90%; /* Mantiene el tamaño proporcional dentro del ratio */
+      background: #222;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+     /* Videos dentro de las tarjetas */
+     .carousel__card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+.card:hover img {
+            transform: scale(1.1);
+        }
+
+         /* Posicionamiento circular de las tarjetas */
+    .carousel__card:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
+    .carousel__card:nth-child(2) { transform: rotateY(60deg) translateZ(400px); }
+    .carousel__card:nth-child(3) { transform: rotateY(120deg) translateZ(400px); }
+    .carousel__card:nth-child(4) { transform: rotateY(180deg) translateZ(400px); }
+    .carousel__card:nth-child(5) { transform: rotateY(240deg) translateZ(400px); }
+    .carousel__card:nth-child(6) { transform: rotateY(300deg) translateZ(400px); }
+
+      
+        .icon-label {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background: transparent;
+            padding: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+
+         /* Animación de rotación */
+    @keyframes rotate {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+        /* Añadir estos nuevos estilos para el widget de Setmore */
+        .setmore-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .setmore-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .setmore-wrapper {
+                bottom: 10px;
+                left: 10px;
+                transform: scale(0.9);
+            }
+        }
+    </style>
+    <!--Poptin ebook offer -->
+     <script id='pixel-script-poptin' src='https://cdn.popt.in/pixel.js?id=5e1716f2e0e46' async='true'></script> 
+   
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <!-- Video de fondo -->
+    <video autoplay muted loop playsinline class="video-background opacity-50">
+        <source src="https://video.wixstatic.com/video/313cf8_7951332a637246ab8a483754960148a7/720p/mp4/file.mp4" type="video/mp4">
+    </video>
+
+    <!-- Contenido principal -->
+    <div class="relative min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <!-- Header -->
+            <div class="text-center mb-20">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-8 gradient-text animate__animated animate__fadeIn">
+                    FitMind Rx
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 animate__animated animate__fadeIn animate__delay-1s">
+                    La Receta para tu Transformación Integral
+                </p>
+            </div>
+
+            
+<div class="carousel">
+    <div class="carousel__inner">
+      <div class="carousel__card">
+        <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop></video>
+      </div>
+      <div class="carousel__card">
+        <video src="https://www.w3schools.com/html/movie.mp4" autoplay muted loop></video>
+      </div>
+      <div class="carousel__card">
+        <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop></video>
+      </div>
+      <div class="carousel__card">
+        <video src="https://www.w3schools.com/html/movie.mp4" autoplay muted loop></video>
+      </div>
+      <div class="carousel__card">
+        <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop></video>
+      </div>
+      <div class="carousel__card">
+        <video src="https://www.w3schools.com/html/movie.mp4" autoplay muted loop></video>
+      </div>
+    </div>
+  </div>
+
+            <!-- Widget de Setmore  -->
+            <div class="setmore-wrapper">
+                <script id="setmore_script" type="text/javascript" src="https://storage.googleapis.com/fullintegration-live/webComponentAppListing/Container/setmoreIframeLive.js"></script>
+                <a style="float:none;" id="Setmore_button_iframe" href="https://booking.setmore.com/scheduleappointment/ae02c2e3-e878-4d52-a3d0-9619db28fbd1">
+                    <img border="none" src="https://assets.setmore.com/setmore/images/2.0/Settings/book-now-black.svg" alt="Book an appointment with FitMindRx using Setmore"/>
+                </a>
+            </div>
+            
+            <!-- Widget de elfsight -->
+            <script src="https://static.elfsight.com/platform/platform.js" async></script>
+            <div class="elfsight-app-210764a8-0fea-4040-a389-c7b9cab4bb31" data-elfsight-app-lazy></div>
+           
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="close-arrow">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+             <line x1="19" y1="12" x2="5" y2="12"></line>
+             <polyline points="12 19 5 12 12 5"></polyline>
+             </svg>
+        </div>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Precios</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="evaluacion.html">Evalúate</a></li>
+            <li><a href="https://www.authpro.com/auth/FitMindRx/">Members Only</a></li>
+            <li><a href="descarga.html">Ebook gratis</a></li>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const cards = document.querySelectorAll('.card');
+            let currentAngle = 0;
+            let currentIndex = 0;
+            const angleIncrement = (360 / cards.length);
+
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    const angle = ((index * angleIncrement) + currentAngle) % 360;
+                    const radian = angle * Math.PI / 180;
+                    const z = Math.cos(radian) * 400;
+                    const x = Math.sin(radian) * 400;
+                    card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px)`;
+                    
+                    if (index === currentIndex) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            }
+
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    const targetAngle = -index * angleIncrement;
+                    currentAngle = targetAngle;
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            updateCarousel();
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                currentAngle -= angleIncrement;
+                updateCarousel();
+            }, 3000);
+        });
+    </script>
+        <!-- Añadir esto justo antes del cierre del </body> -->
+<style>
+    .cookie-banner {
+        position: fixed;
+        top: 50%; /* Cambiado de bottom a top */
+        left: 50%;
+        transform: translate(-50%, -50%); /* Modificado para centrar vertical y horizontalmente */
+        background: rgba(0, 0, 0, 0.55); /* Oscurecido ligeramente */
+        color: white;
+        padding: 1.5rem; /* Aumentado el padding */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        z-index: 9999;
+        max-width: 500px;
+        width: calc(100% - 40px);
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Mejorada la sombra */
+        transition: all 0.3s ease-in-out;
+    }
+
+    .cookie-banner::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparente */
+        z-index: -1;
+    }
+    
+    .cookie-banner.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.9); /* Modificado para mantener el centrado */
+        display: none;
+    }
+    
+    .cookie-banner p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+    
+    .cookie-banner .buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .cookie-banner button {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: transform 0.2s ease;
+    }
+    
+    .cookie-banner button:hover {
+        transform: translateY(-2px);
+    }
+    
+    .cookie-banner .accept {
+        background: #4CAF50;
+        color: white;
+    }
+    
+    .cookie-banner .reject {
+        background: #f44336;
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .cookie-banner {
+            width: calc(100% - 32px);
+            margin: 16px;
+            padding: 1.25rem;
+        }
+    }
+</style>
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación.</p>
+        <div class="buttons">
+            <button class="accept" onclick="acceptCookies()">Aceptar</button>
+            <button class="reject" onclick="rejectCookies()">Rechazar</button>
+        </div>
+    </div>
+   <script>
+// Reemplaza el script actual de cookies con este:
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const cookieChoice = localStorage.getItem('cookiesAccepted');
+    
+    // Solo mostrar el banner si no hay una elección previa
+    if (cookieChoice === null) {
+        // Pequeño retraso para evitar que el banner aparezca demasiado rápido
+        setTimeout(() => {
+            cookieBanner.classList.remove('hidden');
+            cookieBanner.style.opacity = '1';
+            cookieBanner.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 1000);
+    } else {
+        // Si ya hay una elección, mantener el banner oculto
+        cookieBanner.classList.add('hidden');
+    }
+});
+
+function hideBanner() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    cookieBanner.style.opacity = '0';
+    cookieBanner.style.transform = 'translate(-50%, -50%) scale(0.9)';
+    
+    setTimeout(() => {
+        cookieBanner.classList.add('hidden');
+        cookieBanner.style.display = 'none';
+    }, 300);
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    hideBanner();
+    
+    // Activar scripts de tracking si se aceptan las cookies
+    if (typeof gtag !== 'undefined') {
+        // Activar Google Analytics si existe
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+    }
+    
+    // Activar Poptin si existe
+    if (window.poptin) {
+        window.poptin.initialize();
+    }
+}
+
+function rejectCookies() {
+    localStorage.setItem('cookiesAccepted', 'false');
+    hideBanner();
+    
+    // Desactivar scripts de tracking si se rechazan las cookies
+    if (typeof gtag !== 'undefined') {
+        // Desactivar Google Analytics si existe
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied'
+        });
+    }
+}
+
+// Función para resetear las cookies (útil para pruebas)
+function resetCookieChoice() {
+    localStorage.removeItem('cookiesAccepted');
+    location.reload();
+}
+</script>
+    ...
+<!-- Otros contenidos de tu página -->
+
+   
+
+</body>
+
+</body>
+</html>
