@@ -162,25 +162,10 @@
         <a href="about.html" class="back-btn">Regresar</a>
     </section>
 
-    <!-- Modal de zoom en la imagen -->
-    <div id="zoomModal" style="display: none;">
-        <div id="zoomModalContent">
-            <span onclick="closeModal()" style="cursor: pointer; font-size: 30px; position: absolute; top: 10px; right: 20px;">&times;</span>
-            <img id="zoomImage" src="" alt="Zoomed Image" style="width: 80%; margin: 0 auto; display: block;">
-        </div>
-    </div>
+ 
 
     <script>
-        // Función para abrir el modal y hacer zoom en la imagen
-        function zoomImage(imgSrc) {
-            document.getElementById('zoomModal').style.display = 'block';
-            document.getElementById('zoomImage').src = imgSrc;
-        }
-
-        // Función para cerrar el modal
-        function closeModal() {
-            document.getElementById('zoomModal').style.display = 'none';
-        }
+        
 
         // Para hacer las animaciones de scroll
         window.addEventListener('scroll', function() {
