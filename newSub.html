@@ -1,165 +1,37 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/ficons/313cf8_9ab7675d7b9743d3871102f6eaf3084a~mv2.ico">
-    <title>Register Online Form</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <title>Bad Request</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f2a0a0 0%, #0a0a0a 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .container {
-            position: relative;
-            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .interface-wrapper {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-        }
-
-        #JotFormIFrame-243082777787069 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
-            min-height: 100vh !important;
-            border: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
         }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0;
-                background: none;
-                backdrop-filter: none;
-            }
-
-            .interface-wrapper {
-                height: 100vh;
-            }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
     <div class="container">
-        <div class="interface-wrapper">
-            <iframe
-                id="JotFormIFrame-243082777787069"
-                title="Forma de registro"
-                onload="window.parent.scrollTo(0,0)"
-                allowtransparency="true"
-                allow="geolocation; microphone; camera; fullscreen"
-                src="https://form.jotform.com/243082777787069"
-                frameborder="0"
-                scrolling="yes"
-            >
-            </iframe>
-            <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-            <script>
-                window.jotformEmbedHandler("iframe[id='JotFormIFrame-243082777787069']", "https://form.jotform.com/");
-                
-                // Ajustar tamaño del iframe cuando cambia el tamaño de la ventana
-                window.addEventListener('resize', function() {
-                    const iframe = document.getElementById('JotFormIFrame-243082777787069');
-                    if (iframe) {
-                        iframe.style.height = window.innerHeight + 'px';
-                    }
-                });
-            </script>
-        </div>
+        <h1>Error 400: Bad Request</h1>
+        <p>La solicitud que hiciste no es válida. Por favor, verifica la URL o los parámetros.</p>
     </div>
-
-    <script>
-        particlesJS('particles-js',
-            {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "shape": {
-                        "type": "circle"
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ffffff",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    }
-                },
-                "retina_detect": true
-            }
-        );
-    </script>
 </body>
 </html>
