@@ -8,6 +8,8 @@
     <title>Sobre Nosotros</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.0/lottie.min.js"></script>
+
     <style>
         .video-background {
             position: fixed;
@@ -171,14 +173,29 @@
         </div>
 
         <!-- Footer -->
-        <footer class="absolute bottom-0 w-full py-6">
-            <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
-                <p class="animate__animated animate__fadeIn animate__delay-5s">
-                    <a href="planmodelo.html"><strong>Conoce al fundador de FitMind Rx</strong></a>
-                </p>
-            </div>
-        </footer>
+   <!-- Footer -->
+<footer class="absolute bottom-0 w-full py-6">
+    <div class="max-w-7xl mx-auto px-4 text-center text-gray-400">
+        <!-- Contenedor del Lottie -->
+        <div id="lottie-container" class="mx-auto mb-4" style="width: 100px; height: 100px;"></div>
+        
+        <p class="animate__animated animate__fadeIn animate__delay-5s">
+            <a href="planmodelo.html"><strong>Conoce al fundador de FitMind Rx</strong></a>
+        </p>
     </div>
+</footer>
+
+<!-- Script para cargar el Lottie -->
+<script>
+    lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // Contenedor
+        renderer: 'svg', // Formato de renderizado
+        loop: true, // Repetir animación
+        autoplay: true, // Reproducir automáticamente
+        path: 'https://assets9.lottiefiles.com/packages/lf20_touohxv0.json' // URL del archivo JSON de Lottie
+    });
+</script>
+
  <!-- Modal -->
  <div id="modal" class="fixed hidden top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white rounded-lg w-11/12 md:w-1/2 p-4 md:p-6 relative"><!-- Cambiado el fondo del modal a blanco -->
