@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/ficons/313cf8_9ab7675d7b9743d3871102f6eaf3084a~mv2.ico">
+    
     <title>FitMind Rx - Evaluación Integral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -111,7 +110,7 @@
             padding: 1.5rem;
             border-radius: 5px;
             margin-top: 2rem;
-            display: flex-direction column;
+            display: flex;
             align-items: center;
             gap: 1rem;
         }
@@ -122,28 +121,9 @@
             accent-color: #00ff00;
         }
 
-        .quiz-section {
-            display: none;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border: 1px solid rgba(0, 255, 0, 0.2);
-        }
+      
 
-        .quiz-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .quiz-container {
-            width: 100%;
-            min-height: 800px;
-            margin-top: 2rem;
-        }
-         iframe {
-                height: 700px !important; /* Force iframe to be taller on mobile */
-            }
+       
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -163,6 +143,15 @@
             .quiz-section {
                 padding: 1rem;
             }
+
+            .consent-box {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+
+           
         }
     </style>
 </head>
@@ -205,49 +194,14 @@
             </div>
         </section>
 
-        <section id="quizSection" class="quiz-section">
-            <h2>Evaluación Integral</h2>
-            <div class="quiz-container">
-                <!-- Aquí va el embedded form de forms.app -->
-                <!-- Reemplaza el src con tu URL de forms.app -->
-                
-    <iframe
-    id="JotFormIFrame-242984459783375"
-    title="Auto Evaluación"
-    onload="window.parent.scrollTo(0,0)"
-    allowtransparency="true"
-    allow="geolocation; microphone; camera; fullscreen"
-    src="https://form.jotform.com/242984459783375"
-    frameborder="0"
-    style="min-width:100%;max-width:100%;height:539px;border:none;"
-    scrolling="yes"
-  >
-  </iframe>
-  <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-  <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-242984459783375']", "https://form.jotform.com/")</script>
-  
-            </div>
-        </section>
-    </div>
 
     <script>
         const consentCheckbox = document.getElementById('consent');
-        const quizSection = document.getElementById('quizSection');
-        const quizFrame = document.getElementById('quizFrame');
-
+    
         consentCheckbox.addEventListener('change', function() {
             if (this.checked) {
-                quizSection.classList.add('active');
-                // Aquí deberás reemplazar 'URL_DE_TU_FORMS_APP' con la URL real de tu formulario
-                quizFrame.src = 'https://form.jotform.com/242984459783375';
-                
-                // Scroll suave hasta la sección del quiz
-                setTimeout(() => {
-                    quizSection.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-            } else {
-                quizSection.classList.remove('active');
-                quizFrame.src = '';
+                // Abre el enlace en una nueva pestaña
+                window.open('https://form.jotform.com/242984459783375', '_blank');
             }
         });
     </script>
