@@ -1,37 +1,199 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bad Request</title>
+    <title>Biografía del Fundador</title>
+
+    <!-- Estilos para el fondo animado de espacio -->
     <style>
+        /* Fondo con estrellas animadas */
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8d7da;
-            color: #721c24;
-            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 0;
+            background: #000 url('https://cdn.pixabay.com/photo/2018/01/29/16/37/space-3116179_960_720.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
         }
-        .container {
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: starAnimation 50s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes starAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        /* Efecto 3D para los elementos */
+        .bio-content, .certificates {
+            perspective: 1000px;
+        }
+
+        .bio-container, .certificates-container {
+            transform-style: preserve-3d;
+            transition: transform 1s ease;
+        }
+
+        .bio-container:hover, .certificates-container:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        /* Transiciones de entrada de los elementos */
+        .fadeInUp {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilo para los contenedores de las imágenes */
+        .bio-photo, .certificate-photo {
+            border-radius: 50%;
+            margin: 10px;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .bio-photo:hover, .certificate-photo:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo del texto */
+        .text-center {
             text-align: center;
         }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+
+        /* Estilo para los certificados */
+        .certificate-photo-container {
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
         }
-        p {
-            font-size: 1.5em;
+
+        .certificate-photo-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
         }
+
+        .certificate-photo-container img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo del contenedor de la biografía */
+        .bio-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        /* Estilo para el botón de regresar */
+        .back-btn {
+            background-color: #1e40af;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #3b82f6;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Error 400: Bad Request</h1>
-        <p>La solicitud que hiciste no es válida. Por favor, verifica la URL o los parámetros.</p>
+
+    <!-- Fondo animado -->
+    <div class="stars"></div>
+
+    <!-- Sección de Biografía -->
+    <section class="bio-section fadeInUp">
+        <h1>Conoce al Fundador de FitMind Rx</h1>
+        <div class="bio-content">
+            <div class="bio-container fadeInUp">
+                <!-- Foto del Fundador -->
+                <img src="https://static.wixstatic.com/media/af3a4a_d1c8919f6ff147d7b65f15e8716d812a~mv2.png" alt="Foto del Fundador" class="bio-photo">
+                <p>Nombre del Fundador</p>
+                <p class="bio-text">Aquí va la biografía del fundador. Este es un espacio para que puedas agregar detalles sobre su trayectoria, misión y visión para FitMind Rx.</p>
+            </div>
+
+            <!-- Certificados -->
+            <h2>Certificados y Diplomas</h2>
+            <div class="certificates-container">
+                <div class="certificates fadeInUp">
+                    <!-- Certificados Placeholder (con efecto de zoom al hacer clic) -->
+                    <div class="certificate-photo-container">
+                        <img src="https://via.placeholder.com/120x120?text=Certificado+1" alt="Certificado 1" class="certificate-photo" onclick="zoomImage('https://via.placeholder.com/600x600?text=Certificado+1')">
+                    </div>
+                    <div class="certificate-photo-container">
+                        <img src="https://via.placeholder.com/120x120?text=Certificado+2" alt="Certificado 2" class="certificate-photo" onclick="zoomImage('https://via.placeholder.com/600x600?text=Certificado+2')">
+                    </div>
+                    <div class="certificate-photo-container">
+                        <img src="https://via.placeholder.com/120x120?text=Certificado+3" alt="Certificado 3" class="certificate-photo" onclick="zoomImage('https://via.placeholder.com/600x600?text=Certificado+3')">
+                    </div>
+                    <div class="certificate-photo-container">
+                        <img src="https://via.placeholder.com/120x120?text=Certificado+4" alt="Certificado 4" class="certificate-photo" onclick="zoomImage('https://via.placeholder.com/600x600?text=Certificado+4')">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de regreso -->
+        <a href="about.html" class="back-btn">Regresar</a>
+    </section>
+
+    <!-- Modal de zoom en la imagen -->
+    <div id="zoomModal" style="display: none;">
+        <div id="zoomModalContent">
+            <span onclick="closeModal()" style="cursor: pointer; font-size: 30px; position: absolute; top: 10px; right: 20px;">&times;</span>
+            <img id="zoomImage" src="" alt="Zoomed Image" style="width: 80%; margin: 0 auto; display: block;">
+        </div>
     </div>
+
+    <script>
+        // Función para abrir el modal y hacer zoom en la imagen
+        function zoomImage(imgSrc) {
+            document.getElementById('zoomModal').style.display = 'block';
+            document.getElementById('zoomImage').src = imgSrc;
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('zoomModal').style.display = 'none';
+        }
+
+        // Para hacer las animaciones de scroll
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.fadeInUp');
+            elements.forEach(function(element) {
+                const position = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (position < windowHeight) {
+                    element.style.animation = 'fadeInUp 1s forwards';
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
