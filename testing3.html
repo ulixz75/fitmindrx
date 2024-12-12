@@ -1,42 +1,396 @@
-<?php
-// Enviar un código de estado HTTP 400 (Bad Request)
-http_response_code(400);
-?>
 
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bad Request</title>
-    <style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- If a user adds a bookmark of v4 to his/her homescreen, app will be fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preload" href="https://cdn.jotfor.ms/fonts/circular/fonts/Circular-Book.woff2" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jotfor.ms/fonts/circular/fonts/Circular-Light.woff2" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="https://cdn.jotfor.ms/fonts/circular/fonts/Circular-Medium.woff2" as="font" crossorigin="anonymous" />
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://cdn.jotfor.ms/fonts/?family=Circular" />
+    <link rel="stylesheet" media="print" onload="this.media='all'" type="text/css" href="//moodular.jotform.com/dist/moodular4/moodular.css?3.3.59467">
+    <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp">
+    </script>
+    <script type="text/javascript">window.branding21 = true;</script>
+    <link rel="shortcut icon" href="https://cdn.jotfor.ms/assets/img/favicons/favicon-2021-light.png">
+      <script>
+      if (window.matchMedia) {
+        function updateFavicon(dark) {
+          var icon = dark ? 'favicon-2021-dark.png' : 'favicon-2021-light.png';
+          var link = document.querySelector('[rel="shortcut icon"]');
+          if (link) {
+            link.href = 'https://cdn.jotfor.ms/assets/img/favicons/' + icon;
+          }
+        }
+
+        updateFavicon(window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+        window.matchMedia("(prefers-color-scheme: dark)").addListener(function (e) {
+          updateFavicon(e.matches)
+        });
+      }
+      </script>
+                            <link rel="stylesheet" type="text/css" media="print" onload="this.media='all'" href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.59467">
+                <link rel="stylesheet" type="text/css" media="print" onload="this.media='all'" href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.59467">
+        <link rel="stylesheet" type="text/css" media="print" onload="this.media='all'" href="https://cdn01.jotfor.ms/stylebuilder/static/form-common.css?5a9ee7f
+">
+        <!-- All theme css files for theme switch -->
+        <link rel="stylesheet" media="print" onload="this.media='all'" type="text/css" href="https://cdn02.jotfor.ms/css/styles/form.css?3.3.59467" disabled>
+        <link rel="stylesheet" media="print" onload="this.media='all'" type="text/css" href="https://cdn03.jotfor.ms/css/styles/nova.css?3.3.59467" disabled>
+        <link rel="stylesheet" media="print" onload="this.media='all'" type="text/css" href="https://cdn01.jotfor.ms/css/styles/buttons.css?3.3.59467" disabled>
+        <link rel="stylesheet" media="print" onload="this.media='all'" type="text/css" href="https://cdn02.jotfor.ms/themes/CSS/defaultV2.css?5a9ee7f
+" >
+                <!-- Payment Right Panel CSS Regardless of Form Layout -->
+    <link rel="stylesheet" media="print" onload="this.media='all'" type="text/css" href="https://cdn03.jotfor.ms/css/styles/payment/payment_builder.css?3.3.59467">
+    <!-- CARD FORM SPECIFIC CSS -->
+        
+    <script>
+window.__jfrouter = {
+            JOTFORM_ENV: 'PRODUCTION',
+            APP_PATH: '/build',
+            ASSET_PATH: 'https://cdn02.jotfor.ms/s/form-builder/44d1a48aa93',
+            VENDOR_ASSET_PATH: 'https://cdn03.jotfor.ms/s/vendor/static',
+            BASE_URL: 'https://eu.jotform.com',
+            ACTIVE_ALIAS: 'build',
+            ACTIVE_ROUTE: '/build/',
+            ACTIVE_APP: 'form-builder',
+            INITIAL_ROUTE_PATH: '/242984459783375',
+            FULL_PATH: '/build/242984459783375',
+            BACKEND_ROUTER: '1',
+            IS_HIPAA: '0',
+            IS_EU: '1',
+            IS_SSO: '0',
+            REVISION_HASH: '44d1a48aa93',
+            PLATFORM_ENV: '',
+            ROOT_PATH: '/',
+            CDN_URL: 'https://cdn01.jotfor.ms',
+    };
+</script>
+    <title>Auto Evaluación - Jotform Form Builder</title>
+
+                
+    
+            <script type="text/javascript">
+            window.fieldPerFormLimitOfFormOwner = 100;
+        </script>
+        <script type="text/javascript">
+        window.isFormUser = false;
+        window.csiCollaborator = false;
+        window.ownerAccountLimits = null;
+    </script>
+            <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8d7da;
-            color: #721c24;
-            font-family: Arial, sans-serif;
             margin: 0;
         }
-        .container {
-            text-align: center;
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        p {
-            font-size: 1.5em;
+
+        html,
+        body,
+        #root {
+            height: 100%;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Error 400: Bad Request</h1>
-        <p>La solicitud que hiciste no es válida. Por favor, verifica la URL o los parámetros.</p>
-    </div>
-</body>
-</html>
+        <!--  React portal for card styles, don't remove it -->
+    <style class="cardStylesReactPortal"> </style>
 
+    </head>
+
+<body dir="auto">
+        <script defer src="https://cdn01.jotfor.ms/s/umd/81b5e8d1ad8/for-csa-timeout.js"></script>
+    <script defer src="https://cdn01.jotfor.ms/s/vendor/static/moment/2.29.4/moment-with-locales.min.js"></script>
+    <script defer src="https://cdn02.jotfor.ms/s/vendor/static/moment-timezone/0.5.43/moment-timezone-with-data.min.js"></script>
+    <script defer src="https://cdn03.jotfor.ms/s/vendor/static/pdfjs-dist/2.14.305/pdf.min.js"></script>
+    <script defer src="https://cdn01.jotfor.ms/s/vendor/static/pdfjs-dist/2.14.305/pdf_viewer.min.js"></script>
+    <script defer src="https://cdn02.jotfor.ms/s/form-builder/44d1a48aa93/static/js/jotform.css.527cac20.js"></script>
+    <script defer src="https://cdn03.jotfor.ms/s/form-builder/44d1a48aa93/static/js/4870.4d453e16.js"></script>
+    <script defer src="https://cdn01.jotfor.ms/s/form-builder/44d1a48aa93/static/js/index.4e63d808.js"></script>
+    <link href="https://cdn02.jotfor.ms/s/form-builder/44d1a48aa93/static/css/jotform.css.47ca432d.css" rel="stylesheet">
+    <link href="https://cdn03.jotfor.ms/s/form-builder/44d1a48aa93/static/css/4870.e08261b0.css" rel="stylesheet">
+    <link href="https://cdn01.jotfor.ms/s/form-builder/44d1a48aa93/static/css/index.98e02395.css" rel="stylesheet">
+    <script>
+        (function(globalConfigurations) {
+            // "EnterpriseConfigs" object only must be available on Enterprise servers
+            var configurationMappings = [{
+                    configName: 'FormConfigs'
+                },
+                {
+                    configName: 'UserConfigs'
+                },
+            ];
+            try {
+                configurationMappings = [{
+                        configName: 'FormConfigs',
+                        configValue: globalConfigurations.form
+                    },
+                    {
+                        configName: 'UserConfigs',
+                        configValue: globalConfigurations.user
+                    },
+                ];
+                            } catch (e) {
+                                            }
+            for (var i = 0; i < configurationMappings.length; i++) {
+                var configName = configurationMappings[i].configName;
+                var configValue = configurationMappings[i].configValue && typeof configurationMappings[i].configValue === 'object' ? configurationMappings[i].configValue : {};
+                Object.defineProperty(window, configName, {
+                    value: Object.freeze(configValue)
+                });
+            }
+        })({"form":{"isHIPAA":false,"isEU":true},"user":{"isHIPAA":false,"isEU":false,"isCCPA":false}});
+    </script>
+    
+
+            <!-- Google Tag Manager -->
+            <noscript aria-hidden='true'><iframe title='Google Tag Manager Frame' src="//www.googletagmanager.com/ns.html?id=GTM-TDFT5J"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <script> document.addEventListener('DOMContentLoaded', function(event) {
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','GTM-TDFT5J');
+            });
+            </script>
+            <!-- End Google Tag Manager -->
+
+        
+
+            <!-- Store all ga commands -->
+            <script>
+                window['GoogleAnalyticsObject'] = 'ga';
+                window['ga'] = window['ga'] || function() {
+                (window['ga'].q = window['ga'].q || []).push(arguments)
+                };
+            </script>
+    <div id="root"></div>
+    <div id="portal-root"></div>
+    <div id="walkthrough-root"></div>
+    <script>
+        window.JOTFORM_ENV = 'PRODUCTION';
+    </script>
+            <script>
+            window.GOOGLE_SIGNON = '172124630376-qk1qmdfmur2ojaf39e070iqhpt2foaip.apps.googleusercontent.com';
+            window.FACEBOOK_SIGNON_APP_ID = '1140740696088074';
+            window.MICROSOFT_SIGNON_CLIENT_ID = '482577e8-f8d0-4a09-bbbb-15de3d05eebe';
+        </script>
+        <script>
+        window.GOOGLE_SHEETS_APP_ID = '645624820084.apps.googleusercontent.com';
+        window.GOOGLE_PICKER_KEY = 'AIzaSyABH_ZElWv6t4AfQa4CQbdtty4lRilnndc';
+        window.TRELLO_APP_KEY = '7714f3d9fd72e5f475627e67e111637f';
+        window.TRELLO_APP_KEY_NEW = 'e5198a844bb058dcd22c5adc5042c9f9';
+    </script>
+    <script type="text/javascript">
+        openStyleMenu = openThemeDesigner = function() {};
+    </script>
+    
+
+    <script type="text/javascript">
+        window.__formInfo = {"id":"242984459783375","username":"rxfitmind","title":"Auto Evaluaci\u00f3n","height":"0","status":"ENABLED","created_at":"2024-10-25 10:37:56","updated_at":"2024-12-09 04:17:30","last_submission":"2024-12-08 13:03:39","new":"8","count":"9","type":"LEGACY","favorite":"0","archived":"0","slug":"242984459783375","url":"https:\/\/form.jotform.com\/242984459783375"};
+        window.isAppsReleased = true;
+    </script>
+
+            <script type="text/javascript" src="https://cdn01.jotfor.ms/static/encryptedForms.js?3.3.59467"></script>
+        <script type="text/javascript" src="https://cdn02.jotfor.ms/js/encryption_wizard.js?3.3.59467"></script>
+    <script type="text/javascript" src="https://cdn03.jotfor.ms/js/clipboard.min.js?3.3.59467"></script>
+            <script type="text/javascript">
+            window.isFormBuilderFeedbackActive = true;
+        </script>
+    
+    
+
+            <script type="text/javascript" src="https://cdn01.jotfor.ms/static/prototype.forms.js?3.3.59467"></script>
+        <script type="text/javascript" src="https://cdn02.jotfor.ms/static/jotform.forms.js?3.3.59467"></script>
+        <script>
+            if (!window.CardFields) {
+                window.CardFields = {
+                    index: {}
+                };
+            }
+        </script>
+
+    
+    <script type="text/javascript">
+        /* start - Temp FS tracking for File Upload field analyze */
+        try {
+            window.__userPercent = 62;
+        } catch (error) {
+            // Could not write user percent to the window
+        }
+        /* end - Temp FS tracking for File Upload field analyze */
+                window.__formProps = {"activeRedirect":"thanktext","alignment":"Top","allowSubmissionEdit":"No","background":"#d7d7d8","cardThemeID":"59647bf8cf3bfe639c0b7cb1","clearFieldOnHide":"disable","creationLanguage":"en-US","datetimeMigrationIncludesBirthDate":"1","datetimeMigrationStatus":"done","defaultAutoResponderEmailAssigned":"No","defaultEmailAssigned":"Yes","defaultTheme":"v2","errorNavigation":"Yes","expireDate":"No Limit","font":"Tahoma","fontcolor":"#7f181b","fontsize":"16","formStringsChanged":"No","formType":"legacyForm","formWidth":"752","hideEmptySubmissionFields":"Yes","hideMailEmptyFields":"enable","hideNonInputSubmissionFields":"Yes","hideSubmissionHeader":"No","highlightLine":"Enabled","injectCSS":"\n*,\n*:after,\n*:before {\n  box-sizing: border-box;\n}\n.form-all {\n  font-family: \"Tahoma\", sans-serif;\n}\n.main .jotform-form {\n  width: 100%;\n  padding: 0 3%;\n}\n.form-all {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  max-width: 752px;\n}\n.form-line-active {\n  background-color: #f1f5ff;\n}\n.form-all {\n  font-size: 16px;\n}\nli.form-line {\n  margin-top: 12px;\n  margin-bottom: 12px;\n}\n.form-line {\n  padding: 12px 10px;\n}\n.form-section {\n  padding: 0px 38px;\n}\n.form-textbox,\n.form-textarea,\n.form-radio-other-input,\n.form-checkbox-other-input,\n.form-captcha input,\n.form-spinner input {\n  background-color: #ffffff;\n}\n.form-label {\n  font-family: \"Tahoma\", sans-serif;\n}\n.form-line-column {\n  width: calc(50% - 8px);\n}\n.form-checkbox-item label,\n.form-checkbox-item span,\n.form-radio-item label,\n.form-radio-item span {\n  color: #404a64;\n}\n.form-radio-item,\n.form-checkbox-item {\n  padding-bottom: 0px !important;\n}\n.form-radio-item:last-child,\n.form-checkbox-item:last-child {\n  padding-bottom: 0;\n}\n.form-single-column .form-checkbox-item,\n.form-single-column .form-radio-item {\n  width: 100%;\n}\n.form-checkbox-item .editor-container div,\n.form-radio-item .editor-container div {\n  position: relative;\n}\n.form-checkbox-item .editor-container div:before,\n.form-radio-item .editor-container div:before {\n  display: inline-block;\n  vertical-align: middle;\n  left: 0;\n  width: 20px;\n  height: 20px;\n}\n.form-radio-item:not(#foo),\n.form-checkbox-item:not(#foo) {\n  position: relative;\n}\n.form-radio-item:not(#foo) .form-radio + span:before,\n.form-checkbox-item:not(#foo) .form-radio + span:before,\n.form-radio-item:not(#foo) .form-radio + span:after,\n.form-checkbox-item:not(#foo) .form-radio + span:after,\n.form-radio-item:not(#foo) .form-radio:checked + span div:after,\n.form-checkbox-item:not(#foo) .form-radio:checked + span div:after,\n.form-radio-item:not(#foo) .form-checkbox + span:before,\n.form-checkbox-item:not(#foo) .form-checkbox + span:before,\n.form-radio-item:not(#foo) .form-checkbox + span:after,\n.form-checkbox-item:not(#foo) .form-checkbox + span:after {\n  display: none;\n}\n.form-radio-item:not(#foo) label:before,\n.form-checkbox-item:not(#foo) label:before {\n  background-color: transparent;\n  border: 2px solid #004b79;\n}\n.form-radio-item:not(#foo) label:focus:before,\n.form-checkbox-item:not(#foo) label:focus:before {\n  border-color: #588ee6;\n}\n.form-radio-item:not(#foo) .form-radio:checked + label:after,\n.form-checkbox-item:not(#foo) .form-radio:checked + label:after,\n.form-radio-item:not(#foo) .form-checkbox:checked + label:after,\n.form-checkbox-item:not(#foo) .form-checkbox:checked + label:after {\n  background: none;\n  border-bottom: 3px solid #004b79;\n  border-left: 3px solid #004b79;\n  display: inline-block;\n  transform: rotate(-45deg) !important;\n  height: 9px;\n  width: 18px;\n  top: 0;\n  border-radius: 2px;\n}\n.form-radio-item:not(#foo) .form-radio-other,\n.form-radio-item:not(#foo) .form-checkbox-other {\n  display: inline-block;\n  margin-right: 13px;\n  margin-top: 0px;\n}\n.form-radio-item:not(#foo) .form-radio-item label,\n.form-radio-item:not(#foo) .form-radio-item label {\n  float: left;\n  margin-left: 0;\n  outline: none;\n}\n.form-radio-item:not(#foo) label:before {\n  content: '';\n  position: absolute;\n  display: inline-block;\n  vertical-align: baseline;\n  margin-right: 4px;\n  border-radius: 50%;\n  left: 4px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n}\n.form-radio-item:not(#foo) label:after {\n  content: '';\n  position: absolute;\n  z-index: 10;\n  display: inline-block;\n  top: 4px;\n  left: 8px;\n  width: 10px;\n  height: 10px;\n}\n.form-radio-item:not(#foo) input:checked + label:after {\n  opacity: 1;\n}\n.form-checkbox-item:not(#foo) .form-radio-other,\n.form-checkbox-item:not(#foo) .form-checkbox-other {\n  display: inline-block;\n  margin-right: 13px;\n  margin-top: 0px;\n}\n.form-checkbox-item:not(#foo) .form-radio-item label,\n.form-checkbox-item:not(#foo) .form-radio-item label {\n  float: left;\n  margin-left: 0;\n  outline: none;\n}\n.form-checkbox-item:not(#foo) label:before {\n  content: '';\n  position: absolute;\n  display: inline-block;\n  vertical-align: baseline;\n  margin-right: 4px;\n  border-radius: 2px;\n  left: 4px;\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n}\n.form-checkbox-item:not(#foo) label:after {\n  content: '';\n  position: absolute;\n  z-index: 10;\n  display: inline-block;\n  top: 6px;\n  left: 10px;\n  width: 4px;\n  height: 4px;\n}\n.form-checkbox-item:not(#foo) input:checked + label:after {\n  opacity: 1;\n}\n.form-all .form-submit-button,\n.form-all .form-submit-print {\n  font-size: 16px;\n  font-weight: normal;\n  font-family: \"Tahoma\", sans-serif;\n  border-color: #004b79;\n}\n.form-all .form-submit-button {\n  min-width: 180px;\n}\n.form-all .form-submit-button.js-new-sacl-button,\n.form-all .form-submit-print {\n  min-width: 98px;\n}\n.form-all .form-submit-button {\n  color: #c4dff6;\n  background: #004b79;\n  box-shadow: none;\n  text-shadow: none;\n}\n.form-all .form-pagebreak-back,\n.form-all .form-pagebreak-next {\n  font-family: \"Tahoma\", sans-serif;\n  font-size: 16px;\n  font-weight: normal;\n}\n.form-all .form-pagebreak-back,\n.form-all .form-pagebreak-next {\n  min-width: 128px;\n}\nli[data-type=\"control_image\"] div {\n  text-align: left;\n}\nli[data-type=\"control_image\"] img {\n  border: none;\n  border-width: 0px !important;\n  border-style: solid !important;\n  border-color: false !important;\n}\n.supernova {\n  height: 100%;\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-position: center top;\n  background-repeat: repeat;\n}\n.supernova {\n  background-image: none;\n}\n#stage {\n  background-image: none;\n}\n\/* | *\/\n.form-all {\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-position: center top;\n  background-repeat: repeat;\n}\n.form-header-group {\n  background-repeat: no-repeat;\n  background-attachment: scroll;\n  background-position: center top;\n  background-size: cover;\n}\n.header-large h1.form-header {\n  font-size: 2em;\n}\n.header-large h2.form-header {\n  font-size: 1.5em;\n}\n.header-large h3.form-header {\n  font-size: 1.17em;\n}\n.header-large h1 + .form-subHeader {\n  font-size: 1em;\n}\n.header-large h2 + .form-subHeader {\n  font-size: .875em;\n}\n.header-large h3 + .form-subHeader {\n  font-size: .75em;\n}\n.header-default h1.form-header {\n  font-size: 2em;\n}\n.header-default h2.form-header {\n  font-size: 1.5em;\n}\n.header-default h3.form-header {\n  font-size: 1.17em;\n}\n.header-default h1 + .form-subHeader {\n  font-size: 1em;\n}\n.header-default h2 + .form-subHeader {\n  font-size: .875em;\n}\n.header-default h3 + .form-subHeader {\n  font-size: .75em;\n}\n.header-small h1.form-header {\n  font-size: 2em;\n}\n.header-small h2.form-header {\n  font-size: 1.5em;\n}\n.header-small h3.form-header {\n  font-size: 1.17em;\n}\n.header-small h1 + .form-subHeader {\n  font-size: 1em;\n}\n.header-small h2 + .form-subHeader {\n  font-size: .875em;\n}\n.header-small h3 + .form-subHeader {\n  font-size: .75em;\n}\n.form-header-group {\n  text-align: left;\n}\n.form-header-group {\n  background-image: url(\"https:\/\/www.jotform.com\/uploads\/MariaHermann\/form_files\/aid.png\");\n}\n.form-header-group {\n  font-family: \"Tahoma\", sans-serif;\n}\ndiv.form-header-group.header-large {\n  margin: 0px -38px;\n}\ndiv.form-header-group.header-large {\n  padding: 70px 52px;\n}\n.form-header-group .form-header,\n.form-header-group .form-subHeader {\n  color: #004b79;\n}\n.form-header-group {\n  background-color: ;\n}\n.form-line-error {\n  overflow: hidden;\n  -webkit-transition-property: none;\n  -moz-transition-property: none;\n  -ms-transition-property: none;\n  -o-transition-property: none;\n  transition-property: none;\n  -webkit-transition-duration: 0.3s;\n  -moz-transition-duration: 0.3s;\n  -ms-transition-duration: 0.3s;\n  -o-transition-duration: 0.3s;\n  transition-duration: 0.3s;\n  -webkit-transition-timing-function: ease;\n  -moz-transition-timing-function: ease;\n  -ms-transition-timing-function: ease;\n  -o-transition-timing-function: ease;\n  transition-timing-function: ease;\n  background-color: #fff4f4;\n}\n.form-line-error .form-error-message {\n  background-color: #f23a3c;\n  clear: both;\n  float: none;\n}\n.form-line-error .form-error-message .form-error-arrow {\n  border-bottom-color: #f23a3c;\n}\n.form-line-error input:not(#coupon-input),\n.form-line-error textarea,\n.form-line-error .form-validation-error {\n  border: 1px solid #f23a3c;\n  box-shadow: 0 0 3px #f23a3c;\n}\n.supernova {\n  background-color: #ffffff;\n  background-color: #ecedf3;\n}\n.supernova body {\n  background-color: transparent;\n}\n.supernova .form-all,\n.form-all {\n  background-color: #ffffff;\n}\n.form-textbox,\n.form-textarea,\n.form-radio-other-input,\n.form-checkbox-other-input,\n.form-captcha input,\n.form-spinner input {\n  background-color: #ffffff;\n}\n.form-matrix-table tr {\n  border-color: #e6e6e6;\n}\n.form-matrix-table tr:nth-child(2n) {\n  background-color: #f2f2f2;\n}\n.form-all {\n  color: #2c3345;\n}\n.form-label-top,\n.form-label-left,\n.form-label-right,\n.form-html {\n  color: #2c3345;\n}\n.form-line-error {\n  overflow: hidden;\n  -webkit-transition-property: none;\n  -moz-transition-property: none;\n  -ms-transition-property: none;\n  -o-transition-property: none;\n  transition-property: none;\n  -webkit-transition-duration: 0.3s;\n  -moz-transition-duration: 0.3s;\n  -ms-transition-duration: 0.3s;\n  -o-transition-duration: 0.3s;\n  transition-duration: 0.3s;\n  -webkit-transition-timing-function: ease;\n  -moz-transition-timing-function: ease;\n  -ms-transition-timing-function: ease;\n  -o-transition-timing-function: ease;\n  transition-timing-function: ease;\n  background-color: #fff4f4;\n}\n\n\/*PREFERENCES STYLE*\/\n    .form-all {\n      font-family: Tahoma, sans-serif;\n    }\n    .form-all .qq-upload-button,\n    .form-all .form-submit-button,\n    .form-all .form-submit-reset,\n    .form-all .form-submit-print {\n      font-family: Tahoma, sans-serif;\n    }\n    .form-all .form-pagebreak-back-container,\n    .form-all .form-pagebreak-next-container {\n      font-family: Tahoma, sans-serif;\n    }\n    .form-header-group {\n      font-family: Tahoma, sans-serif;\n    }\n    .form-label {\n      font-family: Tahoma, sans-serif;\n    }\n  \n    .form-label.form-label-auto {\n      \n    display: block;\n    float: none;\n    text-align: left;\n    width: 100%;\n  \n    }\n  \n    .form-line {\n      margin-top: 12px;\n      margin-bottom: 12px;\n    }\n  \n    .form-all {\n      max-width: 752px;\n      width: 100%;\n    }\n  \n    .form-label.form-label-left,\n    .form-label.form-label-right,\n    .form-label.form-label-left.form-label-auto,\n    .form-label.form-label-right.form-label-auto {\n      width: 230px;\n    }\n  \n    .form-all {\n      font-size: 16px\n    }\n    .form-all .qq-upload-button,\n    .form-all .qq-upload-button,\n    .form-all .form-submit-button,\n    .form-all .form-submit-reset,\n    .form-all .form-submit-print {\n      font-size: 16px\n    }\n    .form-all .form-pagebreak-back-container,\n    .form-all .form-pagebreak-next-container {\n      font-size: 16px\n    }\n  \n    .supernova .form-all, .form-all {\n      background-color: #d7d7d8;\n    }\n  \n    .form-all {\n      color: #7f181b;\n    }\n    .form-header-group .form-header {\n      color: rgb(0, 75, 121);\n    }\n    .form-header-group .form-subHeader {\n      color: #7f181b;\n    }\n    .form-label-top,\n    .form-label-left,\n    .form-label-right,\n    .form-html,\n    .form-checkbox-item label,\n    .form-radio-item label {\n      color: #7f181b;\n    }\n    .form-sub-label {\n      color: #993235;\n    }\n  \n    .supernova {\n      background-color: #56a0d3;\n    }\n    .supernova body {\n      background: transparent;\n    }\n  \n    .form-textbox,\n    .form-textarea,\n    .form-dropdown,\n    .form-radio-other-input,\n    .form-checkbox-other-input,\n    .form-captcha input,\n    .form-spinner input {\n      background-color: #fff;\n    }\n  \n    .supernova {\n      background-image: none;\n    }\n    #stage {\n      background-image: none;\n    }\n  \n    .form-all {\n      background-image: none;\n    }\n  \n  .ie-8 .form-all:before { display: none; }\n  .ie-8 {\n    margin-top: auto;\n    margin-top: initial;\n  }\n  \n  \/*PREFERENCES STYLE*\/\/*__INSPECT_SEPERATOR__*\/\n.form-section.page-section {\n    border : 5px solid #004b79;\n}\n\n.form-header-group.header-large {\n    border-bottom : 5px solid #004b79;\n}\n.form-all {\n    box-shadow : 0 9px 20px rgba(42, 42, 42);\n}\n","isEncrypted":"No","isPaymentStoreInBasicFields":"0","labelWidth":"230","lastQuestionID":"27","limitSubmission":"No Limit","lineSpacing":"12","messageOfLimitedForm":"This form is currently unavailable!","mobileGoButton":"enable","newPaymentUIForNewCreatedForms":"Yes","optioncolor":"#000","pageColor":"#ecedf3","pagetitle":"Auto Evaluaci\u00f3n","pageTitleChanged":"No","preventCloningForm":"Yes","responsive":"No","sendpostdata":"No","showJotFormLogo":"No","showProgressBar":"disable","styleJSON":{"@fontFamily":"Tahoma","@fontSize":"16","@labelAlign":"Top","@labelWidth":"230","@formWidth":"752","@clrText":"#7f181b","@selectedScheme":"false","@clrBg":"#56a0d3","@clrFrame":"#d7d7d8","@clrInput":"#fff","@clrActive":"#F1F5FF","@clrErrorBg":"#FFF4F4","@clrLabel":"#7f181b","@lineSpacing":"12","@clrTextInputBg":"#fff","@fontType":"system","@fontLink":"","@formControlStyle":"ctrl-9","@clrHeaderBg":"","@headerbgURL":"https:\/\/www.jotform.com\/uploads\/MariaHermann\/form_files\/aid.png","@headerBgCover":"true","@headerPaddingVer":"70","@clrHeader":"rgb(0, 75, 121)","@okColor":"rgb(0, 75, 121)","@buttonCustomPriority":"custom","@clrButtonBg":"rgb(0, 75, 121)","@clrButtonBorder":"rgb(0, 75, 121)","@clrButton":"rgb(196, 223, 246)","@injectCSSImports":[],"@formCover":"1","@formCoverImg":"https:\/\/www.jotform.com\/uploads\/rxfitmind\/form_files\/Screenshot_2024-10-25_4.21.53_PM-removebg-preview.671baddda04b42.09038873.png","@formCoverImgWidth":442,"@formCoverImgHeight":127,"@formCoverPosition":"Top","@formCoverTopPosition":"Center","@formCoverBottomMargin":32},"styles":"nova","submitError":"jumpToFirstError","thanktext":"<div class=\"wrapper\" contenteditable=\"false\">\n<div class=\"col-1\" contenteditable=\"false\"><img class=\"tyBgImage\" src=\"https:\/\/cdn.jotfor.ms\/img\/Thankyou-iconV2.png?v=0.1\" alt=\"thank you icon\"><\/div>\n<div class=\"col-2\" contenteditable=\"true\">\n<div class=\"thankyou-wrapper\">\n<p class=\"thank-you-icon\" style=\"text-align: center;\"><img class=\"notActiveTyIcon\" style=\"display: none;\" src=\"https:\/\/cdn.jotfor.ms\/img\/Thankyou-iconV2.png?v=0.1\" alt=\"\" width=\"153\" height=\"156\"><\/p>\n<div style=\"text-align: center;\">\n<h1 class=\"thankyou-main-text ty-text\" style=\"text-align: center;\">Gracias!\ud83e\udd73<\/h1>\n<p class=\"thankyou-sub-text ty-text\" style=\"text-align: center;\">Revise el correo electr\u00f3nico provisto para sus resultados.<\/p>\n<p class=\"thankyou-sub-text ty-text\" style=\"text-align: center;\">&nbsp;<\/p>\n<\/div>\n<\/div>\n<div class=\"nonEditableInvisable\" contenteditable=\"false\">\n<div class=\"thankYouButtonWrapper notActive \" style=\"display: none;\" contenteditable=\"false\">\n<div class=\"thankYouFillAgain thankYouFillAgainWrapper tyWrapper notActive newActionButtons\" style=\"display: none;\" contenteditable=\"false\">\n<div class=\"thankyou-btn-wrapper\" contenteditable=\"false\"><a class=\"ty-buttons thankYouFillAgain\" style=\"color: false; background-color: false; border-color: false; text-decoration: none;\" contenteditable=\"false\" href=\"\/242984459783375\"> Fill Again <\/a><\/div>\n<div class=\"settingButonWrapper\">&nbsp;<\/div>\n<\/div>\n<div class=\"thankYouEditSubmission thankYouEditSubmissionWrapper tyWrapper notActive newActionButtons\" style=\"display: none;\" contenteditable=\"false\">\n<div class=\"thankyou-btn-wrapper\" contenteditable=\"false\"><a class=\"ty-buttons thankYouEditSubmission\" style=\"text-decoration: none; border-color: false;\" contenteditable=\"false\" href=\"{edit_link_v2}\"> Edit Submission <\/a><\/div>\n<div class=\"settingButonWrapper\">&nbsp;<\/div>\n<\/div>\n<div class=\"thankYouViewCompletedTask thankYouViewCompletedTaskWrapper tyWrapper notActive newActionButtons\" style=\"display: none;\" contenteditable=\"false\">\n<div class=\"thankyou-btn-wrapper\" contenteditable=\"false\"><a class=\"ty-buttons thankYouViewCompletedTask\" style=\"text-decoration: none; border-color: #0075E3; background-color: #0075e3; color: #fff; font-weight: 500;\" contenteditable=\"false\" href=\"{view_completed_task}\"> View your completed task <\/a><\/div>\n<div class=\"settingButonWrapper\">&nbsp;<\/div>\n<\/div>\n<\/div>\n<\/div>\n<\/div>\n<\/div>\n<div class=\"nonEditableInvisable isFillAnotherForm notActive\" style=\"display: none;\" contenteditable=\"false\">&nbsp;<\/div>\n<div class=\"nonEditableInvisable isPDF notActive\" style=\"display: none;\" contenteditable=\"false\">\n<div class=\"thankYouDownloadPDF thankYouDownloadPDFWrapper tyWrapper notActive\" style=\"border-top: 1px solid false; display: none;\" contenteditable=\"false\">\n<ul class=\"thankYouPDFList\" contenteditable=\"false\">\n<li class=\"downloadPDFItem downloadPDFItem-10242984514890063 notActive newActionButtons\" style=\"display: none;\" title=\"New Document\" contenteditable=\"false\">\n<div class=\"pdf-image-wrapper\" contenteditable=\"false\"><span class=\"pdf-SVG\" contenteditable=\"false\">&nbsp;<\/span><\/div>\n<div class=\"pdf-name-wrapper\" contenteditable=\"false\"><span class=\"pdf-name\" contenteditable=\"false\">{id}.pdf<\/span><\/div>\n<div class=\"thankyou-btn-wrapper\" contenteditable=\"false\"><a class=\"ty-buttons thankYouDownloadPDF\" style=\"text-decoration: none; border-color: false;\" contenteditable=\"false\" href=\"{new-pdf-link|10242984514890063}\"> Download PDF <\/a><\/div>\n<div class=\"settingButonWrapper\">&nbsp;<\/div>\n<\/li>\n<\/ul>\n<\/div>\n<\/div>\n<div class=\"nonEditableInvisable isVisitURL active\" style=\"display: flex;\" contenteditable=\"false\">\n<div class=\"thankYouVisitURL thankYouVisitURLFormWrapper tyWrapper active\" style=\"border-top: 1px solid;\" contenteditable=\"false\">\n<ul class=\"thankYouVisitURLFormList\" contenteditable=\"false\">\n<li class=\"visitURLItem newActionButtons\" title=\"FitMind Rx - Transformaci\u00f3n Integral\" contenteditable=\"false\"><a class=\"thankYouVisitURL\" contenteditable=\"false\" href=\"https:\/\/www.fitmindrx.online\" target=\"_blank\" rel=\"noopener noreferrer\">   <span class=\"visitURL-context\" contenteditable=\"false\"> <span class=\"visitURL-name\">FitMind Rx - Transformaci\u00f3n Integral<\/span> <span class=\"visitURL-description\">https:\/\/www.fitmindrx.online<\/span> <\/span> <\/a>\n<div class=\"settingButonWrapper\">&nbsp;<\/div>\n<\/li>\n<\/ul>\n<\/div>\n<\/div>","thankurl":"https:\/\/www.fitmindrx.online","thankYouDownloadPDF":"No","thankYouEditSubmission":"No","thankYouFillAgain":"No","thankYouIconSrc":"https:\/\/cdn.jotfor.ms\/img\/Thankyou-iconV2.png?v=0.1","thankYouImageSrc":"https:\/\/cdn.jotfor.ms\/assets\/img\/thankYou\/backgrounds\/defaults\/fullPage.png","thankYouPageLayout":"smallImageUp","thankYouSelectedPDFs":"No","thankYouVisitURL":"Yes","thankYouVisitURLImageSource":"","thankYouVisitURLPageURL":"https:\/\/www.fitmindrx.online","thankYouVisitURLText":"FitMind Rx - Transformaci\u00f3n Integral","themeID":"5e6b428acc8c4e222d1beb91","unique":"None","uniqueField":"<Field Id>","usesNewPDF":"Yes","v4":"1","calculations":[{"allowZeroCopy":"1","decimalPlaces":"0","equation":"[{3}+{4}+{5}+{6}+{7}+{8}+{9}+{10}+{11}+{12}+{16}]","ignoreHiddenFields":"0","insertAsText":"0","newCalculationType":"1","operands":"3,4,5,6,7,8,9,10,11,12,16","readOnly":"1","replaceText":"","resultField":"16","showBeforeInput":"0","showEmptyDecimals":"0","useCommasForDecimals":"0"},{"allowZeroCopy":"1","decimalPlaces":"2","equation":"[{3}+{4}+{5}+{6}+{7}+{8}+{9}+{10}+{11}+{12}]","ignoreHiddenFields":"0","insertAsText":"0","newCalculationType":"1","operands":"3,4,5,6,7,8,9,10,11,12","readOnly":"0","replaceText":"","resultField":"23","showBeforeInput":"0","showEmptyDecimals":"0","useCommasForDecimals":"0"}],"conditions":[{"action":[{"id":"action_1729882013513","visibility":"ShowMultiple","isError":false,"fields":["24","14","25"]}],"id":"1729882039111","index":"0","link":"Any","priority":"0","terms":[{"id":"term_1729882013513","field":"17","operator":"isFilled","value":"","isError":false}],"type":"field"}],"emails":[{"body":"<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"x-apple-disable-message-reformatting\"><style>\n                    .forward-text-show {\n                        display: block !important;\n                        color: #0a1551 !important;\n                        text-align: center!important; \n                        font-size: 13px!important;\n                    }\n                    .line-show {\n                        display: table-row !important;\n                    }\n                    .forward-link-show {\n                        display : inline-block !important;\n                        color: #4573E3 !important;\n                        text-decoration: underline !important;\n                        cursor: none !important;\n                    }\n                    table {\n                        border-spacing: 0 !important;\n                        border-collapse: collapse !important;\n                        margin: 0 auto !important;\n                    }\n                    table, td {\n                        border-spacing: 0 !important;\n                        border-collapse:collapse !important;\n                    }\n                    @media screen and (max-device-width: 700px), screen and (max-width: 700px) {\n                        .email-container {\n                            width: 100% !important;\n                            margin: auto !important;\n                        }\n                        .mobile-padding-fix {\n                            padding-left: 15px !important;\n                            padding-right: 15px !important;\n                        }\n                    }\n                    @media screen and (max-device-width: 480px), screen and (max-width: 480px) {\n                        td.questionColumn, td.valueColumn, td.footerCol1, td.footerCol2 {\n                            display: block !important;\n                            width: 100% !important;\n                        }\n                        td.questionColumn {\n                            padding: 0 !important;\n                        }\n                        td.valueColumn {\n                            padding: 4px 0 16px !important;\n                        }\n                        td.footerCol1, td.footerCol2 {\n                            text-align: center !important;\n                        }\n                        td.footerCol1 {\n                            padding-bottom: 16px\n                        }\n                        .mobile-column tr{ \n                            display:table-row;\n                            text-align: center!important;\n                            float: none!important;\n                            margin: 0 auto!important;\n                            max-width:100%!important;\n                        }\n                        .mobile-column td{ \n                            display:block;\n                            text-align: center!important;\n                            float: none!important;\n                            margin: 0 auto!important;\n                            max-width:100%!important;\n                        }\n                        .mobile-column .column-1{ \n                           padding:10px 0 0 0!important;\n                        }\n                        .mobile-column .column-2{ \n                           padding:0 0 10px 0!important\n                        }\n                        .mobile-column td .text-1{ \n                            padding-top:10px!important;\n                            text-align: center!important;\n                        }\n                        .mobile-column td .text-2{ \n                            text-align: center!important;\n                        }\n                        .mobile-column td .counter{ \n                            width:55px!important;\n                            height:55px!important;\n                            min-height:55px!important;\n                            max-height:55px!important;\n                            text-align: center!important;\n                            margin:0 auto!important;\n                            font-size: 14px!important;\n                            line-height: 55px!important;\n                        }\n                        .mobile-column .upgrade-now-btn{ \n                            margin: 0 auto!important;\n                            display: inline-block!important;\n                            text-align: center!important;\n                            float: none!important;\n                            min-width: initial!important;\n                        }\n                        .mobile-column .column-1{ \n                           border:0!important;\n                        }\n                    }\n                <\/style><meta charset=\"utf-8\"><\/head><body>\n                <div class=\"body\" style=\"width: 100%; margin: 0 auto !important; padding: 0 !important; mso-line-height-rule: exactly; background-color: #F3F3FE;\">\n                    <table align=\"center\" border=\"0\" width=\"720\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#F3F3FE\" style=\"width: 720px; text-align: center;\" class=\"email-container body-bg\"><tbody><tr><td height=\"36\">&#xA0;<\/td>\n                            <\/tr><tr><td align=\"center\" class=\"mobile-padding-fix\" style=\"padding: 0 40px;\">\n                                    <table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#F3F3FE\" style=\"width: 100%;\"><tbody><tr><td height=\"40\" align=\"center\">\n                                <img height=\"40\" style=\"display: block; height: 40px;\" src=\"https:\/\/cdn.jotfor.ms\/assets\/img\/logo2021\/jotform-logo.png\" alt=\"Jotform Logo\"><\/td>\n                        <\/tr><tr><td height=\"28\">&#xA0;<\/td>\n                        <\/tr><tr><td height=\"8\" bgcolor=\"#FF6100\" style=\"line-height: 0; font-size: 0; border-radius: 4px 4px 0 0;\">&#xA0;<\/td>\n                        <\/tr><tr><td><table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#FFFFFF\" style=\"width: 100%;\"><tr><td colspan=\"3\" height=\"16\" style=\"line-height: 0; font-size: 0;\">&#xA0;<\/td>\n            <\/tr><tr><td width=\"36\">&#xA0;<\/td>\n                <td valign=\"middle\" align=\"left\">\n                    <h3 style=\"display: inline-block; vertical-align: middle; margin: 0; font-size: 18px; font-weight: 700; color: #0A1551; font-family: Helvetica, sans-serif;\">{form_title}<\/h3>\n                <\/td>\n                <td width=\"36\">&#xA0;<\/td>\n            <\/tr><tr><td width=\"36\">&#xA0;<\/td>\n                <td height=\"16\" style=\"border-bottom: 1px solid #ECEDF2; line-height: 0; font-size: 0;\">&#xA0;<\/td>\n                <td width=\"36\">&#xA0;<\/td>\n            <\/tr><\/table><\/td>\n                        <\/tr><\/tbody><\/table><table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#FFFFFF\" style=\"width: 100%; border-radius: 0 0 4px 4px;\"><tbody><tr><td colspan=\"3\" height=\"24\">&#xA0;<\/td>\n                                            <\/tr><tr><td width=\"36\">&#xA0;<\/td>\n                                                <td align=\"center\">\n                                                    <table id=\"emailFieldsTable\" class=\"mceNonEditable\" border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\" style=\"font-size: 14px; font-family:Helvetica, sans-serif;\"><tbody id=\"emailFieldsTableBody\"><tr id=\"row_3\" class=\"questionRow\"><\/tr><tr id=\"row_4\" class=\"questionRow\"><\/tr><tr id=\"row_5\" class=\"questionRow\"><\/tr><tr id=\"row_6\" class=\"questionRow\"><\/tr><tr id=\"row_7\" class=\"questionRow\"><\/tr><tr id=\"row_8\" class=\"questionRow\"><\/tr><tr id=\"row_9\" class=\"questionRow\"><\/tr><tr id=\"row_10\" class=\"questionRow\"><\/tr><tr id=\"row_11\" class=\"questionRow\"><\/tr><tr id=\"row_12\" class=\"questionRow\"><\/tr><tr id=\"row_23\" class=\"questionRow\"><td id=\"question_23\" class=\"questionColumn\" bgcolor=\"white\" style=\"padding:5px !important;\" valign=\"top\" width=\"170\">Resultado de auto evaluaci&#xF3;n<\/td><td id=\"value_23\" class=\"valueColumn\" bgcolor=\"white\" style=\"padding:5px !important;\">{calculation}<\/td><\/tr><tr id=\"row_17\" class=\"questionRow\"><td id=\"question_17\" class=\"questionColumn\" bgcolor=\"#f3f3f3\" style=\"padding:5px !important;\" valign=\"top\" width=\"170\">Terms and Conditions<\/td><td id=\"value_17\" class=\"valueColumn\" bgcolor=\"#f3f3f3\" style=\"padding:5px !important;\">{typeA}<\/td><\/tr><tr id=\"row_24\" class=\"questionRow\"><td id=\"question_24\" class=\"questionColumn\" bgcolor=\"white\" style=\"padding:5px !important;\" valign=\"top\" width=\"170\">Name<\/td><td id=\"value_24\" class=\"valueColumn\" bgcolor=\"white\" style=\"padding:5px !important;\">{name}<\/td><\/tr><tr id=\"row_14\" class=\"questionRow\"><td id=\"question_14\" class=\"questionColumn\" bgcolor=\"#f3f3f3\" style=\"padding:5px !important;\" valign=\"top\" width=\"170\">Su correo electr&#xF3;nico<\/td><td id=\"value_14\" class=\"valueColumn\" bgcolor=\"#f3f3f3\" style=\"padding:5px !important;\">{email}<\/td><\/tr><tr id=\"row_25\" class=\"questionRow\"><td id=\"question_25\" class=\"questionColumn\" bgcolor=\"white\" style=\"padding:5px !important;\" valign=\"top\" width=\"170\">Phone Number<\/td><td id=\"value_25\" class=\"valueColumn\" bgcolor=\"white\" style=\"padding:5px !important;\">{phoneNumber}<\/td><\/tr><\/tbody><\/table><\/td>\n                                        <td width=\"36\">&#xA0;<\/td>\n                                    <\/tr><tr><td colspan=\"3\" height=\"24\">&#xA0;<\/td>\n                                    <\/tr><\/tbody><\/table><\/td>\n                    <\/tr><tr><td align=\"center\" class=\"mobile-padding-fix\" style=\"padding: 0 40px;\">\n                            <table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#FFFFFF\" style=\"font-family:Helvetica, sans-serif; border-radius: 0 0 4px 4px;\"><tr><td width=\"36\">&#xA0;<\/td>\n                                    <td height=\"20\" style=\"border-top: 1px solid #ECEDF2;\">&#xA0;<\/td>\n                                    <td width=\"36\">&#xA0;<\/td>\n                                <\/tr><tr class=\"line-show\" style=\"display: none;\"><td width=\"36\">&#xA0;<\/td>\n                                    <td class=\"forward-text-show\" style=\"display: none; font-size: 13px; text-align: center; color: #0a1551;\">\n                                        You can <span style=\"color: #4573E3;\">{edit_submission}<\/span> and <span style=\"color: #4573E3;\">{all_submissions}<\/span> easily.\n                                    <\/td>\n                                    <td width=\"36\">&#xA0;<\/td>\n                                <\/tr><tr class=\"line-show\" style=\"display: none;\"><td colspan=\"3\" height=\"20\">&#xA0;<\/td>\n                                <\/tr><\/table><\/td>\n                        <\/tr><tr><td height=\"30\">&#xA0;<\/td>\n                        <\/tr><\/tbody><\/table><\/div>\n        \n    <\/body><\/html>\n","dirty":"","dirtyEmail":"1","disabled":"0","from":"default|default","hideEmptyFields":"1","html":"1","lastQuestionID":"25","name":"Notification 1","pdfattachment":"0","replyTo":"{email}","sendOnEdit":"1","sendOnSubmit":"1","subject":"Re: {form_title}","to":"rxfitmind@gmail.com","type":"notification","uniqueID":"242984003727055","updateEmail":"1","uploadAttachment":"0"},{"body":"<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"x-apple-disable-message-reformatting\"><style>\n                    .forward-text-show {\n                        display: block !important;\n                        color: #0a1551 !important;\n                        text-align: center!important; \n                        font-size: 13px!important;\n                    }\n                    .line-show {\n                        display: table-row !important;\n                    }\n                    .forward-link-show {\n                        display : inline-block !important;\n                        color: #4573E3 !important;\n                        text-decoration: underline !important;\n                        cursor: none !important;\n                    }\n                    table {\n                        border-spacing: 0 !important;\n                        border-collapse: collapse !important;\n                        margin: 0 auto !important;\n                    }\n                    table, td {\n                        border-spacing: 0 !important;\n                        border-collapse:collapse !important;\n                    }\n                    @media screen and (max-device-width: 700px), screen and (max-width: 700px) {\n                        .email-container {\n                            width: 100% !important;\n                            margin: auto !important;\n                        }\n                        .mobile-padding-fix {\n                            padding-left: 15px !important;\n                            padding-right: 15px !important;\n                        }\n                    }\n                    @media screen and (max-device-width: 480px), screen and (max-width: 480px) {\n                        td.questionColumn, td.valueColumn, td.footerCol1, td.footerCol2 {\n                            display: block !important;\n                            width: 100% !important;\n                        }\n                        td.questionColumn {\n                            padding: 0 !important;\n                        }\n                        td.valueColumn {\n                            padding: 4px 0 16px !important;\n                        }\n                        td.footerCol1, td.footerCol2 {\n                            text-align: center !important;\n                        }\n                        td.footerCol1 {\n                            padding-bottom: 16px\n                        }\n                        .mobile-column tr{ \n                            display:table-row;\n                            text-align: center!important;\n                            float: none!important;\n                            margin: 0 auto!important;\n                            max-width:100%!important;\n                        }\n                        .mobile-column td{ \n                            display:block;\n                            text-align: center!important;\n                            float: none!important;\n                            margin: 0 auto!important;\n                            max-width:100%!important;\n                        }\n                        .mobile-column .column-1{ \n                           padding:10px 0 0 0!important;\n                        }\n                        .mobile-column .column-2{ \n                           padding:0 0 10px 0!important\n                        }\n                        .mobile-column td .text-1{ \n                            padding-top:10px!important;\n                            text-align: center!important;\n                        }\n                        .mobile-column td .text-2{ \n                            text-align: center!important;\n                        }\n                        .mobile-column td .counter{ \n                            width:55px!important;\n                            height:55px!important;\n                            min-height:55px!important;\n                            max-height:55px!important;\n                            text-align: center!important;\n                            margin:0 auto!important;\n                            font-size: 14px!important;\n                            line-height: 55px!important;\n                        }\n                        .mobile-column .upgrade-now-btn{ \n                            margin: 0 auto!important;\n                            display: inline-block!important;\n                            text-align: center!important;\n                            float: none!important;\n                            min-width: initial!important;\n                        }\n                        .mobile-column .column-1{ \n                           border:0!important;\n                        }\n                    }\n                <\/style><meta charset=\"utf-8\"><\/head><body>\n<div class=\"body\" style=\"width: 100%; margin: 0 auto !important; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f3f3fe;\"><a href=\"https:\/\/www.fitmindrx.online\" target=\"_blank\" rel=\"noopener noreferrer\">https:\/\/www.fitmindrx.online<\/a>\n<table class=\"email-container body-bg\" style=\"width: 720px; text-align: center;\" border=\"0\" width=\"720\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" bgcolor=\"#F3F3FE\"><tbody><tr><td height=\"36\">&#xA0;<\/td>\n<\/tr><tr><td class=\"mobile-padding-fix\" style=\"padding: 0 40px;\" align=\"center\">\n<table style=\"width: 100%;\" border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#FFFFFF\"><tbody><tr><td style=\"line-height: 0; font-size: 0; border-radius: 4px 4px 0 0;\" colspan=\"3\" bgcolor=\"#FF6100\" height=\"8\">&#xA0;<\/td>\n<\/tr><tr><td width=\"36\">&#xA0;<\/td>\n<td><img src=\"https:\/\/www.jotform.com\/uploads\/rxfitmind\/form_files\/Screenshot%202024-10-25%204.21.53%20PM.671bada14d5678.29155334.png\" alt=\"\"><\/td>\n<td width=\"36\">&#xA0;<\/td>\n<\/tr><\/tbody><\/table><table style=\"width: 100%; border-radius: 0 0 4px 4px;\" border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#FFFFFF\"><tbody><tr><td colspan=\"3\" height=\"24\">&#xA0;<\/td>\n<\/tr><tr><td width=\"36\">&#xA0;<\/td>\n<td align=\"center\">\n<table id=\"emailFieldsTable\" class=\"mceNonEditable\" style=\"font-size: 14px; font-family: Helvetica, sans-serif;\" border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\"><tbody id=\"emailFieldsTableBody\"><tr id=\"row_3\" class=\"questionRow\"><td id=\"question_3\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">1. &#xBF;C&#xF3;mo te describir&#xED;as en situaciones de estr&#xE9;s o presi&#xF3;n?<\/td><td id=\"value_3\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{1When}<\/td><\/tr><tr id=\"row_4\" class=\"questionRow\"><td id=\"question_4\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">2. &#xBF;Cu&#xE1;ntas veces a la semana te tomas un momento para reflexionar o meditar?<\/td><td id=\"value_4\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{2When}<\/td><\/tr><tr id=\"row_5\" class=\"questionRow\"><td id=\"question_5\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">3. &#xBF;C&#xF3;mo te relacionas con tus pensamientos y emociones?<\/td><td id=\"value_5\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{3What}<\/td><\/tr><tr id=\"row_6\" class=\"questionRow\"><td id=\"question_6\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">4. &#xBF;Te gustar&#xED;a mejorar tu capacidad para estar presente en el momento?<\/td><td id=\"value_6\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{4What}<\/td><\/tr><tr id=\"row_7\" class=\"questionRow\"><td id=\"question_7\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">5. &#xBF;Has notado cambios en tu estado de &#xE1;nimo o bienestar general en las &#xFA;ltimas semanas?<\/td><td id=\"value_7\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{5When}<\/td><\/tr><tr id=\"row_8\" class=\"questionRow\"><td id=\"question_8\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">6. &#xBF;Con qu&#xE9; frecuencia realizas actividad f&#xED;sica (ejercicio, deporte, caminata intensa)?<\/td><td id=\"value_8\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{6When}<\/td><\/tr><tr id=\"row_9\" class=\"questionRow\"><td id=\"question_9\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">7. &#xBF;Cu&#xE1;l es tu nivel de comodidad al realizar ejercicio f&#xED;sico intenso?<\/td><td id=\"value_9\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{7What}<\/td><\/tr><tr id=\"row_10\" class=\"questionRow\"><td id=\"question_10\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">8. &#xBF;Has visto cambios en tu condici&#xF3;n f&#xED;sica en los &#xFA;ltimos meses (fuerza, resistencia, flexibilidad)?<\/td><td id=\"value_10\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{8How}<\/td><\/tr><tr id=\"row_11\" class=\"questionRow\"><td id=\"question_11\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">9. &#xBF;Cu&#xE1;l es tu dieta habitual como?<\/td><td id=\"value_11\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{9When}<\/td><\/tr><tr id=\"row_12\" class=\"questionRow\"><td id=\"question_12\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">10. &#xBF;Te gustar&#xED;a mejorar tu estado f&#xED;sico general (fuerza, resistencia, salud)?<\/td><td id=\"value_12\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{10If}<\/td><\/tr><tr id=\"row_23\" class=\"questionRow\"><td id=\"question_23\" class=\"questionColumn\" style=\"padding: 12px 4px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">Resultado de auto evaluaci&#xF3;n<\/td><td id=\"value_23\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" width=\"70%\">{calculation}<\/td><\/tr><tr id=\"row_17\" class=\"questionRow\"><td id=\"question_17\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">Terms and Conditions<\/td><td id=\"value_17\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{typeA}<\/td><\/tr><tr id=\"row_24\" class=\"questionRow\"><td id=\"question_24\" class=\"questionColumn\" style=\"padding: 12px 4px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">Name<\/td><td id=\"value_24\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" width=\"70%\">{name}<\/td><\/tr><tr id=\"row_14\" class=\"questionRow\"><td id=\"question_14\" class=\"questionColumn\" style=\"padding: 12px 8px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">Su correo electr&#xF3;nico<\/td><td id=\"value_14\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" valign=\"top\" width=\"70%\">{email}<\/td><\/tr><tr id=\"row_25\" class=\"questionRow\"><td id=\"question_25\" class=\"questionColumn\" style=\"padding: 12px 4px 12px 0; color: #6f76a7;\" valign=\"top\" width=\"30%\">Phone Number<\/td><td id=\"value_25\" class=\"valueColumn\" style=\"padding: 12px 0; color: #0a1551; font-weight: 500;\" width=\"70%\">{phoneNumber}<\/td><\/tr><\/tbody><\/table><\/td>\n<td width=\"36\">&#xA0;<\/td>\n<\/tr><tr><td colspan=\"3\" height=\"24\">&#xA0;<\/td>\n<\/tr><\/tbody><\/table><table id=\"autoresponder-footer\" style=\"font-family: Helvetica, sans-serif;\" border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"0\"><tbody><tr><td bgcolor=\"#F3F3FE\" height=\"16\">\n<p><strong>Resultado de auto evaluaci&#xF3;n:<\/strong><\/p>\n<p>{calculation}<\/p>\n<p>&#xA0;<\/p>\n<p>Mindfulness &amp; Fitness Level: Resultados&#xA0;<\/p>\n<p><strong>Niveles de Bienestar (puntuaci&#xF3;n<span style=\"color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: #f3f3fe; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;\">:70 &#xF3; menos)<\/span><\/strong><\/p>\n<p>Novato :<br>Recomendaci&#xF3;n: Comienza con pr&#xE1;cticas b&#xE1;sicas de mindfulness y establece un rutina de ejercicio regular.&#xA0;<\/p>\n<p><strong>Intermedio (puntuaci&#xF3;n:70-85)<\/strong><\/p>\n<p>Recomendaci&#xF3;n: Contin&#xFA;a mejorando tus habilidades de mindfulness y ejercicio, explorando nuevos desaf&#xED;os en ambos &#xE1;reas.<\/p>\n<p><br><strong>Avanzado (puntuaci&#xF3;n 86-100):<\/strong><br>Recomendaci&#xF3;n:<\/p>\n<p>Mant&#xE9;n y refina tus pr&#xE1;cticas de mindfulness y ejercicio, explorando metas de bienestar integral avanzadas.&#xA0;<\/p>\n<p>*********************************************<\/p>\n<p><span style=\"font-size: 12pt;\"><strong><span style=\"color: #001af5;\">En<\/span> FitMind <span style=\"color: #75fb4c;\">Rx<\/span> <span style=\"color: #001af5;\">te ayudamos a lograr tus metas de transformaci&#xF3;n integral con planes y programas de mindfulness, complementados con rutinas de ejercicio y nutrici&#xF3;n.<\/span><\/strong><\/span><\/p>\n<p>*********************************************<\/p>\n<p><span style=\"color: #ea3223;\">Recuerda:<\/span><br><span style=\"color: #ea3223;\">&#xA0;*Estos resultados son una gu&#xED;a para el crecimiento personal y el bienestar.<\/span><br><span style=\"color: #ea3223;\">* La mejora continua es clave; celebra tus logros y enfrenta nuevos desaf&#xED;os.<\/span><br><span style=\"color: #ea3223;\">* Para un asesoramiento personalizado y detallado, considera consultar con profesionales en mindfullness y fitness.<\/span><\/p>\n<p>&#xA0;<\/p>\n<p style=\"text-align: center;\"><span style=\"font-size: 24pt;\"><strong><a href=\"https:\/\/www.fitmindrx.online\" target=\"_blank\" rel=\"noopener noreferrer\">&#xA0;www.fitmindrx.com<\/a><\/strong><\/span><\/p>\n<p style=\"text-align: left;\"><span style=\"font-size: 10pt;\"><strong>customer ID #&#xA0;{id}<\/strong><\/span><\/p>\n<\/td>\n<td bgcolor=\"#F3F3FE\">&#xA0;<\/td>\n<\/tr><tr><td class=\"footerCol1\" style=\"text-align: left;\"><a style=\"border: 0; text-decoration: none; color: #556681; font-size: 14px;\" href=\"https:\/\/www.jotform.com\/?utm_source=emailfooter&amp;utm_medium=email&amp;utm_term=242984459783375&amp;utm_content=email_footer_text&amp;utm_campaign=autoresponder_email_footer_new_cf_old\" target=\"_blank\" rel=\"noopener noreferrer\"> Now create your own Jotform - <span style=\"color: #ababab;\"> It&#x2019;s free! <\/span> <\/a><\/td>\n<td class=\"footerCol2\" style=\"text-align: right;\">&#xA0;<\/td>\n<\/tr><\/tbody><\/table><\/td>\n<\/tr><tr><td height=\"30\">&#xA0;<\/td>\n<\/tr><\/tbody><\/table><\/div>\n<\/body><\/html>\n","branding21Email":"1","dirty":"1","dirtyEmail":"1","disabled":"0","from":"smtp:77242984483239065|FitMind Rx","hideEmptyFields":"1","html":"1","lastQuestionID":"25","name":"Autoresponder 1","pdfattachment":"0","replyTo":"rxfitmind@gmail.com","sendOnEdit":"0","sendOnSubmit":"1","subject":"FitMind Rx resultados auto evaluaci\u00f3n","to":"{email}","type":"autorespond","uniqueID":"242984634520056","updateEmail":"1"}],"language":[{"detectUserLanguage":"1","firstPageOnly":"0","options":"English (US)","originalLanguage":"en","primaryLanguage":"en","saveUserLanguage":"1","showStatus":"flag-with-nation","theme":"light-theme","version":"2"}],"submissionSettings":[],"integrations":[],"slug":"242984459783375","id":"242984459783375","owner":"rxfitmind","count":"9","title":"Auto Evaluaci\u00f3n","height":"0","status":"ENABLED","type":"LEGACY","formOwnerAccountType":"FREE","formOwnerName":"Dr Carlos","isHIPAA":"0","isEUForm":"1","pdfs":[{"id":"10242984514890063","formID":"242984459783375","created_at":"2024-10-25 12:19:59","updated_at":null,"type":"DOCUMENT","title":"New Document","status":"ENABLED","password":"","templateID":"","selectedTemplateID":"","filename":"{sid}","userRole":"owner","workflowReport":false}],"isNewPDFUser":true};
+        window.baseJotFormPath = "https://cdn03.jotfor.ms";
+            </script>
+
+    <script type="text/javascript" src="https://cdn01.jotfor.ms/js/vendor/math-processor.js"></script>
+    <script type="text/javascript" src="//js.jotform.com/actions.js"></script>
+    <script type="text/javascript">
+        try {
+            if ('JotFormActions' in window) {
+                if (typeof window.fillableEvents === 'undefined') {
+                    window.fillableEvents = JotFormActions('fillable-pdf');
+                }
+                if (typeof window.reminderEmailEvents === 'undefined') {
+                    window.reminderEmailEvents = JotFormActions('reminder-emails');
+                }
+                if (typeof window.pdfEvents === 'undefined') {
+                    window.pdfEvents = JotFormActions('pdf-designer');
+                }
+                if (typeof window.commonHeaderEvents === 'undefined') {
+                    window.commonHeaderEvents = JotFormActions('commonHeader');
+                }
+                if (typeof window.pdfImportEvents === 'undefined') {
+                    window.pdfImportEvents = JotFormActions('pdf-import');
+                }
+                if (typeof window.formBuilderEvents === 'undefined') {
+                    window.formBuilderEvents = JotFormActions('form-builder');
+                }
+                if (typeof window.formSettingsEvents === 'undefined') {
+                    window.formSettingsEvents = JotFormActions('form-settings');
+                }
+                if (typeof window.integrationEvents === 'undefined') {
+                    window.integrationEvents = JotFormActions('integrations');
+                }
+                if (typeof window.assignFormEvents === 'undefined') {
+                    window.assignFormEvents = JotFormActions('assign-form');
+                }
+                if (typeof window.formAccessibilityEvents === 'undefined') {
+                    window.formAccessibilityEvents = JotFormActions('form-accessibility');
+                }
+                if (typeof window.newDefaultThemeEvents === 'undefined') {
+                    window.newDefaultThemeEvents = JotFormActions('new-default-theme');
+                }
+                if (typeof window.builderPaymentListEvents === 'undefined') {
+                    window.builderPaymentListEvents = JotFormActions('BuilderPaymentList');
+                }
+                if (typeof window.ndtMiniDesignerEvents === 'undefined') {
+                    window.ndtMiniDesignerEvents = JotFormActions('ndt-mini-designer');
+                }
+                if (typeof window.defaultThemeGroupEvents === 'undefined') {
+                    window.defaultThemeGroupEvents = JotFormActions('default-theme-group');
+                }
+                if (typeof window.enforceSignUpOnPublish === 'undefined') {
+                    window.enforceSignUpOnPublish = JotFormActions('enforceSignUpOnPublish');
+                }
+                if (typeof window.formPreviewTips === 'undefined') {
+                    window.formPreviewTips = JotFormActions('form-preview-tips');
+                }
+                if (typeof window.thankYouRightPanel === 'undefined') {
+                    window.thankYouRightPanel = JotFormActions('thank-you-right-panel');
+                }
+                if (typeof window.publishEmbedCodeEvents === 'undefined') {
+                    window.publishEmbedCodeEvents = JotFormActions('publish-embed-code');
+                }
+                if (typeof window.publishPlatformsEvents === 'undefined') {
+                    window.publishPlatformsEvents = JotFormActions('publish-platforms');
+                }
+                if (typeof window.helpOnBuilder === 'undefined') {
+                    window.helpOnBuilder = JotFormActions('helpOnBuilder2');
+                }
+                if (typeof window.interactionLogger === 'undefined') {
+                    window.interactionLogger = JotFormActions('interactionLogger');
+                }
+                if (typeof window.productWalkthroughV5 === 'undefined') {
+                    window.productWalkthroughV5 = JotFormActions('productWalkthroughV5');
+                }
+                if (typeof window.discoverabilityTracking === 'undefined') {
+                    window.discoverabilityTracking = JotFormActions('discoverabilityTracking');
+                }
+                if (typeof window.leftPanelPaymentTabActions === 'undefined') {
+                    window.leftPanelPaymentTabActions = JotFormActions('leftPanelPaymentTabActions');
+                }
+                if (typeof window.addOrRemoveGatewayActions === 'undefined') {
+                    window.addOrRemoveGatewayActions = JotFormActions('addOrRemoveGatewayActions');
+                }
+                if (typeof window.productPanelEvents === 'undefined') {
+                    window.productPanelEvents = JotFormActions('productPanelEvents');
+                }
+                if (typeof window.enterprisePromotionActions === 'undefined') {
+                    window.enterprisePromotionActions = JotFormActions('enterprisePromotions');
+                }
+                if (typeof window.autoDeleteSubmissionsEvents === 'undefined') {
+                    window.autoDeleteSubmissionsEvents = JotFormActions('autoDeleteSubmissions');
+                }
+                if (typeof window.logoUploadEvents === 'undefined') {
+                    window.logoUploadEvents = JotFormActions('organizationLogo');
+                }
+                if (typeof window.useJotformSignEvents === 'undefined') {
+                    window.useJotformSignEvents = JotFormActions('sign');
+                }
+                if (typeof window.formFooterWysiwyg === 'undefined') {
+                    window.formFooterWysiwyg = JotFormActions('formFooterWysiwyg');
+                }
+                if (typeof window.specialPropCheck === 'undefined') {
+                    window.specialPropCheck = JotFormActions('specialPropCheck');
+                }
+                if (typeof window.formBuilderCSIEvents === 'undefined') {
+                    window.formBuilderCSIEvents = JotFormActions('formBuilderCSI')
+                }
+                if (typeof window.aiBuilderEvents === 'undefined') {
+                    window.aiBuilderEvents = JotFormActions('ai-builder')
+                }
+                if (typeof window.aiConditionBuilderEvents === 'undefined') {
+                    window.aiConditionBuilderEvents = JotFormActions('ai-condition-builder')
+                }
+            }
+        } catch (e) {
+            console.log({
+                errorDetails: e,
+                errorMessage: 'Actions initialization failed.'
+            });
+        }
+    </script>
+            <script type="text/javascript">
+            if ('JotFormActions' in window && window.location.href.indexOf('jotform.pro') < 0) {
+                if (typeof window.formTemplatesShareEvents === 'undefined') {
+                    window.formTemplatesShareEvents = JotFormActions('formTemplatesShareEvents');
+                }
+            }
+        </script>
+        <script type="text/javascript">
+        window.__questionProps = {"2":{"buttonAlign":"Auto","buttonStyle":"None","clear":"No","clearText":"Clear All Questions","encryptIcon":"No","name":"submit2","order":"19","print":"No","printText":"Print","qid":"2","text":"Submit","type":"control_button"},"3":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"1When","options":"a) Me siento abrumado y mi mente se dispersa.|b) Puedo manejarlo, pero a veces mi mente divaga.|c) Me tomo un momento para respirar y enfocarme.|d) Me siento tranquilo y centrado, sin importar la situaci\u00f3n.","order":"2","otherText":"Other","qid":"3","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"1. \u00bfC\u00f3mo te describir\u00edas en situaciones de estr\u00e9s o presi\u00f3n?","type":"control_radio","useCalculations":"Yes"},"4":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"2When","options":"a) Nunca|b) 1-2 veces|c) 3-4 veces|d) Diariamente","order":"3","otherText":"Other","qid":"4","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"2. \u00bfCu\u00e1ntas veces a la semana te tomas un momento para reflexionar o meditar?","type":"control_radio","useCalculations":"Yes"},"5":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"3What","options":"a) Me dejo llevar por ellos, sin mucha reflexi\u00f3n.|b) Los observo, pero a veces me cuesta gestionarlos.|c) Puedo identificarlos y manejarlos de manera efectiva.|d) Los veo como oportunidades para el crecimiento personal.","order":"4","otherText":"Other","qid":"5","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"3. \u00bfC\u00f3mo te relacionas con tus pensamientos y emociones?","type":"control_radio","useCalculations":"Yes"},"6":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"4What","options":"a) S\u00ed, mucho (me cuesta trabajo estar presente)|b) S\u00ed, un poco (hay momentos en que me distraigo)|c) No especialmente (me siento razonablemente presente)|d) No, creo que estoy bien en este aspecto","order":"5","otherText":"Other","qid":"6","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"4. \u00bfTe gustar\u00eda mejorar tu capacidad para estar presente en el momento?","type":"control_radio","useCalculations":"Yes"},"7":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"5When","options":"a) S\u00ed, he sentido un declive.|b) S\u00ed, pero tambi\u00e9n he tenido momentos mejores.|c) No, me siento estable.|d) S\u00ed, he sentido una mejora notable.","order":"6","otherText":"Other","qid":"7","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"5. \u00bfHas notado cambios en tu estado de \u00e1nimo o bienestar general en las \u00faltimas semanas?","type":"control_radio","useCalculations":"Yes"},"8":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"6When","options":"a) Menos de 1 vez a la semana|b) 1-2 veces a la semana|c) 3-4 veces a la semana|d) Diariamente","order":"8","otherText":"Other","qid":"8","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"6. \u00bfCon qu\u00e9 frecuencia realizas actividad f\u00edsica (ejercicio, deporte, caminata intensa)?","type":"control_radio","useCalculations":"Yes"},"9":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"7What","options":"a) Me resulta muy desafiante, me cuesta empezar.|b) Puedo hacerlo, pero no es lo que m\u00e1s disfruto.|c) Me siento c\u00f3modo, pero hay espacio para mejorar.|d) Me encanta, estoy siempre listo para el siguiente reto.","order":"9","otherText":"Other","qid":"9","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"7. \u00bfCu\u00e1l es tu nivel de comodidad al realizar ejercicio f\u00edsico intenso?","type":"control_radio","useCalculations":"Yes"},"10":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"8How","options":"a) S\u00ed, he notado un declive.|b) S\u00ed, pero tambi\u00e9n he visto peque\u00f1as mejoras.|c) No, me siento igual.|d) S\u00ed, he visto mejoras significativas.","order":"10","otherText":"Other","qid":"10","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"8. \u00bfHas visto cambios en tu condici\u00f3n f\u00edsica en los \u00faltimos meses (fuerza, resistencia, flexibilidad)?","type":"control_radio","useCalculations":"Yes"},"11":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"9When","options":"a) Alto en procesados y az\u00facares, bajo en nutrientes.|b) Varia, con d\u00edas saludables y otros menos.|c) Equilibrada, con atenci\u00f3n a la salud, pero con espacio para caprichos.|d) Muy saludable, enfocada en nutrientes y bienestar.","order":"11","otherText":"Other","qid":"11","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"9. \u00bfCu\u00e1l es tu dieta habitual como?","type":"control_radio","useCalculations":"Yes"},"12":{"allowOther":"No","calcValues":"4|6|8|10","labelAlign":"Auto","name":"10If","options":"a) S\u00ed, mucho (me siento muy lejos de mis objetivos)|b) S\u00ed, un poco (hay aspectos espec\u00edficos que quiero mejorar)|c) No especialmente (me siento razonablemente satisfecho)|d) No, creo que estoy bien en este aspecto","order":"12","otherText":"Other","qid":"12","readonly":"No","required":"Yes","shuffle":"No","special":"None","spreadCols":"2","text":"10. \u00bfTe gustar\u00eda mejorar tu estado f\u00edsico general (fuerza, resistencia, salud)?","type":"control_radio","useCalculations":"Yes"},"14":{"allowCustomDomains":"No","allowedDomains":"","autoFixed":"No","confirmation":"No","confirmationHint":"example@example.com","confirmationSublabel":"Confirm Email","defaultValue":"","description":"Escfiba el correo electr\u00f3nico donde recibir\u00e1 los resultados obtenidos de la auto evaluaci\u00f3n.","disallowFree":"No","domainCheck":"No","hidden":"Yes","hint":"example@example.com","labelAlign":"Top","maxsize":"","name":"email","order":"17","qid":"14","readonly":"No","required":"Yes","shrink":"Yes","size":"310","subLabel":"Para recibir los resultados de su auto evaluaci\u00f3n.","text":"Su correo electr\u00f3nico","type":"control_email","validation":"Email","verificationCode":"No"},"17":{"acceptedText":"Accepted","boxAlign":"Left","builderDescription":"","cfname":"Terms & Conditions","customCSS":"","fieldParameters":[{"order":"0","parentID":"52948fb29322cd302b00000d","name":"termsText","readable":"Label Text","paramStatus":"enabled","type":"text","default":"I agree to {terms &amp; conditions}.","tip":"In order to create a link to your terms page, wrap the words where you want your link to be in curly brackets. e.g. I agree to {terms}."},{"order":"1","parentID":"52948fb29322cd302b00000d","readable":"Terms Link","name":"termsLink","type":"text","default":"www.example.com","tip":""},{"default":"default","parentID":"52948fb29322cd302b00000d","name":"theme","order":"2","readable":"Theme","type":"dropdown","tip":"Customize widget with ready made themes.","options":"default::Default,light::Light","paramStatus":"enabled"},{"order":"3","parentID":"52948fb29322cd302b00000d","name":"acceptedText","readable":"Accepted Text","paramStatus":"enabled","type":"text","default":"Accepted","tip":"Customize the text that the widget saves to the form if the terms and conditions have been accepted."}],"finalSrc":"http:\/\/app-widgets.jotform.io\/termsConditions\/","frameHeight":"50","frameSrc":"http:\/\/app-widgets.jotform.io\/termsConditions\/","frameWidth":"580","inlineEditDefaultValue":"Type a question","label":"No","labelAlign":"Auto","maxWidth":"587","name":"typeA","order":"14","paramChunks":"","qid":"17","required":"Yes","selectedField":"52948fb29322cd302b00000c","settingNames":"termsText,termsLink,theme,acceptedText,customCSS","settingNamesCSS":"","static":"No","termsLink":"https:\/\/www.fitmindrx.online\/evaluacion.html","termsText":"Estoy de acuerdo en haber aceptado los {t\u00e9rminos} de est\u00e1 participaci\u00f3n y  recibir a mi correo electr\u00f3nico los resultados.","text":"Terms and Conditions","theme":"default","type":"control_widget","widgetTabs":[["general","settingNames"],["customcss","settingNamesCSS"]],"widgetType":"field"},"18":{"name":"input18","order":"1","qid":"18","text":"<p><strong>PREGUNTAS\u00a0 N\u00cdVEL MINDFULNESS:<\/strong><\/p>","type":"control_text"},"19":{"name":"input19","order":"7","qid":"19","text":"<p><strong>PREGUNTAS N\u00cdVEL FITNESS :<\/strong><\/p>\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -36px; top: 32.6px;\">\u00a0<\/div>","type":"control_text"},"23":{"defaultResult":"0","description":"","hidden":"Yes","labelAlign":"Auto","name":"calculation","order":"13","qid":"23","required":"No","selectedField":"52f88bddfa5c747d4c000004","size":"20","subLabel":"puntuaci\u00f3n total","text":"Resultado de auto evaluaci\u00f3n","type":"control_calculation","widgetType":"native"},"24":{"compoundHint":"","description":"","hidden":"Yes","labelAlign":"Auto","middle":"No","name":"name","order":"16","prefix":"No","prefixChoices":"","qid":"24","readonly":"No","required":"Yes","sublabels":{"prefix":"Prefix","first":"First Name","middle":"Middle Name","last":"Last Name","suffix":"Suffix"},"suffix":"No","text":"Name","type":"control_fullname"},"25":{"compoundHint":"","countryCode":"No","description":"","hidden":"Yes","inputMask":"enable","inputMaskValue":"(###) ###-####","labelAlign":"Top","name":"phoneNumber","order":"18","qid":"25","readonly":"No","required":"No","shrink":"Yes","sublabels":{"country":"Country Code","area":"Area Code","phone":"Phone Number","full":"Phone Number","masked":"Please enter a valid phone number."},"text":"Phone Number","type":"control_phone"},"27":{"color":"#56a0d3","height":"1","lineStyle":"solid","margin":"0","name":"divider","order":"15","qid":"27","spaceAbove":"5","spaceBelow":"5","text":"Divider","type":"control_divider"}};
+    </script>
+
+    <script type="text/javascript">
+            </script>
+
+            <script type="text/javascript">
+            /* eslint-disable */
+            xhr = new XMLHttpRequest();
+            xhr.open('POST', '/server/check-olark-chat-support');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    if (xhr.responseText != 'FALSE') {
+                        try {
+                            var myPattern = new RegExp(/<script type=\'text\/javascript\'>([\s\S]*?)<\/script>/g);
+                            eval(myPattern.exec(xhr.responseText)[1]);
+                            window.chatsupport = true;
+                        } catch (err) {}
+                    }
+                }
+            };
+            xhr.send();
+            /* eslint-enable */
+        </script>
+                        <script defer src="https://cdn02.jotfor.ms/cardforms/feedbackEmbedButton.min.js" async></script>
+            <script type="text/javascript">
+        window.teamID = "";
+        window.isTeamMember = false;
+        window.isSignReleased = true;
+        window.isSignAllowed = true;
+        window.isWorkflowReleased = true;
+        window.isSalesforceLivePrefillAllowed = true;
+        window.isSalesforceLivePrefillOnlyUser = true;
+        window.isPaymentReusableConnection = false;
+        if (window.isPaymentReusableConnection) {
+            window.paymentGatewayDetails = [];
+        }
+    </script>
+
+</body>
+
+</html>
