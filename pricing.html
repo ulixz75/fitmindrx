@@ -431,7 +431,9 @@ input[type="text"] {
         <label><input type="radio" name="orientation" value="yes"> Sí</label>
         <label><input type="radio" name="orientation" value="no"> No</label>
       </div>
-      <button id="orientationSubmit">Continuar</button>
+        <div class="button-container">
+            <button id="orientationSubmit">Continuar</button>
+            <button id="codeCancel">Cancelar</button>
     </div>
   </div>
   
@@ -468,6 +470,9 @@ input[type="text"] {
       }
     }
   });
+      document.getElementById('codeCancel').addEventListener('click', function() {
+  document.getElementById('orientationModal').style.display = 'none';
+});
   document.getElementById('codeCancel').addEventListener('click', function() {
   document.getElementById('codeModal').style.display = 'none';
 });
