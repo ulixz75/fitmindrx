@@ -1,34 +1,41 @@
+<?php
+// Enviar un código de estado HTTP 400 (Bad Request)
+http_response_code(400);
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Call Button</title>
+    <title>Bad Request</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
-        }
-        a {
-            text-decoration: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 25px;
-            font-size: 18px;
-            border-radius: 5px;
+            background-color: #f8d7da;
+            color: #721c24;
             font-family: Arial, sans-serif;
+            margin: 0;
         }
-        a:hover {
-            background-color: #45a049;
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-    <a href="tel:+16615099492">Llamar al +1 (661) 509-9492</a>
+    <div class="container">
+        <h1>Error 400: Bad Request</h1>
+        <p>La solicitud que hiciste no es válida. Por favor, verifica la URL o los parámetros.</p>
+    </div>
 </body>
 </html>
-
