@@ -423,66 +423,66 @@ input[type="text"] {
         // Lanzar confetti al cargar la página
         window.addEventListener('load', shootConfetti);
     </script>
-      <!-- Modal de Orientación -->
+<!-- Modal de Orientación -->
 <div id="orientationModal" class="modal">
-    <div class="modal-content">
-      <h2>¿Pasó usted por orientación ya?</h2>
-      <div class="radio-options">
-        <label><input type="radio" name="orientation" value="yes"> Sí</label>
-        <label><input type="radio" name="orientation" value="no"> No</label>
-      </div>
-        <div class="button-container">
-            <button id="orientationSubmit">Continuar</button>
-            <button id="codeCancel">Cancelar</button>
+  <div class="modal-content">
+    <h2>¿Pasó usted por orientación ya?</h2><br>
+    <div class="radio-options">
+      <label><input type="radio" name="orientation" value="yes"> Sí</label>
+      <label><input type="radio" name="orientation" value="no"> No</label>
+    </div>
+    <div class="button-container">
+      <button id="orientationSubmit">Continuar</button>
+      <button id="orientationCancel">Cancelar</button>
     </div>
   </div>
-  
-  
-  
+</div>
+
 <!-- Modal de Código -->
 <div id="codeModal" class="modal">
-    <div class="modal-content">
-      <h2>Acceso al formulario de membresía</h2><br>
-      <p>Recuerde introducir el código provisto en la orientación</p><br>
-      <div class="button-container">
-        <button id="codeSubmit">Continuar</button>
-        <button id="codeCancel">Cancelar</button>
-      </div>
+  <div class="modal-content">
+    <h2>Acceso al formulario de membresía</h2><br>
+    <p>Recuerde introducir el código provisto en la orientación</p><br>
+    <div class="button-container">
+      <button id="codeSubmit">Continuar</button>
+      <button id="codeCancel">Cancelar</button>
     </div>
   </div>
+</div>
+
       
 <script>
-  document.querySelectorAll('.subscribe-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('orientationModal').style.display = 'block';
-    });
+document.querySelectorAll('.subscribe-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('orientationModal').style.display = 'block';
   });
-  
-  document.getElementById('orientationSubmit').addEventListener('click', function() {
-    const selectedOption = document.querySelector('input[name="orientation"]:checked');
-    if (selectedOption) {
-      if (selectedOption.value === 'yes') {
-        document.getElementById('orientationModal').style.display = 'none';
-        document.getElementById('codeModal').style.display = 'block';
-      } else {
-        window.location.href = 'https://fitmindrx.setmore.com';
-      }
+});
+
+document.getElementById('orientationSubmit').addEventListener('click', function() {
+  const selectedOption = document.querySelector('input[name="orientation"]:checked');
+  if (selectedOption) {
+    if (selectedOption.value === 'yes') {
+      document.getElementById('orientationModal').style.display = 'none';
+      document.getElementById('codeModal').style.display = 'block';
+    } else {
+      window.location.href = 'https://fitmindrx.setmore.com';
     }
-  });
-      document.getElementById('codeCancel').addEventListener('click', function() {
+  }
+});
+
+document.getElementById('orientationCancel').addEventListener('click', function() {
   document.getElementById('orientationModal').style.display = 'none';
 });
-  document.getElementById('codeCancel').addEventListener('click', function() {
+
+document.getElementById('codeSubmit').addEventListener('click', function() {
+  window.location.href = 'https://form.jotform.com/243171359765363';
+});
+
+document.getElementById('codeCancel').addEventListener('click', function() {
   document.getElementById('codeModal').style.display = 'none';
 });
 
-  
-  document.getElementById('codeSubmit').addEventListener('click', function() {
-  // Reemplaza la URL con la que deseas redirigir
-  window.location.href = 'https://form.jotform.com/243171359765363';
-
-  });
 </script>
 </body>
 </html>
