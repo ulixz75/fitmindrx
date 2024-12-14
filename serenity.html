@@ -424,17 +424,18 @@
         }
 
        .downloads-btn {
-  position: fixed;
-  top: 20px;
-  right: 8px;
-  background-color: rgba(244, 77, 55, 0.2); /* 20% de opacidad */
+  position: absolute; /* Cambia de fixed a absolute */
+  
+  left: 50%; /* Posiciona horizontalmente al 50% */
+  transform: translate(-50%, -50%); /* Ajusta la posición al centro exacto */
+  background-color: rgba(244, 77, 55, 0.9); /* 90% de opacidad */
   color: white;
   padding: 10px 20px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -960,38 +961,45 @@
             <small>*Los resultados pueden variar de persona a persona</small>
             <small>*¡Recibe orientación antes de comenzar completamente gratis!</small>
         </section>
-        <!-- Botón para abrir el modal -->
-<button id="openDownloadsModal" class="downloads-btn"><strong>Recursos⤵️</strong></button>
-        <div id="downloadsModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Recursos Descargables</h2>
-        
-    <div class="grid">
-      <div class="feature">
-        <i class="fas fa-file-audio"></i>
-        <h3>Audio recursos</h3>
-        <a href="https://www.mediafire.com/file/lay5yz8amzu24vb/aplausse_of_welcome.mp3/file" class="download-btn" download>Descargar</a>
-      </div>
-      <div class="feature">
-        <i class="fas fa-file-video"></i>
-        <h3>Video recursos</h3>
-        <a href="https://www.mediafire.com/folder/btbdkoxvu923l/Videos" class="download-btn" download>Descargar</a>
-      </div>
-      <div class="feature">
-        <i class="fas fa-file-pdf"></i>  
-        <h3>Ebooks recursos</h3>
-        <a href="https://www.mediafire.com/file/o7sad2tpjl5gazu/reflexiones-sobre-la-mente-STANDARD.pdf/file" class="download-btn" download>Descargar</a>
-      </div>
-       
-    </div>
-  </div>
-</div>
+
 
 
 
        <a href="pricing.html" class="contact-btn tooltip" data-tooltip="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
 
+                <!-- Botón para abrir el modal -->
+<button id="openDownloadsModal" class="downloads-btn"><strong>Recursos</strong></button>
+<div id="downloadsModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h2>Recursos Descargables</h2>
+
+<div class="grid">
+<div class="feature">
+<i class="fas fa-file-audio"></i>
+<h3>Audio recursos</h3>
+<a href="https://www.mediafire.com/file/lay5yz8amzu24vb/aplausse_of_welcome.mp3/file" class="download-btn" download>Descargar</a>
+</div>
+<div class="feature">
+<i class="fas fa-file-video"></i>
+<h3>Video recursos</h3>
+<a href="https://www.mediafire.com/folder/btbdkoxvu923l/Videos" class="download-btn" download>Descargar</a>
+</div>
+<div class="feature">
+<i class="fas fa-file-pdf"></i>  
+<h3>Ebooks</h3>
+<a href="https://www.mediafire.com/file/o7sad2tpjl5gazu/reflexiones-sobre-la-mente-STANDARD.pdf/file" class="download-btn" download>Descargar</a>
+</div>
+<div class="feature">
+    <i class="fas fa-file-video"></i>
+    <h3>Video recursos</h3>
+    <a href="https://www.mediafire.com/folder/btbdkoxvu923l/Videos" class="download-btn" download>Descargar</a>
+    </div>
+
+</div>
+</div>
+</div>
+        
 <style>
 .tooltip {
   position: relative;
