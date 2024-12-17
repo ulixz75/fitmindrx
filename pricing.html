@@ -231,6 +231,7 @@ input[type="text"] {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top:20px;
 }
 
 .button-container button {
@@ -438,17 +439,22 @@ input[type="text"] {
   </div>
 </div>
 
-<!-- Modal de Código -->
-<div id="codeModal" class="modal">
-  <div class="modal-content">
-    <h2>Acceso al formulario de membresía</h2><br>
-    
-    <div class="button-container">
-      <button id="codeSubmit">Continuar</button>
-      <button id="codeCancel">Cancelar</button>
+ <!-- Modal de Código -->
+  <div id="codeModal" class="modal">
+    <div class="modal-content">
+      <h2>*IMPORTANTE*</h2><br>
+      <p>Completar la membresía consta de 3 formularios obligatorios:</p><br>
+    <li><small>Plan de membresía</small></li>
+    <li><small>Formulario de historial médico</small></li>
+    <li><small>Acuerdo de responsabilidad</small></li><br>
+      <small>*Por favor, asegúrate de seguir los pasos sin omitir ninguno</small>
+      <br>
+      <div class="button-container">
+        <button id="codeSubmit">Continuar</button>
+        <button id="codeCancel">Cancelar</button>
+      </div>
     </div>
   </div>
-</div>
 
       
 <script>
