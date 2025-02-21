@@ -4,11 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Favicon -->
-    <link rel="icon" type="image/x-icon"
-        href="https://static.wixstatic.com/ficons/313cf8_9ab7675d7b9743d3871102f6eaf3084a~mv2.ico">
-     
-    <title>Consentimiento de Responsabilidad</title>
+    <title>Página Moderna con DocuSeal Form</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -46,73 +42,176 @@
             margin-top: 20px;
         }
 
-        /* Estilo para centrar el botón */
         .button-container {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
 
-        /* Ocultar texto específico como "sandbox" y "upgrade" */
         .docuseal-container .sandbox-text,
         .docuseal-container .upgrade-text {
             display: none !important;
         }
 
-        /* Intento alternativo si no hay clases específicas */
-        .docuseal-container span:contains("sandbox"),
-        .docuseal-container span:contains("upgrade") {
-            display: none !important;
+        /* Efecto blur y overlay */
+        .blur {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <h1>
-            <strong style="color: black;">FitMind</strong>
-            <strong style="color: lime;">Rx</strong>
-        </h1>
-        <p><strong>Formulario de Consentimiento</strong></p>
-    </div>
-    <!-- Contenido Principal -->
-    <div class="container">
-        <!-- Sección de Introducción -->
-        <div class="row">
-            <div class="col-md-12">
-                <h2><strong>Instrucciones</strong></h2>
-                <p>
-                    Después de completar el formulario, presione <strong style="color: blue;">"Finalizar"</strong>.
-                    Si lo hace antes de terminar, el documento será inválido y perderá su validez.
-                </p>
+    <!-- Overlay -->
+    <div class="overlay"></div>
+    <!-- Modal Credenciales -->
+    <div class="modal fade show d-block" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Validación de Credenciales</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="validationForm">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Número de Contacto</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div id="errorMessage" class="alert alert-danger d-none"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="validateCredentials()">Validar</button>
+                </div>
             </div>
         </div>
-        <!-- Sección del Formulario DocuSeal -->
-        <div class="row">
-            <div class="col-md-12 docuseal-container">
-                <h3>Formulario DocuSeal</h3>
-                <p>Por favor, complete el siguiente formulario:</p>
-                <!-- Embedded DocuSeal Form -->
-                <script src="https://cdn.docuseal.com/js/form.js"></script>
-                <docuseal-form data-src="https://docuseal.com/d/Wvyszg883mYwXt"></docuseal-form>
+    </div>
+    <!-- Contenido Principal (envuelto en un contenedor) -->
+    <div id="content" class="blur">
+        <!-- Header -->
+        <div class="header">
+            <h1>
+                <strong style="color: black;">FitMind</strong>
+                <strong style="color: lime;">Rx</strong>
+            </h1>
+            <p><strong>Formulario de Consentimiento</strong></p>
+        </div>
+        <!-- Contenido Principal -->
+        <div class="container">
+            <!-- Sección de Introducción -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><strong>Instrucciones</strong></h2>
+                    <p>
+                        Después de completar el formulario, presione <strong style="color: blue;">"Finalizar"</strong>.
+                        Si lo hace antes de terminar, el documento será inválido y perderá su validez.
+                    </p>
+                </div>
+            </div>
+            <!-- Sección del Formulario DocuSeal -->
+            <div class="row">
+                <div class="col-md-12 docuseal-container">
+                    <h3>Formulario DocuSeal</h3>
+                    <p>Por favor, complete el siguiente formulario:</p>
+                    <!-- Embedded DocuSeal Form -->
+                    <script src="https://cdn.docuseal.com/js/form.js"></script>
+                    <docuseal-form data-src="https://docuseal.com/d/Wvyszg883mYwXt"></docuseal-form>
+                </div>
+            </div>
+            <!-- Botón Finalizar Centrado -->
+            <div class="button-container">
+                <a href="https://form.jotform.com/243395127768367" class="btn btn-primary" target="_blank">Finalizar</a>
             </div>
         </div>
-        <!-- Botón Finalizar Centrado -->
-        <div class="button-container">
-            <a href="https://form.jotform.com/243395127768367" class="btn btn-primary" target="_blank">Finalizar</a>
-        </div>
+        <!-- Footer -->
+        <footer>
+            <p>
+                &copy; 2025 <strong>FitMind</strong> <strong style="color: lime;">Rx</strong>. Todos los derechos
+                reservados.
+            </p>
+        </footer>
     </div>
-    <!-- Footer -->
-    <footer>
-        <p>
-            &copy; 2025 <strong>FitMind</strong> <strong style="color: lime;">Rx</strong>. Todos los derechos
-            reservados.
-        </p>
-    </footer>
     <!-- Bootstrap JS y Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <script>
+        // Configuración de Airtable
+        const AIRTABLE_API_KEY = 'patgPrRl1sp1yV7WY.1e2defc0a8d8f0fbad7abcbc6e08a03a81a6a517aab434f5dcd36b9a021a7345';
+        const AIRTABLE_BASE_ID = 'appyRqHJkug7qptY0';
+        const TABLE_NAME = 'Members';
+
+        // Función para formatear el número de teléfono
+        function formatPhoneNumber(input) {
+            // Eliminar todo excepto los números
+            let numbers = input.replace(/\D/g, '');
+            let formatted = '';
+
+            // Formato deseado: (###) ###-####
+            if (numbers.length > 0) {
+                formatted += '(' + numbers.substring(0, 3);
+            }
+            if (numbers.length > 3) {
+                formatted += ') ' + numbers.substring(3, 6);
+            }
+            if (numbers.length > 6) {
+                formatted += '-' + numbers.substring(6, 10);
+            }
+
+            return formatted;
+        }
+
+        // Manejar el evento de entrada del campo de teléfono
+        document.getElementById('phone').addEventListener('input', function (e) {
+            e.target.value = formatPhoneNumber(e.target.value);
+        });
+
+        async function validateCredentials() {
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const errorMessage = document.getElementById('errorMessage');
+            if (!email || !phone) {
+                errorMessage.textContent = 'Por favor complete todos los campos';
+                errorMessage.classList.remove('d-none');
+                return;
+            }
+            try {
+                const response = await fetch(
+                    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${TABLE_NAME}?filterByFormula=AND({Email}='${email}',{Phone}='${phone}')`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${AIRTABLE_API_KEY}`
+                        }
+                    }
+                );
+                const data = await response.json();
+                if (data.records.length > 0) {
+                    // Quitar el blur y el overlay
+                    document.getElementById('content').classList.remove('blur');
+                    document.querySelector('.overlay').remove();
+                    document.querySelector('.modal').remove();
+                } else {
+                    errorMessage.textContent = 'Credenciales inválidas';
+                    errorMessage.classList.remove('d-none');
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Error de conexión';
+                errorMessage.classList.remove('d-none');
+            }
+        }
+    </script>
 </body>
 
 </html>
