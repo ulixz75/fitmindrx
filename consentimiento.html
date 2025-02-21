@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consentimiento de Responsabilidad</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .docuseal-container {
+            margin-top: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        /* Estilo para centrar el botón */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Ocultar texto específico como "sandbox" y "upgrade" */
+        .docuseal-container .sandbox-text,
+        .docuseal-container .upgrade-text {
+            display: none !important;
+        }
+
+        /* Intento alternativo si no hay clases específicas */
+        .docuseal-container span:contains("sandbox"),
+        .docuseal-container span:contains("upgrade") {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>
+            <strong style="color: black;">FitMind</strong>
+            <strong style="color: lime;">Rx</strong>
+        </h1>
+        <p><strong>Formulario de Consentimiento</strong></p>
+    </div>
+    <!-- Contenido Principal -->
+    <div class="container">
+        <!-- Sección de Introducción -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2><strong>Instrucciones</strong></h2>
+                <p>
+                    Después de completar el formulario, presione <strong style="color: blue;">"Finalizar"</strong>.
+                    Si lo hace antes de terminar, el documento será inválido y perderá su validez.
+                </p>
+            </div>
+        </div>
+        <!-- Sección del Formulario DocuSeal -->
+        <div class="row">
+            <div class="col-md-12 docuseal-container">
+                <h3>Formulario DocuSeal</h3>
+                <p>Por favor, complete el siguiente formulario:</p>
+                <!-- Embedded DocuSeal Form -->
+                <script src="https://cdn.docuseal.com/js/form.js"></script>
+                <docuseal-form data-src="https://docuseal.com/d/Wvyszg883mYwXt"></docuseal-form>
+            </div>
+        </div>
+        <!-- Botón Finalizar Centrado -->
+        <div class="button-container">
+            <a href="https://form.jotform.com/243395127768367" class="btn btn-primary" target="_blank">Finalizar</a>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>
+            &copy; 2025 <strong>FitMind</strong> <strong style="color: lime;">Rx</strong>. Todos los derechos
+            reservados.
+        </p>
+    </footer>
+    <!-- Bootstrap JS y Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+
+</html>
