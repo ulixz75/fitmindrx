@@ -144,18 +144,19 @@
                 </div>
             </div>
 
-            <!-- Botón de acción -->
-            <div class="text-center">
-                <a href="https://fitmindrx-faq.zapier.app/" 
-                   target="_blank"
-                   class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl pulse-button glass animate__animated animate__fadeInUp animate__delay-4s">
-                    <span class="mr-2">Preguntar</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </a>
-            </div>
-        </div>
+          <!-- 
+    Botón de acción 
+    <div class="text-center">
+        <a href="https://fitmindrx-faq.zapier.app/" 
+           target="_blank"
+           class="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl pulse-button glass animate__animated animate__fadeInUp animate__delay-4s">
+            <span class="mr-2">Preguntar</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+        </a>
+    </div>
+-->
 
         <!-- Footer -->
         <footer class="absolute bottom-0 w-full py-6">
@@ -166,5 +167,31 @@
             </div>
         </footer>
     </div>
+        <script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://eu.jotform.com/agent/01953e71a8f6730e9feb43b3329bafd99396",
+      rootId: "JotformAgent-01953e71a8f6730e9feb43b3329bafd99396",
+      formID: "01953e71a8f6730e9feb43b3329bafd99396",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://eu.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #0F53B4 0%, #0F53B4 100%)",
+      buttonBackgroundColor: "#246506",
+      buttonIconColor: "#FFFFFF",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "Bienvenido. ¿Cómo podemos mejorar su experiencia?",
+        "openByDefault": "No",
+        "pulse": "Yes",
+        "position": "right",
+        "autoOpenChatIn": "1"
+      },
+      isVoice: undefined
+    });
+  });
+</script>
 </body>
 </html>
