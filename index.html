@@ -357,6 +357,26 @@
             left: 10px;
             transform: scale(0.9);
         }
+        /* Asegúrate de que el chatbot esté por encima de otros elementos */
+    #JotformAgent-01953e71a8f6730e9feb43b3329bafd99396 {
+        z-index: 10000;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+    }
+
+    
+
+    /* Ajusta el z-index de otros elementos fijos */
+    .navbar {
+        z-index: 1000; /* Asegúrate de que esté por debajo del chatbot */
+    }
+
+    .setmore-wrapper {
+        z-index: 1000; /* Asegúrate de que esté por debajo del chatbot */
+    }
     }
 </style>
 <!--Poptin ebook offer -->
