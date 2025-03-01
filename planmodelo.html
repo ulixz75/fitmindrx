@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://static.wixstatic.com/ficons/313cf8_9ab7675d7b9743d3871102f6eaf3084a~mv2.ico">
+    <link rel="icon" type="image/x-icon"
+        href="https://static.wixstatic.com/ficons/313cf8_9ab7675d7b9743d3871102f6eaf3084a~mv2.ico">
     <title>Mente Presente, Cuerpo Futuro</title>
     <style>
         :root {
@@ -50,9 +52,17 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.1; }
+            0% {
+                opacity: 0.1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
+
+            100% {
+                opacity: 0.1;
+            }
         }
 
         .hero h1 {
@@ -68,8 +78,15 @@
         }
 
         @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .container {
@@ -171,7 +188,7 @@
         }
 
         .contact-btn::before {
-            
+
             position: absolute;
             top: -40px;
             left: 50%;
@@ -210,14 +227,14 @@
             left: 0;
         }
 
-       
+
         /* Mejoras en responsive design */
         @media screen and (max-width: 1200px) {
             .container {
                 max-width: 95%;
                 padding: 1rem;
             }
-            
+
             .grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
@@ -228,11 +245,11 @@
             .hero h1 {
                 font-size: 3rem;
             }
-            
+
             .section-title {
                 font-size: 1.8rem;
             }
-            
+
             .approach-card {
                 padding: 1.25rem;
             }
@@ -242,28 +259,28 @@
             .hero {
                 padding: 3rem 1rem;
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
                 margin-bottom: 0.5rem;
             }
-            
+
             .hero p {
                 font-size: 1.1rem;
             }
-            
+
             .grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .feature {
                 padding: 1.25rem;
             }
-            
+
             .approach-title {
                 font-size: 1.2rem;
             }
-            
+
             .approach-subtitle {
                 font-size: 1rem;
             }
@@ -273,25 +290,25 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .container {
                 padding: 0.5rem;
             }
-            
+
             .card {
                 padding: 1rem;
                 margin: 1rem 0;
             }
-            
+
             .section-title {
                 font-size: 1.5rem;
             }
-            
+
             .approach-card {
                 padding: 1rem;
                 margin: 0.75rem 0;
             }
-            
+
             .contact-btn {
                 padding: 0.75rem 1.5rem;
                 font-size: 1.1rem;
@@ -305,11 +322,11 @@
             .hero {
                 padding: 2rem 1rem;
             }
-            
+
             .hero h1 {
                 font-size: 2rem;
             }
-            
+
             .grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -320,31 +337,31 @@
             .container {
                 max-width: 1600px;
             }
-            
+
             .hero h1 {
                 font-size: 4.5rem;
             }
-            
+
             .hero p {
                 font-size: 2rem;
             }
-            
+
             .section-title {
                 font-size: 2.5rem;
             }
-            
+
             .approach-title {
                 font-size: 1.8rem;
             }
-            
+
             .approach-subtitle {
                 font-size: 1.4rem;
             }
-            
+
             .feature h3 {
                 font-size: 1.8rem;
             }
-            
+
             .feature p {
                 font-size: 1.2rem;
             }
@@ -364,8 +381,10 @@
                 --background: #1a1a1a;
                 --text: #f8f9fa;
             }
-            
-            .card, .feature, .approach-card {
+
+            .card,
+            .feature,
+            .approach-card {
                 background: #2d2d2d;
                 color: var(--text);
             }
@@ -373,218 +392,329 @@
 
         /* Ajustes para dispositivos con pantalla táctil */
         @media (hover: none) {
+
             .card:hover,
             .feature:hover,
             .approach-card:hover {
                 transform: none;
             }
-            
+
             .contact-btn::before {
                 display: none;
             }
         }
-              .home-link {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 15px;
-        background-color: #f8f9fa;
-        border-radius: 5px;
-        text-decoration: none;
-        color: #333;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
 
-    .home-link:hover {
-        background-color: #e9ecef;
-        transform: translateY(-2px);
-    }
-
-    .home-icon {
-        width: 20px;
-        height: 20px;
-    }
-
-    /* Ajustes para pantallas pequeñas */
-    @media (max-width: 768px) {
         .home-link {
-            padding: 8px 12px;
-            top: 10px;
-            right: 10px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .home-link:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .home-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .home-link {
+                padding: 8px 12px;
+                top: 10px;
+                right: 10px;
+            }
+            .sample-box {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        position: relative;
+    }
+
+    .non-downloadable {
+        user-select: none;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
+    .watermark {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 0.8em;
+        transform: rotate(-15deg);
+    }
+
+    audio::-webkit-media-controls-panel {
+        background-color: var(--primary);
+    }
+
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-timeline {
+        filter: invert(1);
+    }
+
+    @media (max-width: 768px) {
+        .sample-box {
+            padding: 0.8rem;
+        }
+        
+        audio {
+            max-width: 250px;
         }
     }
+        
+        }
+        
     </style>
 </head>
+
+<body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
+    <!-- Agrega esto justo después del <body> en todas tus páginas HTML -->
+    <a href="index.html" class="home-link">
+        <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        Home
+    </a>
+
+    <body>
+
         <body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
-    <!-- Agrega esto justo después del <body> en todas tus páginas HTML -->
-<a href="index.html" class="home-link">
-    <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-    </svg>
-    Home
-</a>
+            <!-- Agrega esto justo después del <body> en todas tus páginas HTML -->
+            <a href="index.html" class="home-link">
+                <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Home
+            </a>
 
-<body>
-    <body class="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white">
-    <!-- Agrega esto justo después del <body> en todas tus páginas HTML -->
-<a href="index.html" class="home-link">
-    <svg class="home-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-    </svg>
-    Home
-</a>
-
-    <div class="hero">
-        <h1>MENTE PRESENTE, CUERPO FUTURO</h1>
-        <p>Transformación Integral Sostenible</p>
-        <p>Tu viaje de (90)** días hacia el bienestar consciente</p>
-        <br>
-        <small>**Tiempo sugerido</small>
-    </div>
-
-    <div class="container">
-        <section class="card" data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="section-title">Nuestros Enfoques de Transformación</h2>
-            
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="100">
-                <h3 class="approach-title">Enfoque Transformacional</h3>
-                <p class="approach-subtitle">"Revolución Consciente: Programa de Transformación Cuerpo-Mente"</p>
-                <p class="approach-subtitle">"Transforma Mente: El Método Integral de Bienestar"</p>
-                <p class="approach-subtitle">"Transformación Única: Programas de ejercicios personalizados"</p>
+            <div class="hero">
+                <h1>MENTE PRESENTE, CUERPO FUTURO</h1>
+                <p>Transformación Integral Sostenible</p>
+                <p>Tu viaje de (90)** días hacia el bienestar consciente</p>
+                <br>
+                <small>**Tiempo sugerido</small>
             </div>
 
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="200">
-                <h3 class="approach-title">Enfoque Mindfulness</h3>
-                <p class="approach-subtitle">"Mindful Fitness: La Transformación Consciente"</p>
-                <p class="approach-subtitle">"Presente y Fit: Tu Camino al Bienestar Integral"</p>
-            </div>
+            <div class="container">
+                <section class="card" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="section-title">Nuestros Enfoques de Transformación</h2>
 
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="300">
-                <h3 class="approach-title">Enfoque Resultado</h3>
-                <p class="approach-subtitle">"90 Días para Ti: Transformación Consciente"</p>
-                <p class="approach-subtitle">"Método TIS: Transformación Integral Sostenible"</p>
-                <p class="approach-subtitle">"Método CICO: CaloriasIN vs CaloriasOut"</p>
-            </div>
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="400">
-                <h3 class="approach-title">Enfoque Holístico</h3>
-                <p class="approach-subtitle">"Equilibrio Total: Nutrición, Movimiento y Consciencia"</p>
-                <p class="approach-subtitle">"Triple Impacto: Mente Clara, Cuerpo Fuerte, Vida Plena"</p>
-            </div>
-        </section>
+                    <div class="approach-card" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="approach-title">Enfoque Transformacional</h3>
+                        <p class="approach-subtitle">"Revolución Consciente: Programa de Transformación Cuerpo-Mente"
+                        </p>
+                        <p class="approach-subtitle">"Transforma Mente: El Método Integral de Bienestar"</p>
+                        <p class="approach-subtitle">"Transformación Única: Programas de ejercicios personalizados"</p>
+                    </div>
 
-        <section class="card" data-aos="fade-up">
-            <h2 class="section-title">Nuestro Programa Integral</h2>
-            <div class="feature" data-aos="zoom-in" data-aos-delay="100">
-                <div class="feature">
-                    <h3>Nutrición Consciente</h3>
-                    <p>Plan alimenticio personalizado dentro de tu presupuesto </p>
-                     <p>*Herramientas de seguimiento instantáneas </p>
+                    <div class="approach-card" data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="approach-title">Enfoque Mindfulness</h3>
+                        <p class="approach-subtitle">"Mindful Fitness: La Transformación Consciente"</p>
+                        <p class="approach-subtitle">"Presente y Fit: Tu Camino al Bienestar Integral"</p>
+                    </div>
+
+                    <div class="approach-card" data-aos="fade-right" data-aos-delay="300">
+                        <h3 class="approach-title">Enfoque Resultado</h3>
+                        <p class="approach-subtitle">"90 Días para Ti: Transformación Consciente"</p>
+                        <p class="approach-subtitle">"Método TIS: Transformación Integral Sostenible"</p>
+                        <p class="approach-subtitle">"Método CICO: CaloriasIN vs CaloriasOut"</p>
+                    </div>
+                    <div class="approach-card" data-aos="fade-right" data-aos-delay="400">
+                        <h3 class="approach-title">Enfoque Holístico</h3>
+                        <p class="approach-subtitle">"Equilibrio Total: Nutrición, Movimiento y Consciencia"</p>
+                        <p class="approach-subtitle">"Triple Impacto: Mente Clara, Cuerpo Fuerte, Vida Plena"</p>
+                    </div>
+                </section>
+
+                <section class="card" data-aos="fade-up">
+                    <h2 class="section-title">Nuestro Programa Integral</h2>
+                    <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="feature">
+                            <h3>Nutrición Consciente</h3>
+                            <p>Plan alimenticio personalizado dentro de tu presupuesto </p>
+                            <p>*Herramientas de seguimiento instantáneas </p>
+                            <br>
+                            <small>*Programas Balance Elite & Peak Wellness</small>
+
+                        </div>
+                        <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+                            <h3>Ejercicio Progresivo</h3>
+                            <p>De principiante a intermedio, adaptado a tu nivel<br>
+                                en ambiente controlado{Hogar,parque,gimnasio,playa etc..}</p>
+                        </div>
+                        <div class="feature" data-aos="zoom-in" data-aos-delay="300">
+                            <h3>Mindfulness</h3>
+                            <p>Técnicas de atención plena para una transformación duradera</p>
+                            <p>Recursos audiovisuales*,lecturas recomendadas.</p>
+                            <br>
+                            <small>*Programas Balance Elite & Peak Wellness</small>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card" data-aos="fade-up">
+                    <h2 class="section-title">¿Qué Incluye?*</h2>
+                    <div class="list-item" data-aos="fade-left" data-aos-delay="100">Plan nutricional detallado de
+                        acuerdo a su presupuesto</div>
+                    <div class="list-item" data-aos="fade-left" data-aos-delay="200">Programa de ejercicios progresivo
+                        de 12 semanas</div>
+                    <div class="list-item" data-aos="fade-left" data-aos-delay="300">Rutinas de mindfulness integradas
+                    </div>
+                    <div class="list-item" data-aos="fade-left" data-aos-delay="400">Seguimiento y ajustes
+                        personalizados</div>
+                    <div class="list-item" data-aos="fade-left" data-aos-delay="500">Apoyo continuo en tu transformación
+                    </div>
                     <br>
-                    <small>*Programas Balance Elite & Peak Wellness</small>
-                    
-                </div>
-                <div class="feature" data-aos="zoom-in" data-aos-delay="200">
-                    <h3>Ejercicio Progresivo</h3>
-                    <p>De principiante a intermedio, adaptado a tu nivel<br>
-                        en ambiente controlado{Hogar,parque,gimnasio,playa etc..}</p>
-                </div>
-                <div class="feature" data-aos="zoom-in" data-aos-delay="300">
-                    <h3>Mindfulness</h3>
-                    <p>Técnicas de atención plena para una transformación duradera</p>
-                    <p>Recursos audiovisuales*,lecturas recomendadas.</p>
-                    <br>
-                    <small>*Programas Balance Elite & Peak Wellness</small>
-                </div>
+                    <small>*Depende del programa que seleccione.</small>
+                </section>
+
+                <section class="card" data-aos="fade-up">
+                    <h2 class="section-title">*Resultados Esperados</h2>
+                    <div class="grid">
+                        <div class="feature" data-aos="flip-left" data-aos-delay="100">
+                            <h3>*Pérdida de Peso</h3>
+                            <p>*5-15 libras en 3 meses de manera saludable y sostenible</p>
+                        </div>
+                        <div class="feature" data-aos="flip-left" data-aos-delay="200">
+                            <h3>*Mejor Condición Física</h3>
+                            <p>*Aumento de fuerza, resistencia y flexibilidad</p>
+                        </div>
+                        <div class="feature" data-aos="flip-left" data-aos-delay="300">
+                            <h3>*Bienestar Mental</h3>
+                            <p>*Mayor claridad mental y reducción del estrés</p>
+
+
+
+
+                        </div>
+                    </div>
+                    <small>*Los resultados pueden variar de persona a persona</small><br>
+                    <small>*¡Recibe orientación antes de comenzar completamente gratis!</small>
+
+
+                </section>
+
+                <a href="pricing.html" class="contact-btn tooltip"
+                    data-tooltip="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
+
+                <style>
+                    .tooltip {
+                        position: relative;
+                    }
+
+                    .tooltip::after {
+                        content: attr(data-tooltip);
+                        position: absolute;
+                        bottom: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: rgba(0, 0, 0, 0.8);
+                        color: white;
+                        padding: 8px;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        white-space: nowrap;
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: 0.3s;
+                    }
+
+                    /* Para desktop (hover) */
+                    @media (hover: hover) {
+                        .tooltip:hover::after {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    /* Para móviles (touch) */
+                    @media (hover: none) {
+                        .tooltip:active::after {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                </style>
             </div>
-        </section>
-
-        <section class="card" data-aos="fade-up">
-            <h2 class="section-title">¿Qué Incluye?*</h2>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="100">Plan nutricional detallado de acuerdo a su presupuesto</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="200">Programa de ejercicios progresivo de 12 semanas</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="300">Rutinas de mindfulness integradas</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="400">Seguimiento y ajustes personalizados</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="500">Apoyo continuo en tu transformación</div>
-            <br>
-            <small>*Depende del programa que seleccione.</small>
-        </section>
-
-        <section class="card" data-aos="fade-up">
-            <h2 class="section-title">*Resultados Esperados</h2>
-            <div class="grid">
-                <div class="feature" data-aos="flip-left" data-aos-delay="100">
-                    <h3>*Pérdida de Peso</h3>
-                    <p>*5-15 libras en 3 meses de manera saludable y sostenible</p>
-                </div>
-                <div class="feature" data-aos="flip-left" data-aos-delay="200">
-                    <h3>*Mejor Condición Física</h3>
-                    <p>*Aumento de fuerza, resistencia y flexibilidad</p>
-                </div>
-                <div class="feature" data-aos="flip-left" data-aos-delay="300">
-                    <h3>*Bienestar Mental</h3>
-                    <p>*Mayor claridad mental y reducción del estrés</p>
-                    
-                    
-    
-                    
-                </div>
             </div>
-            <small>*Los resultados pueden variar de persona a persona</small><br>
-            <small>*¡Recibe orientación antes de comenzar completamente gratis!</small>
+            <div class="calorie-section" style="text-align: center; padding: 2rem; margin: 2rem 0;">
+                <h2 style="color: #2c3e50; margin-bottom: 1.5rem;">¡Descubre tus necesidades calóricas diarias!</h2>
+                <a href="calcTM.html"
+                    style="display: inline-block; background-color: #3498db; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none;">Calcular
+                    mis calorías</a>
+            </div>
+          
+            <section class="card">
+                <h2 class="section-title">Recursos Exclusivos</h2>
             
+                <div class="grid">
+                    <!-- Programas de Ejercicios -->
+                    <div class="feature">
+                        <h3>Programas de Ejercicios</h3>
+                        <div class="sample-box">
+                            <h4>Rutina Full Body (Ejemplo)</h4>
+                            <ul>
+                                <li>Lunes: Sentadillas 3x12</li>
+                                <li>Martes: Yoga flow</li>
+                                <li>Miércoles: Descanso activo</li>
+                            </ul>
+                        </div>
+                    </div>
             
-        </section>
+                    <!-- Planes Nutricionales -->
+                    <div class="feature">
+                        <h3>Plan Nutricional (Muestra)</h3>
+                        <div class="sample-box">
+                            <h4>Día 2-Ejemplo:</h4>
+                            <p>Desayuno: 2ś Tostadas integrales con 1/2 aguacate<br>
+                                Almuerzo: Ensalada de quinoa y vegetales <br> Total 200 calorias</p>
+                        </div>
+                    </div>
+            
+                    <!-- Mindfulness -->
+                    <div class="feature">
+                        <h3>Guías de Mindfulness</h3>
+                        <div class="sample-box">
+                            <h4>Meditación Básica:</h4>
+                            <audio controls style="width: 100%; margin-top: 1rem;">
+                                <source src="meditacion-ejemplo.mp3" type="audio/mpeg">
+                                Tu navegador no soporta audio HTML5
+                            </audio>
+                            <p>Técnica de respiración 4-7-8</p>
+                        </div>
+                    </div>
+            
+                    <!-- eBooks -->
+                    <div class="feature">
+                        <h3>Muestra de eBooks</h3>
+                        <div class="sample-box non-downloadable">
+                            <h4>Capítulo 1 - Introducción</h4>
+                            <p>"El equilibrio comienza con la consciencia..."</p>
+                            <div class="watermark">Descargar</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </body>
 
-       <a href="pricing.html" class="contact-btn tooltip" data-tooltip="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
-
-<style>
-.tooltip {
-  position: relative;
-}
-
-.tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-}
-
-/* Para desktop (hover) */
-@media (hover: hover) {
-  .tooltip:hover::after {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-/* Para móviles (touch) */
-@media (hover: none) {
-  .tooltip:active::after {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-</style>
-    </div>
-     </div>
-    <div class="calorie-section" style="text-align: center; padding: 2rem; margin: 2rem 0;">
-        <h2 style="color: #2c3e50; margin-bottom: 1.5rem;">¡Descubre tus necesidades calóricas diarias!</h2>
-        <a href="calcTM.html" style="display: inline-block; background-color: #3498db; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none;">Calcular mis calorías</a>
-    </div>
-</body>
 </html>
