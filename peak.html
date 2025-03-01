@@ -1,835 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mindfulness & Fitness</title>
-    <a href="https://www.authpro.com/auth/FitMindRx/?action=logout">Logout</a>
-    <script type="text/javascript" src="https://www.authpro.com/auth/FitMindRx/?action=pp">
-</script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Página que ya no existe</title>
     <style>
-        /* Global Styles */
-        body, html {
+        /* Reset básico */
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            scroll-behavior: smooth;
-            background-color: #f4f7fb;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3 {
-            text-align: center;
-            margin: 20px 0;
-            animation: fadeIn 1.5s ease-in-out;
+            box-sizing: border-box;
         }
 
-        p {
-            text-align: justify;
-            margin: 0 20px;
-            line-height: 1.8;
-            animation: fadeInUp 2s ease-in-out;
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
         }
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Particles Background */
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 999;
-        }
-
-        /* Welcome Video Section */
-        #welcome {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: transparent;
-            z-index: 1000;
-        }
-
-      /* Actualización del contenedor de video y marco de teléfono */
-      .video-container {
-            position: relative;
-            width: 380px; /* Ancho fijo para el teléfono */
-            height: 720px; /* Altura aproximada para ratio 9:16 + bordes */
-            margin: 20px auto;
-            background: white;
-            border-radius: 40px;
             padding: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
         }
-         /* Marco del teléfono */
-         .phone-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 40px;
-            pointer-events: none;
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
         }
-           /* Notch del teléfono */
-           .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 180px;
-            height: 30px;
-            background: #000;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+
+        .header__title {
+            font-size: 8rem;
+            font-weight: bold;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .header__subtitle {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        /* Main */
+        .main {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .message__title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2575fc;
+        }
+
+        .message__text {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Opciones */
+        .options {
+            margin-top: 40px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            z-index: 1001;
-        }
-         /* Cámara frontal */
-         .front-camera {
-            width: 12px;
-            height: 12px;
-            background: #1a1a1a;
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: inset 0 0 2px rgba(255,255,255,0.5);
-        }
-        /* Altavoz */
-        .speaker {
-            width: 60px;
-            height: 6px;
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-        /* Botón de inicio */
-        .home-button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 140px;
-            height: 5px;
-            background: #000;
-            border-radius: 3px;
-            z-index: 1001;
-        }
-        .stornaway-container {
-            position: relative;
-            width: 100%;
-            height: calc(100% - 50px); /* Ajuste para el notch y el botón de inicio */
-            margin-top: 30px; /* Espacio para el notch */
-        }
-        .stornaway-container > div {
-            position: relative;
-            padding-bottom: 177.77% !important; /* Mantiene ratio 9:16 */
-            height: 0;
-            overflow: hidden;
-        }
-        #welcome video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: black;
+            gap: 20px;
         }
 
-        #skip-btn {
-            position: absolute;
-            bottom: 40px;
-            right: 60px;
-            padding: 5px 10px;
-            background: #ff6600;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 0.875rem;
-            border-radius: 5px;
-            opacity: 0;
-            animation: fadeIn 1s ease-in-out forwards;
-            display: none;
-        }
-
-      
-        
-
-
-
-         :root {
-            --primary: #2a9d8f;
-            --secondary: #e76f51;
-            --background: #f8f9fa;
-            --text: #264653;
-            --accent: #f4a261;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: url('/api/placeholder/1200/400') center/cover;
-            opacity: 0.1;
-            animation: pulse 4s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.1; }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: slideIn 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background-color: #e76f51;
-        }
-
-        .section-title {
-            color: var(--primary);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .approach-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--primary);
-        }
-
-        .approach-card:nth-child(2n) {
-            border-left-color: var(--secondary);
-        }
-
-        .approach-card:nth-child(3n) {
-            border-left-color: var(--accent);
-        }
-
-        .approach-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .approach-title {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .approach-subtitle {
-            color: var(--text);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .contact-btn {
-            display: block;
-            width: max-content;
-            margin: 3rem auto;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            background: var(--secondary);
-            color: white;
+        .options__link {
             text-decoration: none;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            color: #fff;
+            background-color: #2575fc;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .contact-btn::before {
-            
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--text);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+        .options__link:hover {
+            background-color: #6a11cb;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        .footer__text {
             font-size: 0.9rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            white-space: nowrap;
         }
 
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(231, 111, 81, 0.4);
-            background: #e85d3d;
-            content: 'Recuerda: ¡la orientación es gratis!';
-        }
-
-        .contact-btn:hover::before {
-            opacity: 1;
-        }
-
-        .list-item {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .list-item::before {
-            content: '•';
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-        }
-
-       
-        /* Mejoras en responsive design */
-        @media screen and (max-width: 1200px) {
-            .container {
-                max-width: 95%;
-                padding: 1rem;
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
             }
-            
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-
-        @media screen and (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .approach-card {
-                padding: 1.25rem;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero {
-                padding: 3rem 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-                margin-bottom: 0.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .feature {
-                padding: 1.25rem;
-            }
-            
-            .approach-title {
-                font-size: 1.2rem;
-            }
-            
-            .approach-subtitle {
-                font-size: 1rem;
-            }
-        }
-
-        @media screen and (max-width: 576px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .container {
-                padding: 0.5rem;
-            }
-            
-            .card {
-                padding: 1rem;
-                margin: 1rem 0;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .approach-card {
-                padding: 1rem;
-                margin: 0.75rem 0;
-            }
-            
-            .contact-btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 1.1rem;
-                width: 90%;
-                text-align: center;
-            }
-        }
-
-        /* Orientación landscape para móviles */
-        @media screen and (max-height: 480px) and (orientation: landscape) {
-            .hero {
-                padding: 2rem 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Soporte para pantallas de alta resolución */
-        @media screen and (min-width: 2000px) {
-            .container {
-                max-width: 1600px;
-            }
-            
-            .hero h1 {
-                font-size: 4.5rem;
-            }
-            
-            .hero p {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .approach-title {
-                font-size: 1.8rem;
-            }
-            
-            .approach-subtitle {
-                font-size: 1.4rem;
-            }
-            
-            .feature h3 {
-                font-size: 1.8rem;
-            }
-            
-            .feature p {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Mejoras en la accesibilidad */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-
-        /* Soporte para modo oscuro del sistema */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --background: #1a1a1a;
-                --text: #f8f9fa;
-            }
-            
-            .card, .feature, .approach-card {
-                background: #2d2d2d;
-                color: var(--text);
-            }
-        }
-
-        /* Ajustes para dispositivos con pantalla táctil */
-        @media (hover: none) {
-            .card:hover,
-            .feature:hover,
-            .approach-card:hover {
-                transform: none;
-            }
-            
-            .contact-btn::before {
-                display: none;
-            }
-        }
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .video-container {
-                width: 100%;
-                height: 100vh;
-                margin: 0;
-                border-radius: 0;
-            }
-
-            .phone-frame {
-                border-radius: 0;
+            to {
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
-
-    
-
-    <!-- Welcome Video -->
-    <div id="welcome">
-        <div class="video-container">
-            <!-- Marco del teléfono -->
-            <div class="phone-notch">
-                <div class="front-camera"></div>
-                <div class="speaker"></div>
-            </div>
-            <div class="home-button"></div>
-
-            <div class="stornaway-container">
-                <div>
-                    <iframe
-                      src="https://player.stornaway.io/embed/9a68611c"
-                      frameborder="0"
-                      allowfullscreen
-                      allow="accelerometer; gyroscope;autoplay;"
-                      style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></iframe>
-                    <script src="https://studio.stornaway.io/embed/v1/standalone_player.js" defer></script>
-                  </div>
-            </div>
-            <button id="skip-btn">Skip</button>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">404</h1>
+            <p class="header__subtitle">Página no encontrada</p>
         </div>
-    </div>
+    </header>
 
+    <main class="main">
+        <div class="container">
+            <section class="message">
+                <h2 class="message__title">Lo sentimos, esta página ya no existe.</h2>
+                <p class="message__text">
+                    Parece que la página que estás buscando ha sido eliminada o movida. Pero no te preocupes, ¡aquí tienes la opción correcta!
+                </p>
+            </section>
 
-    <!-- Main Content -->
-    <div class="hero">
-        <h1>MENTE PRESENTE, CUERPO FUTURO</h1>
-        <p>Transformación Integral Sostenible</p>
-        <p>Tu viaje de 90 días hacia el bienestar consciente</p>
-    </div>
+            <section class="options">
+                <a href="https://fitmindrx.trainerize.com" class="options__link">Nuevo enlace</a>
+               
+            </section>
+        </div>
+    </main>
 
-    <div class="container">
-        <section class="card" data-aos="fade-up" data-aos-duration="1000">
-            <h2 class="section-title">Nuestros Enfoques de Transformación</h2>
-            
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="100">
-                <h3 class="approach-title">Enfoque Transformacional</h3>
-                <p class="approach-subtitle">"Revolución Consciente: Programa de Transformación Cuerpo-Mente"</p>
-                <p class="approach-subtitle">"TransformaMente: El Método Integral de Bienestar"</p>
-            </div>
-
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="200">
-                <h3 class="approach-title">Enfoque Mindfulness</h3>
-                <p class="approach-subtitle">"Mindful Fitness: La Transformación Consciente"</p>
-                <p class="approach-subtitle">"Presente y Fit: Tu Camino al Bienestar Integral"</p>
-            </div>
-
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="300">
-                <h3 class="approach-title">Enfoque Resultado</h3>
-                <p class="approach-subtitle">"90 Días para Ti: Transformación Consciente Garantizada"</p>
-                <p class="approach-subtitle">"Método TIS: Transformación Integral Sostenible"</p>
-            </div>
-            <div class="approach-card" data-aos="fade-right" data-aos-delay="400">
-                <h3 class="approach-title">Enfoque Holístico</h3>
-                <p class="approach-subtitle">"Equilibrio Total: Nutrición, Movimiento y Consciencia"</p>
-                <p class="approach-subtitle">"Triple Impacto: Mente Clara, Cuerpo Fuerte, Vida Plena"</p>
-            </div>
-        </section>
-
-        <section class="card" data-aos="fade-up">
-            <h2 class="section-title">Nuestro Programa Integral</h2>
-            <div class="feature" data-aos="zoom-in" data-aos-delay="100">
-                <div class="feature">
-                    <h3>Nutrición Consciente</h3>
-                    <p>Plan alimenticio personalizado dentro de tu presupuesto </p>
-                </div>
-                <div class="feature" data-aos="zoom-in" data-aos-delay="200">
-                    <h3>Ejercicio Progresivo</h3>
-                    <p>De principiante a intermedio, adaptado a tu nivel</p>
-                </div>
-                <div class="feature" data-aos="zoom-in" data-aos-delay="300">
-                    <h3>Mindfulness</h3>
-                    <p>Técnicas de atención plena para una transformación duradera</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="card" data-aos="fade-up">
-            <h2 class="section-title">¿Qué Incluye?</h2>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="100">Plan nutricional detallado con presupuesto de $200</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="200">Programa de ejercicios progresivo de 12 semanas</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="300">Rutinas de mindfulness integradas</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="400">Seguimiento y ajustes personalizados</div>
-            <div class="list-item" data-aos="fade-left" data-aos-delay="500">Apoyo continuo en tu transformación</div>
-        </section>
-
-        <section class="card" data-aos="fade-up">
-            <h2 class="section-title">*Resultados Esperados</h2>
-            <div class="grid">
-                <div class="feature" data-aos="flip-left" data-aos-delay="100">
-                    <h3>*Pérdida de Peso</h3>
-                    <p>*5-15 libras en 3 meses de manera saludable y sostenible</p>
-                </div>
-                <div class="feature" data-aos="flip-left" data-aos-delay="200">
-                    <h3>*Mejor Condición Física</h3>
-                    <p>*Aumento de fuerza, resistencia y flexibilidad</p>
-                </div>
-                <div class="feature" data-aos="flip-left" data-aos-delay="300">
-                    <h3>*Bienestar Mental</h3>
-                    <p>*Mayor claridad mental y reducción del estrés</p>
-                    
-                    
-    
-                    
-                </div>
-            </div>
-            <small>*Los resultados pueden variar de persona a persona</small>
-            <small>*¡Recibe orientación antes de comenzar completamente gratis!</small>
-        </section>
-
-       <a href="pricing.html" class="contact-btn tooltip" data-tooltip="¡Recuerda la orientación es gratis!">¡Comienza Tu Transformación Ahora!</a>
-
-<style>
-.tooltip {
-  position: relative;
-}
-
-.tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-}
-
-/* Para desktop (hover) */
-@media (hover: hover) {
-  .tooltip:hover::after {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-/* Para móviles (touch) */
-@media (hover: none) {
-  .tooltip:active::after {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-</style>
-    </div>
-     </div>
-    <div class="calorie-section" style="text-align: center; padding: 2rem; margin: 2rem 0;">
-        <h2 style="color: #2c3e50; margin-bottom: 1.5rem;">¡Descubre tus necesidades calóricas diarias!</h2>
-        <a href="calcTM.html" style="display: inline-block; background-color: #3498db; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none;">Calcular mis calorías</a>
-    </div>
-    <!-- Particles.js Library -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <script>
-        // Particles Configuration
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: '#ffffff' },
-                shape: { type: 'circle' },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#ffffff',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    outModes: { default: 'bounce' },
-                    attract: { enable: false, rotateX: 600, rotateY: 1200 }
-                }
-            },
-            interactivity: {
-                detectsOn: 'canvas',
-                events: {
-                    onHover: { enable: true, mode: 'repulse' },
-                    onClick: { enable: true, mode: 'push' },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-
-        // Video and Audio Control
-        const skipBtn = document.getElementById('skip-btn');
-        const welcomeDiv = document.getElementById('welcome');
-        const mainContent = document.getElementById('main-content');
-        const videoIframe = document.querySelector('.stornaway-container iframe'); // Selecciona el iframe del video
-        
-        const particlesDiv = document.getElementById('particles-js');
-
-     
-
-        // Show skip button after 5 seconds
-        setTimeout(() => {
-            skipBtn.style.display = 'block';
-        }, 15000);
-
-      
-
-       // Funcionalidad del botón Skip
-    skipBtn.addEventListener('click', () => {
-        // Eliminar el iframe del DOM
-        if (videoIframe) {
-            videoIframe.remove();
-        }
-        // Ocultar la sección del video
-        welcomeDiv.style.display = 'none';
-        particlesDiv.style.display = 'none';
-        // Mostrar el contenido principal
-        mainContent.style.display = 'block';
-        document.body.style.overflow = 'auto';
-    });
-
-        // Auto-skip after video ends
-        video.addEventListener('ended', () => {
-            welcomeDiv.style.display = 'none';
-            particlesDiv.style.display = 'none';
-            mainContent.style.display = 'block';
-            document.body.style.overflow = 'auto';
-        });
-
-
-
-
-
-      
-    </script>
-       
+    <footer class="footer">
+        <div class="container">
+            <p class="footer__text">© 2023 FitMind Rx. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
